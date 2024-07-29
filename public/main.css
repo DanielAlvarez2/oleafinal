@@ -13,9 +13,11 @@ body{
     font-family: futura light;
     font-weight:100;
     font-size: 18px;
+    width:100%;
 }
 #wrapper{
     max-width: 1060px;
+    margin:0 auto;
 }
 h1{
     color: #fff;
