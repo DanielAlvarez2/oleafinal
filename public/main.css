@@ -1,0 +1,86 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face{
+    font-family: "futura light";
+    src: url("./FuturaLight.otf") format("opentype");
+}
+body{
+    background:#262626;
+    color: #bfbfbf;
+    font-family: futura light;
+    font-weight:100;
+    font-size: 18px;
+}
+#wrapper{
+    max-width: 1060px;
+}
+h1{
+    color: #fff;
+    font-weight: 100;
+    font-size: 55px;
+    width:236px;
+    text-align: center;
+}
+li{
+    list-style-type: none;
+}
+nav ul{
+    display: flex;
+}
+nav li{
+    font-size: 18px;
+    margin:0 10px;
+}
+hr{
+    border-top:1px solid #5c5c5c;
+    border-bottom: 1px solid transparent;
+}
+header{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+#socials{
+    padding-top: 10px;
+    margin-left: auto;
+    width: 126px;
+    align-self: flex-start;
+}
+#socials i,#socials2 i{
+    padding:3px;
+    font-size: 20px;
+    font-weight: 100;
+}
+#socials2{
+    margin-bottom: 20px;
+}
+.slideshow-large{
+    margin:0 auto;
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.slideshow-small{
+    width:120px;
+    height:80px;
+}
+#slideshow{
+    max-width:940px;
+}
+#small-slideshow{
+    padding-bottom: 80px;
+    border-bottom:1px solid #5c5c5c;
+}
+main{
+    max-width: 940px;
+    margin: 0 auto;
+}
+#info{
+    margin-top: 20px;
+    max-width: 47ch;
+    line-height: 1.7em;
+    padding-bottom: 70px;
+}
