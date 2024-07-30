@@ -10,5 +10,6 @@ router.get('/private-parties', mainController.getPrivateParties)
 router.get('/press', mainController.getPress)
 router.get('/giftcards', mainController.getGiftcards)
 router.get('/newsletter', mainController.getNewsletter)
+router.get('/dinner', mainController.getDinner)
 
 module.exports = router

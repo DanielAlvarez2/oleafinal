@@ -23,5 +23,8 @@ module.exports = {
     },
     getNewsletter: (req,res)=>{
         res.render('main/newsletter.ejs', {title:'olea new haven | newsletter'} )
+    },
+    getDinner: (req,res)=>{
+        res.render('/main/dinner.ejs',{title:'olea new haven | dinner menu'})
     }
 }

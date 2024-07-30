@@ -36,6 +36,15 @@ a:hover,
 a:active{
     color:white;
 }
+#socials a,footer a,
+#socials a:link,footer a:link,
+#socials a:visited,footer a:visited,
+#socials a:active,footer a:active{
+    color:#bfbfbf;
+}
+#socials a:hover,footer a:hover{
+    color:#fff;
+}
 h2{
     font-weight: 100;
     font-size: 25px;
@@ -61,6 +70,9 @@ nav ul{
     left:-15px;
     top: 1.4rem;
     display: none;
+}
+#menus-sub-menu{
+    width:9ch;
 }
 #info-sub-menu li,
 #menus-sub-menu li{
