@@ -15,6 +15,9 @@ body{
     font-size: 18px;
     width:100%;
 }
+a{
+    text-decoration: none;
+}
 #wrapper{
     max-width: 1060px;
     margin:0 auto;
@@ -25,6 +28,17 @@ h1{
     font-size: 55px;
     width:236px;
     text-align: center;
+}
+a,
+a:link,
+a:visited,
+a:hover,
+a:active{
+    color:white;
+}
+h2{
+    font-weight: 100;
+    font-size: 25px;
 }
 li{
     list-style-type: none;
@@ -45,6 +59,7 @@ nav ul{
     background: #262626;
     padding: 5px 0;
     left:-15px;
+    top: 1.4rem;
     display: none;
 }
 #info-sub-menu li,
@@ -87,64 +102,14 @@ header{
 #socials2{
     margin-bottom: 20px;
 }
-.slideshow-large{
-    margin:0 auto;
-    display: block;
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-.slideshow-small{
-    width:120px;
-    height:80px;
-}
-#slideshow{
-    max-width:940px;
-    /* aspect-ratio: 16 / 1; */
-    margin-bottom: 20px;
-    position: relative;
-}
-#small-slideshow{
-    padding-bottom: 80px;
-    border-bottom:1px solid #5c5c5c;
-    display: flex;
-    overflow: hidden;
-}
 main{
     max-width: 940px;
     margin: 0 auto;
+    line-height: 1.7em;
+    font-size: 18px;
 }
-#info{
+footer{
     margin-top: 20px;
     max-width: 47ch;
-    line-height: 1.7em;
     padding-bottom: 70px;
-}
-#left,#right{
-    position:absolute;
-    background: transparent;
-    color:white;
-    font-size: 20px;
-    font-weight: 100;
-    top:0;
-    bottom:0;
-    display: flex;
-    align-items: center;
-}
-#left{
-    left:0;
-    justify-content:flex-start;
-}
-#right{
-    right:0;
-}
-#left-arrow,#right-arrow{
-    background: #88888888;
-    transform: scaleY(2);
-    padding: 0 14px;
-    line-height: 25px;
-}
-#left-arrow:hover,
-#right-arrow:hover{
-    background: #44444444;
-    cursor: default;
 }
