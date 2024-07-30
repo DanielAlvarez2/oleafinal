@@ -8,6 +8,10 @@ app.use(express.static('public'))
 
 app.use('/', mainRoutes)
 
+app.use(function(req,res){
+    res.status(404).render('error404.ejs',{title:'404'})
+})
+
 app.listen(PORT,()=>{
     console.log(`Express Server Now Listening on port ${PORT}`);
 })
