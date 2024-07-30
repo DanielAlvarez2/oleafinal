@@ -12,4 +12,6 @@ router.get('/giftcards', mainController.getGiftcards)
 router.get('/newsletter', mainController.getNewsletter)
 router.get('/dinner', mainController.getDinner)
 
+router.get('/')
+
 module.exports = router
