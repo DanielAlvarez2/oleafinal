@@ -83,6 +83,8 @@ nav a:hover{
 hr{
     border-top:1px solid #5c5c5c;
     border-bottom: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
 }
 header{
     margin-top: 20px;
@@ -111,6 +113,8 @@ main{
 }
 #footer-hr{
     border-top:1px solid #5c5c5c;
+    border-left:1px solid transparent;
+    border-right:1px solid transparent;
     margin-top: 80px;
 }
 footer{
