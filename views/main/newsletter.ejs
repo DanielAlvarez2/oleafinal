@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script
+    src="https://kit.fontawesome.com/21ef82ed30.js"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/main.css">
+    <style>
+        #info-page-flexbox{
+            display:flex;
+        }
+        #left{
+            max-width:53ch;
+        }
+        #opentable{
+            background:#00000088;
+            text-align:center;
+            color:#fff;
+            font-size:25px;
+            line-height:1.3em;
+            letter-spacing:3px;
+            padding:34px 17px 40px;
+        }
+        #opentable span{
+            font-size:10px;
+        }
+        #find-a-table{
+            border-radius:3px;
+            padding:10px;
+            background:#000000dd;
+            font-family:serif;
+            font-size:13px;
+            cursor:pointer;
+        }
+        h2{
+            margin: 70px 0 20px;
+        }
+        #button{
+            background:lightgrey;
+            display:inline-block;
+            color:white;
+            font-size:25px;
+            margin-top:20px;
+            padding:15px 20px;
+            border-radius:5px;
+            font-weight:900;
+        }
+        form{
+            background:white;
+            color:grey;
+            padding:10px;
+            min-width:660px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+
+    <%- include('./partials/header.ejs')%>
+
+        <main>            
+<div id='info-page-flexbox'>
+    <div id="left">
+
+        <h2>newsletter</h2>
+
+        <form>
+            subscribe to our mailing list<br>
+
+            Email Address<br>
+            <input type='text'><br><br>
+
+            First Name<br>
+            <input type='text'><br><br>
+
+            Last Name<br>
+            <input type='text'><br><br>
+
+            Phone Number<br>
+            <input type='text'><br><br>
+
+            <div id='button'>
+                Subscribe
+            </div>
+
+        </form>
+
+    </div>
+
+    <div id='right'>
+
+        <div id='opentable'>
+            make a reservation<br>
+            <span>POWERED BY OPENTABLE</span>
+
+            <a target='_blank' href='http://www.opentable.com/rest_profile.aspx?rid=151186&restref=151186'><div id='find-a-table'>
+                FIND A TABLE
+            </div></a>
+        </div>
+    </div>
+</div>
+            <%- include('./partials/footer.ejs') %>
+        </main>
+
+    </div>
+    <script src="/main.js"></script>
+</body>
+</html>

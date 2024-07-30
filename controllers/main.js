@@ -17,5 +17,11 @@ module.exports = {
     },
     getPress: (req,res)=>{
         res.render('main/press.ejs',{title:'olea new haven | press'})
+    },
+    getGiftcards: (req,res)=>{
+        res.render('main/giftcards.ejs',{title:'olea new haven | gift cards'})
+    },
+    getNewsletter: (req,res)=>{
+        res.render('main/newsletter.ejs', {title:'olea new haven | newsletter'} )
     }
 }

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script
+    src="https://kit.fontawesome.com/21ef82ed30.js"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/main.css">
+    <style>
+        #info-page-flexbox{
+            display:flex;
+        }
+        #left{
+            max-width:53ch;
+        }
+        #opentable{
+            background:#00000088;
+            text-align:center;
+            color:#fff;
+            font-size:25px;
+            line-height:1.3em;
+            letter-spacing:3px;
+            padding:34px 17px 40px;
+        }
+        #opentable span{
+            font-size:10px;
+        }
+        #find-a-table{
+            border-radius:3px;
+            padding:10px;
+            background:#000000dd;
+            font-family:serif;
+            font-size:13px;
+            cursor:pointer;
+        }
+        h2{
+            margin: 70px 0 20px;
+        }
+        #button{
+            background:lightgrey;
+            display:inline-block;
+            color:black;
+            font-size:25px;
+            margin-top:20px;
+            padding:15px 20px;
+            border-radius:5px;
+            font-weight:900;
+        }
+        img{
+            max-width:650px;
+            margin-top:100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+
+    <%- include('./partials/header.ejs')%>
+
+        <main>            
+<div id='info-page-flexbox'>
+    <div id="left">
+
+        <h2>gift cards</h2>
+
+        Gift cards are available now! Please fill in the information and click the button below 
+        to purchase one through PayPal (an account is not required). If you would like an amount 
+        not listed below, or if you would prefer to order a gift card by phone, please give us a call 
+        at 203.780.8925.<br><br>
+
+        Gift cards will be mailed via standard mail within 48 hours, except for 
+        orders received on Sunday which will be processed on Tuesday.<br><br>
+
+        At this time, we do not offer printable or electronic gift cards. Please provide 
+        your telephone number so we have a way to contact you in case of any issues. Thank you!<br><br>
+
+        <form>
+            amount<br>
+            <select>
+                <option>$50</option>
+                <option>$75</option>
+                <option>$100</option>
+                <option>$125</option>
+                <option>$150</option>
+                <option>$175</option>
+                <option>$200</option>
+                <option>$225</option>
+                <option>$250</option>
+                <option>$300</option>
+            </select>
+            <br>
+            phone number *REQUIRED*<br>
+            Please make sure to provide a phone number. We will only contact you if there is an issue 
+            with the processing of your gift card.<br>
+            <input type='text'><br>
+            provide to and from info<br>
+            <input type='text'><br>
+            <div id='button'>
+                buy now
+            </div>
+        </form>
+
+        <img src='/pics/giftcard.jpg'>
+    </div>
+
+    <div id='right'>
+
+        <div id='opentable'>
+            make a reservation<br>
+            <span>POWERED BY OPENTABLE</span>
+
+            <a target='_blank' href='http://www.opentable.com/rest_profile.aspx?rid=151186&restref=151186'><div id='find-a-table'>
+                FIND A TABLE
+            </div></a>
+        </div>
+    </div>
+</div>
+            <%- include('./partials/footer.ejs') %>
+        </main>
+
+    </div>
+    <script src="/main.js"></script>
+</body>
+</html>
