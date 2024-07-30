@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script
+    src="https://kit.fontawesome.com/21ef82ed30.js"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/main.css">
+    <style>
+        #events{
+            max-width:53ch;
+        }
+        h2{
+            margin: 70px 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+
+    <%- include('./partials/header.ejs')%>
+
+        <main>            
+        <div id='events'>
+            <img src='/pics/private-parties.jpg' width='535px'><br><br>
+            Let Us Make Your Events Special, and Delicious<br><br>
+
+            Plan a festive and delicious gathering at Olea, where guests will 
+            enjoy Chef Manuel Romero's innovative interpretation of Spanish 
+            and Mediterranean cuisine, <a href='https://www.nytimes.com/2015/03/22/nyregion/curtain-rises-on-a-spanish-second-act.html?_r=1' target='_blank'>praised as "creative, beautifully 
+            prepared" by The New York Times</a> and <a target='_blank' href=''>given an Extraordinary 
+            rating from Connecticut Magazine.</a> <span style="color:red">broken link</span><br><br>
+            
+            A special menu will be designed for each gathering, or guests may build an 
+            event by selecting items from our regular menus.<br><br>
+
+            Olea can accomodate up to 40 guests for private events in part of the 
+            restaurant enclosed by a shimmering curtain, and larger parties can include up 
+            to 80 guests throughout Olea. And we love to create special nooks for smaller, 
+            more intimate gatherings.<br><br>
+
+            Call Olea at 203.780.8925, or email info@oleanewhaven.com, to begin the 
+            process of creating a unique event.
+        </div>
+            <%- include('./partials/footer.ejs') %>
+        </main>
+
+    </div>
+    <script src="/main.js"></script>
+</body>
+</html>

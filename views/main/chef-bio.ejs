@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script
+    src="https://kit.fontawesome.com/21ef82ed30.js"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/main.css">
+    <style>
+        #info-page-flexbox{
+            display:flex;
+        }
+        #left{
+            max-width:53ch;
+        }
+        #opentable{
+            background:#00000088;
+            text-align:center;
+            color:#fff;
+            font-size:25px;
+            line-height:1.3em;
+            letter-spacing:3px;
+            padding:34px 17px 40px;
+        }
+        #opentable span{
+            font-size:10px;
+        }
+        #find-a-table{
+            border-radius:3px;
+            padding:10px;
+            background:#000000dd;
+            font-family:serif;
+            font-size:13px;
+            cursor:pointer;
+        }
+        h2{
+            margin: 70px 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+
+    <%- include('./partials/header.ejs')%>
+
+        <main>            
+<div id='info-page-flexbox'>
+    <div id="left">
+
+    <img src='/pics/chef-tv.jpg' width='535px'><br><br>
+
+    Manuel Romero, Executive Chef at Olea<br><br>
+
+    Born in Spain, Chef Manuel Romero was raised in a family that loved 
+    cooking traditional and tasty food. When he was a child, his family 
+    moved to the United States, and he developed a passion for cooking by 
+    watching, helping, and learning alongside his mother. He attended New 
+    York Technical College in Brooklyn, New York, where he studied 
+    hospitality management with a focus on the culinary arts. Building upon 
+    his training and honing his craft, Chef Romero has worked in New York 
+    with Chef Luis Bollo of Meigas and at the Hyatt Hotel, as well as at 
+    Meson Galicia in Connecticut. He has also spent time training in Spain.<br><br>
+
+    In 2001, he joined Café Pika Tapas as a Sous Chef. One year later, the 
+    restaurant expanded its culinary focus beyond tapas and changed its 
+    name to Ibiza (which then became a highly-acclaimed Spanish 
+    restaurant). He moved up the culinary ladder and, years later, was 
+    appointed Executive Chef. His vision to create an atmosphere where his 
+    team enjoyed their work while improving their culinary knowledge and 
+    always thinking about the customer was realized.<br><br>
+
+    In late summer of 2014, Chef Romero opened Olea restaurant in New 
+    Haven, Connecticut, offering guests his innovative interpretation of 
+    Spanish and Mediterranean cuisine. As the executive chef and co-
+    owner, he is continually striving to build upon his vision of providing 
+    exemplary dishes and a comprehensive guest experience, while also 
+    encouraging a rewarding team environment for his staff.
+
+
+    </div>
+
+    <div id='right'>
+
+        <div id='opentable'>
+            make a reservation<br>
+            <span>POWERED BY OPENTABLE</span>
+
+            <a target='_blank' href='http://www.opentable.com/rest_profile.aspx?rid=151186&restref=151186'><div id='find-a-table'>
+                FIND A TABLE
+            </div></a>
+        </div>
+    </div>
+</div>
+            <%- include('./partials/footer.ejs') %>
+        </main>
+
+    </div>
+    <script src="/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <script
+    src="https://kit.fontawesome.com/21ef82ed30.js"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/main.css">
+    <style>
+        #info-page-flexbox{
+            display:flex;
+        }
+        #left{
+            max-width:53ch;
+        }
+        #opentable{
+            background:#00000088;
+            text-align:center;
+            color:#fff;
+            font-size:25px;
+            line-height:1.3em;
+            letter-spacing:3px;
+            padding:34px 17px 40px;
+        }
+        #opentable span{
+            font-size:10px;
+        }
+        #find-a-table{
+            border-radius:3px;
+            padding:10px;
+            background:#000000dd;
+            font-family:serif;
+            font-size:13px;
+            cursor:pointer;
+        }
+        h2{
+            margin: 70px 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+
+    <%- include('./partials/header.ejs')%>
+
+        <main>            
+<div id='info-page-flexbox'>
+    <div id="left">
+
+        <h2>free parking</h2>
+
+        Temple or Crown Street Garage<br>
+        Park your car in Temple or Crown Street Garage, enjoy a meal (with a check 
+        of $50 or more), and park for FREE until 3am. For more information, visit the 
+        <a target='_blank' href='https://parknewhaven.com/deal/dine-downtown-park-free/'>Park New Haven website</a>. Ask your host about validation when arriving at 
+        Olea. There is no validation for private events. <br><br>
+
+        exceptions: no validation for restaurant week or Yale commencement days
+
+    </div>
+
+    <div id='right'>
+
+        <div id='opentable'>
+            make a reservation<br>
+            <span>POWERED BY OPENTABLE</span>
+
+            <a target='_blank' href='http://www.opentable.com/rest_profile.aspx?rid=151186&restref=151186'><div id='find-a-table'>
+                FIND A TABLE
+            </div></a>
+        </div>
+    </div>
+</div>
+            <%- include('./partials/footer.ejs') %>
+        </main>
+
+    </div>
+    <script src="/main.js"></script>
+</body>
+</html>

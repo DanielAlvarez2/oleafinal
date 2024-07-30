@@ -1,10 +1,12 @@
-console.log('routes/main.js')
 const express = require('express')
 const router = express.Router()
-const homeController = require('../controllers/home')
+const mainController = require('../controllers/main')
 
-router.get('/', homeController.getIndex)
-router.get('/info', homeController.getInfo)
-
+router.get('/', mainController.getIndex)
+router.get('/info', mainController.getInfo)
+router.get('/free-parking', mainController.getFreeParking)
+router.get('/chef-bio', mainController.getChefBio)
+router.get('/private-parties', mainController.getPrivateParties)
+router.get('/press', mainController.getPress)
 
 module.exports = router

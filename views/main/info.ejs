@@ -35,49 +35,15 @@
             font-size:13px;
             cursor:pointer;
         }
+        h2{
+            margin: 70px 0 20px;
+        }
     </style>
 </head>
 <body>
     <div id="wrapper">
-        <header>
-            <h1><a href='/'>olea</a></h1>
-            <nav>
-                <ul>
-                    <li>home</li>
-                    <li id="info-button">
-                        <span id="info-wrapper">info
-                        <ul id="info-sub-menu">
-                            <li class="active-page">info</li>
-                            <li>free parking</li>
-                            <li>chef bio</li>
-                            <li>private parties</li>
-                        </ul>
-                        </span>
-                    </li>
-                    <li id="menus-button">
-                        <span id="menus-wrapper">menus
-                        <ul id="menus-sub-menu">
-                            <li>dinner</li>
-                            <li>specials</li>
-                            <li>dessert</li>
-                        </ul>
-                        </span>
-                    </li>
-                    <li>press</li>
-                    <li>gift cards</li>
-                    <li>newsletter</li>
-                    <li>reservations</li>
-                </ul>
-            </nav>
-            <div id="socials">
-                <i class="fa-brands fa-facebook-f"></i>
-                <i class="fa-brands fa-twitter"></i>
-                <i class="fa-brands fa-instagram"></i>
-            </div>    
-        </header>
-        <hr>
 
-
+    <%- include('./partials/header.ejs')%>
 
         <main>            
 <div id='info-page-flexbox'>
@@ -133,31 +99,13 @@
             make a reservation<br>
             <span>POWERED BY OPENTABLE</span>
 
-            <a href='http://www.opentable.com/rest_profile.aspx?rid=151186&restref=151186'><div id='find-a-table'>
+            <a target='_blank' href='http://www.opentable.com/rest_profile.aspx?rid=151186&restref=151186'><div id='find-a-table'>
                 FIND A TABLE
             </div></a>
         </div>
     </div>
 </div>
-            <footer>
-                <div id="socials2">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-instagram"></i>    
-                </div>
-                39 high street, new haven, connecticut | 203.780.8925<br><br>
-
-                Tuesday-Saturday, 5-10pm (last seating at 8:30)<br><br>
-
-                In the heart of downtown New Haven, Olea offers an innovative 
-                interpretation of Spanish and Mediterranean cuisine. Chef Manuel 
-                Romero and his team explore these flavors in their food, wine, and 
-                cocktails, locally sourcing many products and importing specialty 
-                items from the Mediterranean region.<br><br>
-
-                copyright 2014-2024 by olea. graphic design by Rebecca 
-                Martz
-            </footer>
+            <%- include('./partials/footer.ejs') %>
         </main>
 
     </div>
