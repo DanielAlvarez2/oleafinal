@@ -40,13 +40,10 @@
 
 <main>
 
-<nav id='nav-top'>
-    <a href='/dinner'>dinner</a>
-    <a href='/specials'>specials</a>
-    <a class='active-page'>dessert</a>
-    <a href='/wine'>wine</a>
-    <a href='/drinks'>drinks</a>
-</nav>
+<%- include('partials/editNav') %>
+
+
+<%- include('partials/editMenu') %>
 
 <div id='dessert-menu' class='menu'>
 
@@ -96,6 +93,9 @@
         </div><!--#modal-item-->
     </div><!--#modal-->
 </div><!--#specials-menu-->
+
+<%- include('partials/editMenu') %>
+
 </main>
 
 <script>
@@ -105,6 +105,10 @@
     const modalDescription = document.querySelector('#modal-description')
     const modalPrice = document.querySelector('#modal-price')
     const modalAllergies = document.querySelector('#modal-allergies')
+    const dinnerSubMenu = document.querySelector('#dinner-sub-menu')
+    const drinksSubMenu = document.querySelector('#drinks-sub-menu')
+    const wineSubMenu = document.querySelector('#wine-sub-menu')
+
 
     function showModal(item){
         if (!item.image) return
@@ -119,8 +123,26 @@
     function closeModal(){
         modal.style.display = 'none'
     }
+    function displayDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'block'
+    }
+    function hideDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'none'
+    }
+    function displayDrinksSubMenu(){
+        drinksSubMenu.style.display = 'block'
+    }
+    function hideDrinksSubMenu(){
+        drinksSubMenu.style.display = 'none'
+    }
+    function displayWineSubMenu(){
+        wineSubMenu.style.display = 'block'
+    }
+    function hideWineSubMenu(){
+        wineSubMenu.style.display = 'none'
+    }    
 </script>
-<%- include('partials/footer') %>
+<%- include('partials/footerEdit') %>
 
 </body>
 </html>

@@ -58,18 +58,18 @@
                             &nbsp; 
                             <span class='price'><%= btgCava[i].price %></span><br>
                             <span class='allergies'><%- btgCava[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= btgCava[i].id %>'>
+                        </div>  
 
+                        <form method='POST'
+                              action='../update/item/<%= btgCava[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-
-                            action='../edit/deleteMenuItem/<%= btgCava[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= btgCava[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -77,7 +77,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= btgCava[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= btgCava[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>
@@ -120,16 +120,18 @@
                             &nbsp; 
                             <span class='price'><%= btgWhites[i].price %></span><br>
                             <span class='allergies'><%- btgWhites[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= btgWhites[i].id %>'>
+                        </div>               
+
+                        <form method='POST'
+                              action='../update/item/<%= btgWhites[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-                            action='../edit/deleteMenuItem/<%= btgWhites[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= btgWhites[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -137,7 +139,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= btgWhites[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= btgWhites[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>
@@ -179,16 +181,18 @@
                             &nbsp; 
                             <span class='price'><%= btgRose[i].price %></span><br>
                             <span class='allergies'><%- btgRose[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= btgRose[i].id %>'>
+                        </div>          
+
+                        <form method='POST'
+                              action='../update/item/<%= btgRose[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-                            action='../edit/deleteMenuItem/<%= btgRose[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= btgRose[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -196,7 +200,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= btgRose[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= btgRose[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>
@@ -238,16 +242,18 @@
                             &nbsp; 
                             <span class='price'><%= btgReds[i].price %></span><br>
                             <span class='allergies'><%- btgReds[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= btgReds[i].id %>'>
+                        </div>          
+
+                        <form method='POST'
+                              action='../update/item/<%= btgReds[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-                            action='../edit/deleteMenuItem/<%= btgReds[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= btgReds[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -255,7 +261,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= btgReds[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= btgReds[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>
@@ -296,16 +302,18 @@
                             &nbsp; 
                             <span class='price'><%= btgSherries[i].price %></span><br>
                             <span class='allergies'><%- btgSherries[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= btgSherries[i].id %>'>
+                        </div>           
+
+                        <form method='POST'
+                              action='../update/item/<%= btgSherries[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-                            action='../edit/deleteMenuItem/<%= btgSherries[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= btgSherries[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -313,7 +321,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= btgSherries[i].id %>?_method=PUT'>
+                            action='../update/archiveMenuItem/<%= btgSherries[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>

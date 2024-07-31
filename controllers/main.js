@@ -1,3 +1,5 @@
+const MenuItem = require('../models/MenuItem')
+
 module.exports = {
     getIndex: (req,res)=>{
         console.log('getIndex running')
@@ -24,7 +26,38 @@ module.exports = {
     getNewsletter: (req,res)=>{
         res.render('main/newsletter.ejs', {title:'olea new haven | newsletter'} )
     },
-    getDinner: (req,res)=>{
-        res.render('main/dinner.ejs',{title:'olea new haven | dinner menu'})
+    getDinner: async(req,res)=>{
+        const charcuterie = await MenuItem.find({
+            $and:[
+                {menu:'dinner'},
+                {section:'charcuterie'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const appetizers = await MenuItem.find({
+            $and:[
+                {menu:'dinner'},
+                {section:'appetizers'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const entrees = await MenuItem.find({
+            $and:[
+                {menu:'dinner'},
+                {section:'entrees'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const sides = await MenuItem.find({
+            $and:[
+                {section:'sides'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('main/dinner.ejs',{title:'olea new haven | dinner menu',
+                                      charcuterie:charcuterie,
+                                      appetizers:appetizers,
+                                      entrees:entrees,
+                                      sides:sides})
     }
 }

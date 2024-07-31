@@ -51,16 +51,18 @@
                             &nbsp; 
                             <span class='price'><%= sangria[i].price %></span><br>
                             <span class='allergies'><%- sangria[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= sangria[i].id %>'>
+                        </div>    
+
+                        <form method='POST'
+                              action='../update/item/<%= sangria[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-                            action='../edit/deleteMenuItem/<%= sangria[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= sangria[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -68,7 +70,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= sangria[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= sangria[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>

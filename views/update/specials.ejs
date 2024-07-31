@@ -1,102 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name='description' 
-          content='Olea Restaurant, New Haven, Connecticut, 
-          Today's Specials, Daily Specials'>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link rel='stylesheet' href='/update.css'>
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
-
-<style>
-    #specials-menu{
-        max-width:4.25in;
-        min-height:5.5in;
-        border:1px solid black;
-        position:relative;
-        padding:10px;
-    }
-</style>
- 
+    <style>
+        .menu{
+            margin:0 auto;
+            max-width:8.5in;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper">
  
-
 <main>
 
-<nav id='nav-top'>
-    <a href='/dinner'>dinner</a>
-    <a class='active-page'>specials</a>
-    <a href='/dessert'>dessert</a>
-    <a href='/wine'>wine</a>
-    <a href='/drinks'>drinks</a>
-</nav>
 
-<div id='specials-menu' class='menu'>
-
-<% if(req.user){ %>
-    <a href='/edit/specials'>
-        <i class="fa-solid fa-gear"></i>
-    </a>
-<% } %>
+<%- include('partials/editNav') %>
 
 
-            <h2>today's specials</h2>
+<%- include('partials/editMenu') %>
 
-            <% if(appetizers.length>0){ %>
-                <h2>appetizers</h2>
-            <% } %>
+
+<div id='menu' class='menu edit-menu'>
+
+
+
+    <h2>today's specials</h2><br><br>
+
+        <% if(appetizers.length>0){ %>
+            <h3>appetizers</h3>
+        <% } %>
 
             <ul>
                 <% for (let i=0;i<appetizers.length;i++){ %>
-                    <li class='menu-item'
-                        onclick='showModal(<%= JSON.stringify(appetizers[i]) %>)'>
-                        <span class='name'><%= appetizers[i].name %></span><br>
-                        <%- appetizers[i].description %>
-                        &nbsp; 
-                        <span class='price'><%= appetizers[i].price %></span><br>
-                        <% if(appetizers[i].allergies){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= appetizers[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= appetizers[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% } %>                        
+                        <div onclick='showModal(<%= JSON.stringify(appetizers[i]) %>)'>
+                            <span class='name'><%= appetizers[i].name %></span><br>
+                            <%- appetizers[i].description %>
+                            &nbsp; 
+                            <span class='price'><%= appetizers[i].price %></span><br>
                             <span class='allergies'><%- appetizers[i].allergies %></span><br>
+                        </div>
+
+                        <form method='POST'
+                              action='../update/item/<%= appetizers[i].id %>'>                        
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../update/delete/<%= appetizers[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../update/archive/<%= appetizers[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        <% if(i!=appetizers.length-1){ %>
+                            <a href='/edit/moveDown/<%= appetizers[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= appetizers[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
                         <% } %>
+                        
+
                     </li>
                 <%}%>
             </ul>
 
-            <% if(entrees.length>0){ %>
-                <h2>entrées</h2>
-            <% } %>
+
+    <% if(entrees.length>0){ %>
+        <h3>entrées</h3>
+    <% } %>
+
             <ul>
                 <% for (let i=0;i<entrees.length;i++){ %>
-                    <li class='menu-item'
-                        onclick='showModal(<%= JSON.stringify(entrees[i]) %>)'>
-                        <span class='name'><%= entrees[i].name %></span><br>
-                        <%- entrees[i].description %>
-                        &nbsp; 
-                        <span class='price'><%= entrees[i].price %></span><br>
-                        <% if(entrees[i].allergies){ %>
-                            <span class='allergies'><%- entrees[i].allergies %></span><br>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= entrees[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= entrees[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
                         <% } %>
+                        <div onclick='showModal(<%= JSON.stringify(entrees[i]) %>)'>
+                            <span class='name'><%= entrees[i].name %></span><br>
+                            <%- entrees[i].description %>
+                            &nbsp;
+                            <span class='price'><%= entrees[i].price %></span><br>
+                            <span class='allergies'><%- entrees[i].allergies %></span><br>
+                        </div>  
+
+                        <form method='POST'
+                              action='../update/item/<%= entrees[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </form>
+
+                        <form method='POST' 
+                              action='../update/delete/<%= entrees[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../update/archive/<%= entrees[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        
+                        <% if(i!=entrees.length-1){ %>
+                            <a href='/edit/moveDown/<%= entrees[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= entrees[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% } %>
+
+                        
                     </li>
                 <%}%>
             </ul>
+    <% if(desserts.length>0){ %>
+        <h3>desserts</h3>
+    <% } %>
 
-            <% if(desserts.length>0){ %>
-                <h2>desserts</h2>
-            <% } %>
+        
             <ul>
                 <% for (let i=0;i<desserts.length;i++){ %>
-                    <li class='menu-item'
-                        onclick='showModal(<%= JSON.stringify(desserts[i]) %>)'>
-                        <span class='name'><%= desserts[i].name %></span><br>
-                        <%- desserts[i].description %>
-                        &nbsp; 
-                        <span class='price'><%= desserts[i].price %></span><br>
-                        <% if(desserts[i].allergies){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= desserts[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= desserts[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% } %>                    
+                        <div onclick='showModal(<%= JSON.stringify(desserts[i]) %>)'>
+                            <span class='name'><%= desserts[i].name %></span><br>
+                            <%= desserts[i].description %>
+                            &nbsp;
+                            <span class='price'><%= desserts[i].price %></span><br>
                             <span class='allergies'><%- desserts[i].allergies %></span><br>
+                        </div>
+
+                        <form method='POST'
+                              action='../update/item/<%= desserts[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../update/deleteMenuItem/<%= desserts[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../update/archive/<%= desserts[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        <% if(i!=desserts.length-1){ %>
+                            <a href='/edit/moveDown/<%= desserts[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= desserts[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
                         <% } %>
+                        
+
                     </li>
                 <%}%>
             </ul>
@@ -121,7 +239,12 @@
             </figure>
         </div><!--#modal-item-->
     </div><!--#modal-->
+
 </div><!--#specials-menu-->
+
+<%- include('partials/editMenu') %>
+
+
 </main>
 
 <script>
@@ -131,9 +254,12 @@
     const modalDescription = document.querySelector('#modal-description')
     const modalPrice = document.querySelector('#modal-price')
     const modalAllergies = document.querySelector('#modal-allergies')
+    const dinnerSubMenu = document.querySelector('#dinner-sub-menu')
+    const drinksSubMenu = document.querySelector('#drinks-sub-menu')
+    const wineSubMenu = document.querySelector('#wine-sub-menu')
 
     function showModal(item){
-        if (!item.image) return
+        if(!item.image) return        
         console.log(item)
         modalImage.src=item.image
         modalName.innerHTML = item.name
@@ -145,8 +271,27 @@
     function closeModal(){
         modal.style.display = 'none'
     }
-</script>
-<%- include('partials/footer') %>
+    function displayDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'block'
+    }
+    function hideDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'none'
+    }
+    function displayDrinksSubMenu(){
+        drinksSubMenu.style.display = 'block'
+    }
+    function hideDrinksSubMenu(){
+        drinksSubMenu.style.display = 'none'
+    }
+    function displayWineSubMenu(){
+        wineSubMenu.style.display = 'block'
+    }
+    function hideWineSubMenu(){
+        wineSubMenu.style.display = 'none'
+    }
 
-</body>
-</html>
+    const websiteLinks = document.querySelectorAll('.link-to-website')
+    websiteLinks[0].href='/specials'
+    websiteLinks[1].href='/specials'
+</script>
+<%- include('partials/footerEdit') %>

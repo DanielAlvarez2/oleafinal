@@ -50,16 +50,18 @@
                             &nbsp; 
                             <span class='price'><%= charcuterie[i].price %></span><br>
                             <span class='allergies'><%- charcuterie[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= charcuterie[i].id %>'>
+                        </div>    
+
+                        <form method='POST'
+                              action='../update/item/<%= charcuterie[i].id%>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-                            action='../edit/deleteMenuItem/<%= charcuterie[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= charcuterie[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -67,7 +69,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= charcuterie[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= charcuterie[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>

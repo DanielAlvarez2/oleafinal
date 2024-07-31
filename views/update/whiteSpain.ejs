@@ -59,18 +59,18 @@
                             &nbsp; 
                             <span class='price'><%= whiteSpain[i].price %></span><br>
                             <span class='allergies'><%- whiteSpain[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= whiteSpain[i].id %>'>
+                        </div>  
 
+                        <form method='POST'
+                              action='../update/item/<%= whiteSpain[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-
-                            action='../edit/deleteMenuItem/<%= whiteSpain[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= whiteSpain[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -78,7 +78,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= whiteSpain[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= whiteSpain[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>

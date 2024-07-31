@@ -58,18 +58,18 @@
                             &nbsp; 
                             <span class='price'><%= rose[i].price %></span><br>
                             <span class='allergies'><%- rose[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= rose[i].id %>'>
+                        </div>  
 
+                        <form method='POST'
+                              action='../update/item/<%= rose[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-
-                            action='../edit/deleteMenuItem/<%= rose[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= rose[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -77,7 +77,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= rose[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= rose[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>

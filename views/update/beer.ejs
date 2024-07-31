@@ -54,18 +54,18 @@
                             &nbsp; 
                             <span class='price'><%= beerCans[i].price %></span><br>
                             <span class='allergies'><%- beerCans[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= beerCans[i].id %>'>
+                        </div>  
 
+                        <form method='POST'
+                              action='../update/item/<%= beerCans[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-
-                            action='../edit/deleteMenuItem/<%= beerCans[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= beerCans[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -73,7 +73,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= beerCans[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= beerCans[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>
@@ -112,16 +112,18 @@
                             &nbsp; 
                             <span class='price'><%= beerDrafts[i].price %></span><br>
                             <span class='allergies'><%- beerDrafts[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= beerDrafts[i].id %>'>
+                        </div>      
+
+                        <form method='POST'
+                              action='../update/item/<%= beerDrafts[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
+                        </form>
 
                         <form method='POST'
-                            action='../edit/deleteMenuItem/<%= beerDrafts[i].id %>?_method=DELETE'>
+                            action='../update/delete/<%= beerDrafts[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-trash"></i>
                                 <span class='delete-text'>Delete</span>
@@ -129,7 +131,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= beerDrafts[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= beerDrafts[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>

@@ -38,6 +38,11 @@
         h2{
             margin: 70px 0 20px;
         }
+        #name-price{
+            display:flex;
+            justify-content:space-between;
+            margin-top:30px;
+        }
     </style>
 </head>
 <body>
@@ -72,8 +77,41 @@
         DINNER MENU<br><br>
 
         appetizers<br><br>
+        <ul>
+            <% for(let i=0;i<charcuterie.length;i++){ %>
+                <span id='name-price'><li><%= charcuterie[i].name %></li>
+                <li><%= charcuterie[i].price %></li></span>
+                <li><%= charcuterie[i].description %></li>
+            <%}%>
 
-        
+            <% for(let i=0;i<appetizers.length;i++){ %>
+                <span id='name-price'><li><%= appetizers[i].name %></li>
+                <li><%= appetizers[i].price %></li></span>
+                <li><%= appetizers[i].description %></li>
+            <%}%>
+
+        </ul>
+
+        <br><br>
+        entrées<br><br>
+        <ul>
+            <% for(let i=0;i<entrees.length;i++){ %>
+                <span id='name-price'><li><%= entrees[i].name %></li>
+                <li><%= entrees[i].price %></li></span>
+                <li><%= entrees[i].description %></li>
+            <%}%>
+        </ul>
+
+        <br><br>
+        sides<br><br>
+        <ul>
+            <% for(let i=0;i<sides.length;i++){ %>
+                <span id='name-price'><li><%= sides[i].name %></li>
+                <li><%= sides[i].price %></li></span>
+                <li><%= sides[i].description %></li>
+            <%}%>
+        </ul>
+
     </div>
 
     <div id='right'>
