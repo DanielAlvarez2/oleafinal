@@ -27,8 +27,14 @@ router.get('/whiteItaly', updateController.getWhiteItaly)
 router.get('/whiteSpain', updateController.getWhiteSpain)
 router.get('/menuItem', updateController.getUpdateMenuItem)
 
+
 router.post('/createNopic', updateController.createNOpic)
 router.post('/createWpic', upload.single('file'),updateController.createWpic)
 router.post('/delete/:id', updateController.delete)
+router.post('/item/:id', updateController.editItem)
+router.post('/archive/:id', updateController.archive)
+router.post('/unarchive/:id', updateController.unarchive)
+router.post('/saveChanges/:id', updateController.saveChanges)
+router.post('/saveChangesWpic/:id', upload.single('file'), updateController.saveChangesWpic)
 
 module.exports = router

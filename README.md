@@ -1,6 +1,10 @@
 
 
 
+check for glitch:
+changing the photo of an item,
+you need to refresh to see new pic???
+
 add a second input line for 2-line description of allergies
 
 no login "button"

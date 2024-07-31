@@ -51,15 +51,15 @@
                             &nbsp; 
                             <span class='price'><%= appetizers[i].price %></span><br>
                             <span class='allergies'><%- appetizers[i].allergies %></span><br>
-                        </div>                        
-                        <a href='/edit/updateItem/<%= appetizers[i].id %>'>
+                        </div>     
+
+                        <form method='POST'
+                              action='../update/item/<%= appetizers[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-pen"></i>
                                 <span class='edit-text'>Edit</span>
                             </button>
-                        </a>
-
-
+                        </form>
 
                         <form method='POST'
                             action='../update/delete/<%= appetizers[i].id %>'>
@@ -70,7 +70,7 @@
                         </form>
 
                         <form method='POST'
-                            action='../edit/archiveMenuItem/<%= appetizers[i].id %>?_method=PUT'>
+                            action='../update/archive/<%= appetizers[i].id %>'>
                             <button>
                                 <i class="fa-solid fa-folder-plus"></i>
                                 <span class='archive-text'>Archive</span>

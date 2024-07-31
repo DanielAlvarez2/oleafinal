@@ -508,6 +508,103 @@ module.exports = {
         }catch(err){
             console.log(err)
         }        
-    }        
+    },
+    editItem: async(req,res)=>{
+        console.log('editItem')
+        try{
+            const item = await MenuItem.findById(req.params.id)
+            res.render('update/menuItem.ejs',{req:req,
+                                         item:item,
+                                         title:'UPDATE ITEM'
+            })
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    saveChanges: async(req,res)=>{
+        try{
+            console.log(req.params.id)
+            console.log(req.body)
+            await MenuItem.findByIdAndUpdate(req.params.id,req.body)
+            res.redirect('/')
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    saveChangesWpic: async(req,res)=>{
+        try{
+            console.log(req.params.id)
+            console.log(req.body)
+            console.log('cloudinaryId: '+req.body.cloudinaryId)
+            if(req.body.cloudinaryId){
+                await cloudinary.uploader.destroy(req.body.cloudinaryId)
+            }
+            const result = await cloudinary.uploader.upload(req.file.path)
+
+            await MenuItem.findByIdAndUpdate(req.params.id,{
+                name:req.body.name,
+                description:req.body.description,
+                price:req.body.price,
+                allergies:req.body.allergies,
+                image:result.secure_url,
+                cloudinaryId:result.public_id
+            })
+            res.redirect('/')
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    archive: async(req,res)=>{
+        try{
+            const currentItem = await MenuItem.findById(req.params.id)
+            const sectionItems = await MenuItem.find({
+                $and:[
+                    {menu:currentItem.menu},
+                    {section:currentItem.section},
+                    {archived:false}
+                ]
+            })
+            for (let i=currentItem.sequence+1;i<=sectionItems.length;i++){
+                await MenuItem.findOneAndUpdate({
+                    $and:[
+                        {menu:currentItem.menu},
+                        {section:currentItem.section},
+                        {sequence:i},
+                        {archived:false}
+                    ]},
+                    {sequence:i-1}
+                )
+            }
+            await MenuItem.findByIdAndUpdate(
+                {_id:req.params.id},
+                {archived:true}
+            )
+            res.redirect(req.get('referer'))
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    unarchive: async(req,res)=>{
+        try{
+            console.log(req.params.id)
+            const currentItem = await MenuItem.findById(req.params.id)
+            console.log(currentItem.sequence)
+            const sectionItems = await MenuItem.find({
+                $and:[
+                    {menu:currentItem.menu},
+                    {section:currentItem.section},
+                    {archived:false}
+                ]
+            })
+            console.log('length: '+sectionItems.length)
+            await MenuItem.findByIdAndUpdate(
+                {_id:req.params.id},
+                {archived:false, sequence:sectionItems.length+1}
+            )
+            res.redirect(req.get('referer'))
+        }catch(err){
+            console.log(err)
+        }
+    }       
     
 }

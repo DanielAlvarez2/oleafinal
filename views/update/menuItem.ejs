@@ -138,9 +138,9 @@
         const form = document.querySelector('#edit-item-form')
         if(imageFile){
             form.enctype = 'multipart/form-data'
-            form.action = '/edit/saveChangesWpic/<%= req.params.id %>?_method=PUT'
+            form.action = '/update/saveChangesWpic/<%= req.params.id %>'
         }else{
-            form.action = '/edit/saveChanges/<%= req.params.id %>?_method=PUT'
+            form.action = '/update/saveChanges/<%= req.params.id %>'
         }
         return true;
     }
