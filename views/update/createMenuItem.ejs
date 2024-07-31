@@ -207,9 +207,9 @@
         const imageFile = document.querySelector('#image-file').value
         if(imageFile){
             document.querySelector('#item-form').enctype = 'multipart/form-data'
-            document.querySelector('#item-form').action = '/menuItem/createWpic'
+            document.querySelector('#item-form').action = '/update/createWpic'
         }else{
-            document.querySelector('#item-form').action = '/menuItem/createNOpic'
+            document.querySelector('#item-form').action = '/update/createNOpic'
         }
         return true;
     }

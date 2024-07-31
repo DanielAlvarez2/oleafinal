@@ -423,5 +423,91 @@ module.exports = {
         }catch(err){
             console.log(err)
         }        
-    }
+    },
+    createNOpic: async(req,res)=>{
+        console.log(req.body)
+        try{
+            const existingItems = await MenuItem.find({
+                $and:[
+                    {menu:req.body.menu},
+                    {section:req.body.section},
+                    {archived:false}
+                ]
+            })
+            await MenuItem.create({
+                menu:req.body.menu,
+                section:req.body.section,
+                name:req.body.name,
+                description:req.body.description,
+                price:req.body.price,
+                allergies:req.body.allergies,
+                sequence:existingItems.length+1,
+                grapes:req.body.grapes,
+                vintage:req.body.vintage
+            })
+        }catch(err){
+            console.log(err)
+        }
+        console.log('req.body: '+JSON.stringify(req.body))
+        res.redirect(req.get('referer'))
+    },
+    createWpic: async(req,res)=>{
+        console.log(req.body)
+        try{   
+            const result = await cloudinary.uploader.upload(req.file.path)
+            const existingItems = await MenuItem.find({
+                $and:[
+                    {menu:req.body.menu},
+                    {section:req.body.section},
+                    {archived:false}
+                ]
+            })
+            await MenuItem.create({
+                menu:req.body.menu,
+                section:req.body.section,
+                name:req.body.name,
+                image:result.secure_url,
+                cloudinaryId:result.public_id,
+                description:req.body.description,
+                price:req.body.price,
+                allergies:req.body.allergies,
+                sequence:existingItems.length+1,
+            })
+            console.log('Menu Item has been added!')
+            res.redirect(req.get('referer'))
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    delete: async(req,res)=>{
+        console.log('delete')
+        try{
+            const menuItem = await MenuItem.findById({_id:req.params.id})
+            if(menuItem.cloudinaryId) await cloudinary.uploader.destroy(menuItem.cloudinaryId)
+            const sectionItems = await MenuItem.find({
+                $and:[
+                    {menu:menuItem.menu},
+                    {section:menuItem.section},
+                    {archived:false}
+                ]
+            })
+            for (let i=menuItem.sequence+1;i<=sectionItems.length;i++){
+                await MenuItem.findOneAndUpdate({
+                    $and:[
+                        {menu:menuItem.menu},
+                        {section:menuItem.section},
+                        {archived:false},
+                        {sequence:i}
+                    ]},{sequence:i-1}
+                )
+            }
+            
+            await MenuItem.deleteOne({_id:req.params.id})
+            console.log(`DELETED: ${req.params.name}`)
+            res.redirect(req.get('referer'))            
+        }catch(err){
+            console.log(err)
+        }        
+    }        
+    
 }

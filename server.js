@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
+// const methodOverride = require('method-override')
 const flash = require('flash')
 const connectDb = require('./config/database')
 require('dotenv').config({path:'./config/.env'})
@@ -16,6 +17,8 @@ const mainRoutes = require('./routes/main')
 const updateRoutes = require('./routes/update')
 app.set('view engine','ejs')
 app.use(express.static('public'))
+app.use(express.json())
+app.use(express.urlencoded({extended:true}))
 app.use(
     session({
         secret: 'keyboard cat',

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const upload = require('../middleware/multer')
 const updateController = require('../controllers/update')
 
 router.get('/specials', updateController.getSpecials)
@@ -25,5 +26,9 @@ router.get('/whiteGermany', updateController.getWhiteGermany)
 router.get('/whiteItaly', updateController.getWhiteItaly)
 router.get('/whiteSpain', updateController.getWhiteSpain)
 router.get('/menuItem', updateController.getUpdateMenuItem)
+
+router.post('/createNopic', updateController.createNOpic)
+router.post('/createWpic', upload.single('file'),updateController.createWpic)
+router.post('/delete/:id', updateController.delete)
 
 module.exports = router

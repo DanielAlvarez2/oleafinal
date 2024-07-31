@@ -1,5 +1,8 @@
 
 
+
+add a second input line for 2-line description of allergies
+
 no login "button"
 only use a route at /login
 
