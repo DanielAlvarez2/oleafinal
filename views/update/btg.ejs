@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/update.css'>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+    <style>
+        .menu{
+            margin:0 auto;
+            max-width:8.5in;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+ 
+<main>
+
+
+<%- include('partials/editNav') %>
+
+
+<%- include('partials/editMenu') %>
+
+
+<div id='menu' class='menu edit-menu'>
+
+
+    <h1>olea</h1>
+    <hr>
+    <h2>wine menu</h2> 
+    <h3>wines by the glass</h3>
+
+            
+
+            <h3>Cava</h3>
+
+            <ul>
+                <% for (let i=0;i<btgCava.length;i++){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= btgCava[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= btgCava[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% } %>
+
+                        <div onclick='showModal(<%= JSON.stringify(btgCava[i]) %>)'>
+                            <%= btgCava[i].grapes %>
+                            <span class='name'><%= btgCava[i].name %></span><br>
+                            <%= btgCava[i].vintage %>                            
+                            <%- btgCava[i].description %>
+                            &nbsp; 
+                            <span class='price'><%= btgCava[i].price %></span><br>
+                            <span class='allergies'><%- btgCava[i].allergies %></span><br>
+                        </div>                        
+                        <a href='/edit/updateItem/<%= btgCava[i].id %>'>
+
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </a>
+
+                        <form method='POST'
+
+                            action='../edit/deleteMenuItem/<%= btgCava[i].id %>?_method=DELETE'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../edit/archiveMenuItem/<%= btgCava[i].id %>?_method=PUT'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        
+                        <% if(i!=btgCava.length-1){ %>
+                            <a href='/edit/moveDown/<%= btgCava[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= btgCava[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>                            
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+
+
+            <br><br><br>
+            <h3>White</h3>
+            <ul>
+                <% for (let i=0;i<btgWhites.length;i++){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= btgWhites[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= btgWhites[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>                            
+                        <% } %>
+                        <div onclick='showModal(<%= JSON.stringify(btgWhites[i]) %>)'>
+                            <%= btgWhites[i].grapes %>
+                            <span class='name'><%= btgWhites[i].name %></span><br>
+                            <%= btgWhites[i].vintage %>                                                       
+                            <%- btgWhites[i].description %>
+                            &nbsp; 
+                            <span class='price'><%= btgWhites[i].price %></span><br>
+                            <span class='allergies'><%- btgWhites[i].allergies %></span><br>
+                        </div>                        
+                        <a href='/edit/updateItem/<%= btgWhites[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </a>
+
+                        <form method='POST'
+                            action='../edit/deleteMenuItem/<%= btgWhites[i].id %>?_method=DELETE'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../edit/archiveMenuItem/<%= btgWhites[i].id %>?_method=PUT'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        
+                        <% if(i!=btgWhites.length-1){ %>
+                            <a href='/edit/moveDown/<%= btgWhites[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= btgWhites[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>                            
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>            
+
+            <br><br><br>
+            <h3>Rosé</h3>
+            <ul>
+                <% for (let i=0;i<btgRose.length;i++){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= btgRose[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= btgRose[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>                            
+                        <% } %>
+                        <div onclick='showModal(<%= JSON.stringify(btgRose[i]) %>)'>
+                            <%= btgRose[i].grapes %>                          
+                            <span class='name'><%= btgRose[i].name %></span><br>
+                            <%= btgRose[i].vintage %>                                                        
+                            <%- btgRose[i].description %>
+                            &nbsp; 
+                            <span class='price'><%= btgRose[i].price %></span><br>
+                            <span class='allergies'><%- btgRose[i].allergies %></span><br>
+                        </div>                        
+                        <a href='/edit/updateItem/<%= btgRose[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </a>
+
+                        <form method='POST'
+                            action='../edit/deleteMenuItem/<%= btgRose[i].id %>?_method=DELETE'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../edit/archiveMenuItem/<%= btgRose[i].id %>?_method=PUT'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        
+                        <% if(i!=btgRose.length-1){ %>
+                            <a href='/edit/moveDown/<%= btgRose[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= btgRose[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>                            
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>            
+
+            <br><br><br>
+            <h3>Red</h3>
+            <ul>
+                <% for (let i=0;i<btgReds.length;i++){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= btgReds[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= btgReds[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>                            
+                        <% } %>
+                        <div onclick='showModal(<%= JSON.stringify(btgReds[i]) %>)'>
+                            <%= btgReds[i].grapes %>
+                            <span class='name'><%= btgReds[i].name %></span><br>
+                            <%= btgReds[i].vintage %>                            
+                            <%- btgReds[i].description %>
+                            &nbsp; 
+                            <span class='price'><%= btgReds[i].price %></span><br>
+                            <span class='allergies'><%- btgReds[i].allergies %></span><br>
+                        </div>                        
+                        <a href='/edit/updateItem/<%= btgReds[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </a>
+
+                        <form method='POST'
+                            action='../edit/deleteMenuItem/<%= btgReds[i].id %>?_method=DELETE'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../edit/archiveMenuItem/<%= btgReds[i].id %>?_method=PUT'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        
+                        <% if(i!=btgReds.length-1){ %>
+                            <a href='/edit/moveDown/<%= btgReds[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= btgReds[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>                            
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>            
+
+            <br><br><br>
+            <h3>Sherry</h3>
+            <ul>
+                <% for (let i=0;i<btgSherries.length;i++){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/edit/moveUp/<%= btgSherries[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveUp/<%= btgSherries[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>                            
+                        <% } %>
+                        <div onclick='showModal(<%= JSON.stringify(btgSherries[i]) %>)'>
+                            <%= btgSherries[i].grapes %>
+                            <span class='name'><%= btgSherries[i].name %></span><br>
+                            <%- btgSherries[i].description %>
+                            &nbsp; 
+                            <span class='price'><%= btgSherries[i].price %></span><br>
+                            <span class='allergies'><%- btgSherries[i].allergies %></span><br>
+                        </div>                        
+                        <a href='/edit/updateItem/<%= btgSherries[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </a>
+
+                        <form method='POST'
+                            action='../edit/deleteMenuItem/<%= btgSherries[i].id %>?_method=DELETE'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../edit/archiveMenuItem/<%= btgSherries[i].id %>?_method=PUT'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        
+                        <% if(i!=btgSherries.length-1){ %>
+                            <a href='/edit/moveDown/<%= btgSherries[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/edit/moveDown/<%= btgSherries[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>                            
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>            
+
+
+
+    <div id='modal'>
+        <i class='fa-solid fa-square-xmark x'
+           id='close-modal-button'
+           onclick='closeModal()'></i>
+        <div id='modal-item'>
+            <figure>
+                <img src='' id='modal-image'>
+                <figcaption>
+                    <div id='modal-text'>
+                        <span id='modal-name'></span><br>
+                        <span id='modal-description'></span>&nbsp;
+                        <span id='modal-price'></span><br>
+                        <span id='modal-allergies'></span>
+                    </div>
+                </figcaption>
+            </figure>
+        </div><!--#modal-item-->
+    </div><!--#modal-->
+
+</div><!--#dinner-menu-->
+
+<%- include('partials/editMenu') %>
+
+
+
+
+</main>
+<script>
+    const modal = document.querySelector('#modal')
+    const modalImage = document.querySelector('#modal-image')
+    const modalName = document.querySelector('#modal-name')
+    const modalDescription = document.querySelector('#modal-description')
+    const modalPrice = document.querySelector('#modal-price')
+    const modalAllergies = document.querySelector('#modal-allergies')
+    const dinnerSubMenu = document.querySelector('#dinner-sub-menu')
+    const drinksSubMenu = document.querySelector('#drinks-sub-menu')
+    const wineSubMenu = document.querySelector('#wine-sub-menu')
+
+    function showModal(item){
+        if(!item.image) return
+        console.log(item)
+        modalImage.src=item.image
+        modalName.innerHTML = item.title
+        modalDescription.innerHTML = item.caption
+        modalPrice.innerHTML = item.price
+        modalAllergies.innerHTML = item.allergies
+        modal.style.display = 'grid'
+    }
+    function closeModal(){
+        modal.style.display = 'none'
+    }
+    function displayDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'block'
+    }
+    function hideDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'none'
+    }
+    function displayDrinksSubMenu(){
+        drinksSubMenu.style.display = 'block'
+    }
+    function hideDrinksSubMenu(){
+        drinksSubMenu.style.display = 'none'
+    }
+    function displayWineSubMenu(){
+        wineSubMenu.style.display = 'block'
+    }
+    function hideWineSubMenu(){
+        wineSubMenu.style.display = 'none'
+    }
+
+    const websiteLinks = document.querySelectorAll('.link-to-website')
+    websiteLinks[0].href='/wine'
+    websiteLinks[1].href='/wine'
+
+</script>
+<%- include('partials/footerEdit') %>

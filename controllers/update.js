@@ -1,0 +1,427 @@
+const MenuItem = require('../models/MenuItem')
+const cloudinary = require('../middleware/cloudinary')
+
+module.exports = {
+    getSpecials: async(req,res)=>{
+        // if(req.user.role != 'manager'){
+        //     req.session.destroy()
+        //     req.user = null
+        //     res.redirect('/')
+        // }
+        const appetizers = await MenuItem.find({
+            $and:[
+                {menu:'specials'},
+                {section:'appetizers'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const entrees = await MenuItem.find({
+            $and:[
+                {menu:'specials'},
+                {section:'entrees'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const desserts = await MenuItem.find({
+            $and:[
+                {menu:'specials'},
+                {section:'desserts'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/specials.ejs',{title:'EDIT SPECIALS',
+                                       req:req,
+                                       appetizers:appetizers,
+                                       entrees:entrees,
+                                       desserts:desserts})
+    },
+    getArchives: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        try{
+            const archives = await MenuItem.find({archived:true})
+            res.render('update/archives.ejs',{title:'ARCHIVES',
+                                       archives:archives,
+                                       req:req})
+
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    createMenuItem: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        try{
+            res.render('update/createMenuItem.ejs',{title:'CREATE MENU ITEM',
+                                             req:req,
+                                             user:req.user})
+        }catch(err){
+            console.log(err)
+        }
+
+    },
+    getDesserts: async(req,res)=>{
+        // if(!req.user) res.redirect('/dessert')
+        const desserts = await MenuItem.find({
+            $and:[
+                {menu:'dessert'},
+                {section:'desserts'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/desserts.ejs',{req:req,
+                                      title:'EDIT DESSERTS',
+                                      desserts:desserts})
+        
+    },
+    getCraftDrinks: async(req,res)=>{
+        // if(!req.user) res.redirect('/drinks')
+        try{
+            const craftDrinks = await MenuItem.find({
+                $and:[
+                    {menu:'drinks'},
+                    {section:'craft drinks'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/craftDrinks.ejs',{title:'EDIT CRAFT DRINKS',
+                                              req:req,
+                                              craftDrinks:craftDrinks})
+        }catch(err){
+            console.log(err)
+        }
+    },
+    getAppetizers: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        try{
+            const appetizers = await MenuItem.find({
+                $and:[
+                    {menu:'dinner'},
+                    {section:'appetizers'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/appetizers.ejs',{title:'EDIT APPETIZERS',
+                                             req:req,
+                                             appetizers:appetizers})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getBeer: async(req,res)=>{
+        // if(!req.user) res.redirect('/drinks')
+        try{
+            const beerCans = await MenuItem.find({
+                $and:[
+                    {menu:'drinks'},
+                    {section:'beer can'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            const beerDrafts = await MenuItem.find({
+                $and:[
+                    {menu:'drinks'},
+                    {section:'beer draft'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/beer.ejs',{title:'EDIT BEER',
+                                       req:req,
+                                       beerCans:beerCans,
+                                       beerDrafts:beerDrafts})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getBTG: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const btgCava = await MenuItem.find({
+                $and:[
+                    {menu:'wine'},
+                    {section:'btg cava'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            const btgWhites = await MenuItem.find({
+                $and:[
+                    {menu:'wine'},
+                    {section:'btg whites'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            const btgRose = await MenuItem.find({
+                $and:[
+                    {menu:'wine'},
+                    {section:'btg rose'},
+                    {archived: false}
+                ]
+            }).sort({sequence:'asc'})
+            const btgReds = await MenuItem.find({
+                $and:[
+                    {menu:'wine'},
+                    {section:'btg reds'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            const btgSherries = await MenuItem.find({
+                $and:[
+                    {menu:'wine'},
+                    {section:'btg sherries'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/btg.ejs',{title:'EDIT BTG',
+                                      req:req,
+                                      btgCava:btgCava,
+                                      btgWhites:btgWhites,
+                                      btgRose:btgRose,
+                                      btgReds:btgReds,
+                                      btgSherries:btgSherries})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getCavaChampagne: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const cavaChampagne = await MenuItem.find({
+                $and:[
+                    {menu:'wine'},
+                    {section:'cava champagne'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/cavaChampagne.ejs',{title:'EDIT CAVA CHAMPAGNE',
+                                                req:req,
+                                                cavaChampagne:cavaChampagne})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getCharcuterie: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        try{
+            const charcuterie = await MenuItem.find({
+                $and:[
+                    {menu:'dinner'},
+                    {section:'charcuterie'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/charcuterie.ejs',{title:'EDIT CHARCUTERIE',
+                                              req:req,
+                                              charcuterie:charcuterie})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getEntrees: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        try{
+            const entrees = await MenuItem.find({
+                $and:[
+                    {menu:'dinner'},
+                    {section:'entrees'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/entrees.ejs',{title:'EDIT ENTREES',
+                                          req:req,
+                                          entrees:entrees})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getNonAlcoholic: async(req,res)=>{
+        // if(!req.user) res.redirect('/drinks')
+        try{
+            const nonAlcoholic = await MenuItem.find({
+                $and:[
+                    {menu:'drinks'},
+                    {section:'non-alcoholic'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/nonAlcoholic.ejs', {title:'EDIT NON-ALCOHOLIC',
+                                                req:req,
+                                                nonAlcoholic:nonAlcoholic})
+        }catch(err){
+            console.log(err)
+        }
+    },
+    getRedFrance: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const redFrance = await MenuItem.find({
+                $and:[
+                    {section:'red france'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/redFrance.ejs', {title:'EDIT RED FRANCE',
+                                             req:req,
+                                             redFrance:redFrance})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getRedItaly: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const redItaly = await MenuItem.find({
+                $and:[
+                    {section:'red italy'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/redItaly.ejs', {title:'EDIT RED ITALY',
+                                            req:req,
+                                            redItaly:redItaly})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getRedSpain: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const redSpain = await MenuItem.find({
+                $and:[
+                    {section:'red spain'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/redSpain.ejs',{title:'EDIT RED SPAIN',
+                                           req:req,
+                                           redSpain:redSpain})
+        }catch(err){
+            console.log(err)
+        }
+    },
+    getRose: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const rose = await MenuItem.find({
+               $and:[
+                {menu:'wine'},
+                {section:'rose'},
+                {archived:false}
+               ] 
+            }).sort({sequence:'asc'})
+            res.render('update/rose.ejs',{title:'EDIT ROSE',
+                                   req:req,
+                                   rose:rose})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getSangria: async(req,res)=>{
+        // if(!req.user) res.redirect('/drinks')
+        try{
+            const sangria = await MenuItem.find({
+                $and:[
+                    {menu:'drinks'},
+                    {section:'sangria'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/sangria.ejs', {title:'EDIT SANGRIA',
+                                           req:req,
+                                           sangria:sangria})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getSides: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        try{
+            const sides = await MenuItem.find({
+                $and:[
+                    {menu:'dinner'},
+                    {section:'sides'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/sides.ejs', {title:'EDIT SIDES',
+                                        req:req,
+                                        sides:sides})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getWhiteFrance: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const whiteFrance = await MenuItem.find({
+                $and:[
+                    {section:'white france'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/whiteFrance.ejs',{title:'EDIT WHITE FRANCE',
+                                              req:req,
+                                              whiteFrance:whiteFrance})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getWhiteGermany: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const whiteGermany = await MenuItem.find({
+                $and:[
+                    {section:'white germany'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/whiteGermany.ejs',{title:'EDIT WHITE GERMANY',
+                                           req:req,
+                                           whiteGermany:whiteGermany})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getWhiteItaly: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const whiteItaly = await MenuItem.find({
+                $and:[
+                    {section:'white italy'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/whiteItaly.ejs', {title:'EDIT WHITE ITALY',
+                                              req:req,
+                                              whiteItaly:whiteItaly})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getWhiteSpain: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')
+        try{
+            const whiteSpain = await MenuItem.find({
+                $and:[
+                    {menu:'wine'},
+                    {section:'white spain'},
+                    {archived:false}
+                ]
+            }).sort({sequence:'asc'})
+            res.render('update/whiteSpain.ejs',{title:'EDIT WHITE SPAIN',
+                                             req:req,
+                                             whiteSpain:whiteSpain})
+        }catch(err){
+            console.log(err)
+        }        
+    },
+    getUpdateMenuItem: async(req,res)=>{
+        // if(!req.user) res.redirect('/wine')        
+        try{
+            const item = await MenuItem.findById(req.params.id)
+            res.render('update/menuItem.ejs',{req:req,
+                                         item:item,
+                                         title:'UPDATE ITEM'
+            })
+        }catch(err){
+            console.log(err)
+        }        
+    }
+}

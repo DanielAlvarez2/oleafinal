@@ -6,7 +6,11 @@ exports.getLogin = (req,res)=>{
     if(req.user){
         return res.redirect('/')
     }
-    res.render('login.ejs',{title:'Login',req:req})
+    res.render('auth/login.ejs',{title:'Login',req:req})
+}
+
+exports.getNewUser = (req,res)=>{
+    res.render('auth/newUser.ejs',{title:'NEW USER'})
 }
 
 exports.postLogin = (req,res,next)=>{
@@ -38,7 +42,7 @@ exports.postLogin = (req,res,next)=>{
             if(!user.approved){
                 req.session.destroy()
                 req.user=null
-                return res.redirect('/newUser')
+                return res.redirect('auth/newUser')
             }else{
                 req.flash('success',{msg:'Success! You are logged in.'})
                 res.redirect(req.session.returnTo || '/edit/specilas')
@@ -60,10 +64,17 @@ exports.logout = (req,res)=>{
 }
 
 exports.getSignup = (req,res)=>{
-    if(req.user){
-        return res.redirect('/profile')
-    }
-    res.render('signup.ejs',{title:'Create Account',req:req})
+    // if(req.user) return res.redirect('/')
+    res.render('auth/signup.ejs',{title:'Create Account',req:req})
+}
+
+exports.getUsers = async(req,res)=>{
+    // if(!req.user) res.redirect('/')
+    const allUsers = await User.find()
+    console.log(allUsers)
+    res.render('users.ejs',{title:'USERS',
+                            req:req,
+                            allUsers:allUsers})    
 }
 
 exports.postSignup = (req,res,next)=>{
@@ -114,7 +125,7 @@ exports.postSignup = (req,res,next)=>{
                         return next(err)
                     }
                     req.session.destroy()
-                    req.user=nullres.redirect('/newUser')
+                    req.user=nullres.redirect('auth/newUser')
                 })
             })
         }

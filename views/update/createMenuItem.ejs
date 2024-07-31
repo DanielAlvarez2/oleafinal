@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/update.css'>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+    <style>
+        .menu{
+            margin:0 auto;
+            max-width:8.5in;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+ 
+<main>
+
+<%- include('partials/editNav') %>
+
+
+            <div>
+                <h2>Add New Menu Item</h2><br>
+                <form id='item-form' 
+                      onsubmit='uploadItem()'
+                      method='POST'>
+
+                    <div>
+                        <label for='menu'>Menu:</label><br>
+                        <select id='menu' name='menu' required>
+                            <option disabled selected value>Select a Menu...</option>
+                            <option value='dinner'>Dinner</option>
+                            <option value='specials'>Specials</option>
+                            <option value='dessert'>Dessert</option>
+                            <option value='wine'>Wine</option>
+                            <option value='drinks'>Drinks</option>
+                        </select>
+                    </div><br>
+
+                    <div>
+                        <label for='section'>Section:</label><br>
+                        <select id='section-placeholder'>
+                            <option disabled selected value>Select a Section...</option>
+                        </select>
+                        <select id='section-dinner' name='section' style='display:none;'>
+                            <option>Select a Section...</option>
+                            <option value='charcuterie'>Charcuterie</option>
+                            <option value='appetizers'>Appetizers</option>
+                            <option value='entrees'>Entrées</option>
+                            <option value='sides'>Sides</option>
+                        </select>
+                        <select id='section-specials' name='section' style='display:none;'>
+                            <option>Select a Section...</option>
+                            <option value='appetizers'>Appetizers</option>
+                            <option value='entrees'>Entrées</option>
+                            <option value='desserts'>Desserts</option>
+                        </select>
+                        <select id='section-dessert' name='section' style='display:none;'>
+                            <option value='desserts' selected>Desserts</option>
+                        </select>
+                        <select id='section-wine' name='section' style='display:none;'>
+                            <option>Select a Section...</option>
+                            <option value='btg cava'>BTG Cava</option>
+                            <option value='btg whites'>BTG Whites</option>
+                            <option value='btg rose'>BTG Rose</option>
+                            <option value='btg reds'>BTG Reds</option>
+                            <option value='btg sherries'>BTG Sherries</option>
+                            <option value='cava champagne'>Cava & Champagne</option>
+                            <option value='rose'>Rosé</option>
+                            <option value='white spain'>White Spain</option>
+                            <option value='white france'>White France</option>
+                            <option value='white italy'>White Italy</option>
+                            <option value='white germany'>White Germany</option>
+                            <option value='red spain'>Red Spain</option>
+                            <option value='red france'>Red France</option>
+                            <option value='red italy'>Red Italy</option>
+                        </select>
+                        <select id='section-drinks' name='section' style='display:none;'>
+                            <option>Select a Section...</option>
+                            <option value='craft drinks'>Craft Drinks</option>
+                            <option value='sangria'>Sangria</option>
+                            <option value='non-alcoholic'>Non-Alcoholic</option>
+                            <option value='beer can'>Beer Can</option>
+                            <option value='beer draft'>Beer Draft</option>
+                        </select>
+                    </div><br>
+
+                    <div id='grapes-input' style='visibility:hidden;'>
+                        <label for='grapes'>Grapes:</label><br>
+                        <input type='text' id='grapes' name='grapes'>
+                    </div><br>
+
+                    <div id='vintage-input' style='visibility:hidden;'>
+                        <label for='vintage'>Vintage:</label><br>
+                        <input type='text' id='vintage' name='vintage'>
+                    </div><br>
+
+                    <div>
+                        <label for='name'>Name:</label><br>
+                        <input type='text' id='name' name='name'>
+                    </div><br>
+                    
+                    <div>
+                        <label for='description'>Description:</label><br>
+                        <textarea rows='7' cols='30' id='description' name='description'></textarea>
+                    </div><br>
+                    
+                    <div>
+                        <label for='price'>Price:</label><br>
+                        <input type='text' size='5' id='price' name='price'>
+                    </div><br>
+                    
+                    <div id='allergies-input'>
+                        <label for='allergies'>Allergies:</label><br>
+                        <input type='text' id='allergies' name='allergies'>
+                    </div><br>
+                                        
+                    <div>
+                        <label for='image-file'>Image:</label><br>
+                        <input type='file' id='image-file' name='file' accept='image/*'><br>
+                        (optional)<br>
+                    </div>
+
+                    <div id='preview'></div>
+                    <br><br>
+                    <button type='submit'>Submit</button>
+                </form>
+            </div>
+
+</main>
+
+<script>
+    const userImage = document.querySelector('#image-file')
+    const preview = document.querySelector('#preview')
+    userImage.addEventListener('input', ()=>{
+        const url = URL.createObjectURL(userImage.files[0])
+        const img = document.createElement('img')
+        img.src = url
+        preview.innerHTML = ''
+        preview.appendChild(img)
+    })
+
+    const menu = document.querySelector('#menu')
+    menu.addEventListener("change", displaySectionMenu)
+    const sectionWine = document.querySelector('#section-wine')
+    sectionWine.addEventListener("change", hideVintageInput)
+    const vintageInput = document.querySelector('#vintage-input')
+    function hideVintageInput(){
+        if (sectionWine.value == 'btg sherries'){
+            vintageInput.style.visibility = 'hidden'
+        }else{
+            vintageInput.style.visibility = 'visible'
+        }
+    }
+    function displaySectionMenu(){
+        const sectionPlaceholder = document.querySelector('#section-placeholder')
+        const sectionDinner = document.querySelector('#section-dinner')
+        const sectionSpecials = document.querySelector('#section-specials')
+        const sectionDessert = document.querySelector('#section-dessert')
+        const sectionDrinks = document.querySelector('#section-drinks')
+        const grapesInput = document.querySelector('#grapes-input')
+
+        sectionPlaceholder.style.display = 'none'
+        sectionPlaceholder.name = ''
+        sectionDinner.style.display = 'none'
+        sectionDinner.name = ''
+        sectionSpecials.style.display = 'none'
+        sectionSpecials.name = ''
+        sectionDessert.style.display = 'none'
+        sectionDessert.name = ''
+        sectionWine.style.display = 'none'
+        sectionWine.name = ''
+        sectionDrinks.style.display = 'none'
+        sectionDrinks.name = ''
+        grapesInput.style.visibility = 'hidden'
+        vintageInput.style.visibility = 'hidden'
+        if (menu.value == 'dinner'){
+            sectionDinner.style.display = 'block'
+            sectionDinner.name = 'section'
+        }
+        if (menu.value == 'specials'){
+            sectionSpecials.style.display = 'block'
+            sectionSpecials.name = 'section'
+        }
+        if (menu.value == 'dessert'){
+            sectionDessert.style.display = 'block'
+            sectionDessert.name = 'section'
+        } 
+        if (menu.value == 'wine'){
+            grapesInput.style.visibility = 'visible'
+            sectionWine.style.display = 'block'
+            sectionWine.name = 'section'
+            vintageInput.style.visibility = 'visible'
+            document.querySelector('#allergies-input').style.visibility = 'hidden'
+        }
+        if (menu.value == 'drinks'){
+            sectionDrinks.style.display = 'block'
+            sectionDrinks.name = 'section'
+            document.querySelector('#allergies-input').style.visibility = 'hidden'
+        } 
+    }
+    function uploadItem(){
+        console.log('uploadItem()')
+        const imageFile = document.querySelector('#image-file').value
+        if(imageFile){
+            document.querySelector('#item-form').enctype = 'multipart/form-data'
+            document.querySelector('#item-form').action = '/menuItem/createWpic'
+        }else{
+            document.querySelector('#item-form').action = '/menuItem/createNOpic'
+        }
+        return true;
+    }
+
+
+    const dinnerSubMenu = document.querySelector('#dinner-sub-menu')
+    const drinksSubMenu = document.querySelector('#drinks-sub-menu')
+    const wineSubMenu = document.querySelector('#wine-sub-menu')
+
+    function displayDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'block'
+    }
+    function hideDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'none'
+    }
+    function displayDrinksSubMenu(){
+        drinksSubMenu.style.display = 'block'
+    }
+    function hideDrinksSubMenu(){
+        drinksSubMenu.style.display = 'none'
+    }
+    function displayWineSubMenu(){
+        wineSubMenu.style.display = 'block'
+    }
+    function hideWineSubMenu(){
+        wineSubMenu.style.display = 'none'
+    }    
+</script>
+
+<%- include('partials/footerEdit') %>

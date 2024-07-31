@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name='description' 
+          content='Olea Restaurant, New Haven, Connecticut, 
+          Today's Specials, Daily Specials'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/update.css'>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+
+<style>
+    #specials-menu{
+        max-width:4.25in;
+        min-height:5.5in;
+        border:1px solid black;
+        position:relative;
+        padding:10px;
+    }
+</style>
+ 
+</head>
+<body>
+    <div id="wrapper">
+ 
+
+<main>
+
+<nav id='nav-top'>
+    <a href='/dinner'>dinner</a>
+    <a class='active-page'>specials</a>
+    <a href='/dessert'>dessert</a>
+    <a href='/wine'>wine</a>
+    <a href='/drinks'>drinks</a>
+</nav>
+
+<div id='specials-menu' class='menu'>
+
+<% if(req.user){ %>
+    <a href='/edit/specials'>
+        <i class="fa-solid fa-gear"></i>
+    </a>
+<% } %>
+
+
+            <h2>today's specials</h2>
+
+            <% if(appetizers.length>0){ %>
+                <h2>appetizers</h2>
+            <% } %>
+
+            <ul>
+                <% for (let i=0;i<appetizers.length;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(appetizers[i]) %>)'>
+                        <span class='name'><%= appetizers[i].name %></span><br>
+                        <%- appetizers[i].description %>
+                        &nbsp; 
+                        <span class='price'><%= appetizers[i].price %></span><br>
+                        <% if(appetizers[i].allergies){ %>
+                            <span class='allergies'><%- appetizers[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+
+            <% if(entrees.length>0){ %>
+                <h2>entrées</h2>
+            <% } %>
+            <ul>
+                <% for (let i=0;i<entrees.length;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(entrees[i]) %>)'>
+                        <span class='name'><%= entrees[i].name %></span><br>
+                        <%- entrees[i].description %>
+                        &nbsp; 
+                        <span class='price'><%= entrees[i].price %></span><br>
+                        <% if(entrees[i].allergies){ %>
+                            <span class='allergies'><%- entrees[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+
+            <% if(desserts.length>0){ %>
+                <h2>desserts</h2>
+            <% } %>
+            <ul>
+                <% for (let i=0;i<desserts.length;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(desserts[i]) %>)'>
+                        <span class='name'><%= desserts[i].name %></span><br>
+                        <%- desserts[i].description %>
+                        &nbsp; 
+                        <span class='price'><%= desserts[i].price %></span><br>
+                        <% if(desserts[i].allergies){ %>
+                            <span class='allergies'><%- desserts[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+
+   
+
+    <div id='modal'>
+        <i class='fa-solid fa-square-xmark x'
+           id='close-modal-button'
+           onclick='closeModal()'></i>
+        <div id='modal-item'>
+            <figure>
+                <img src='' id='modal-image'>
+                <figcaption>
+                    <div id='modal-text'>
+                        <span id='modal-name'></span><br>
+                        <span id='modal-description'></span>&nbsp;
+                        <span id='modal-price'></span><br>
+                        <span id='modal-allergies'></span>
+                    </div>
+                </figcaption>
+            </figure>
+        </div><!--#modal-item-->
+    </div><!--#modal-->
+</div><!--#specials-menu-->
+</main>
+
+<script>
+    const modal = document.querySelector('#modal')
+    const modalImage = document.querySelector('#modal-image')
+    const modalName = document.querySelector('#modal-name')
+    const modalDescription = document.querySelector('#modal-description')
+    const modalPrice = document.querySelector('#modal-price')
+    const modalAllergies = document.querySelector('#modal-allergies')
+
+    function showModal(item){
+        if (!item.image) return
+        console.log(item)
+        modalImage.src=item.image
+        modalName.innerHTML = item.name
+        modalDescription.innerHTML = item.description
+        modalPrice.innerHTML = item.price
+        modalAllergies.innerHTML = item.allergies
+        modal.style.display = 'grid'
+    }
+    function closeModal(){
+        modal.style.display = 'none'
+    }
+</script>
+<%- include('partials/footer') %>
+
+</body>
+</html>

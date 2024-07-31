@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/main.css'>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+
+    
+</head>
+<body>
+    <div id="wrapper">
+ 
+<main>
+
+<nav>
+    <a href='/dinner'>dinner</a>
+    <a href='/specials'>specials</a>
+    <a href='/dessert'>dessert</a>
+    <a href='/wine'>wine</a>
+    <a href='/drinks'>drinks</a>
+</nav>
+
+
+    <div id='login'>
+        <section>
+            <% if(locals.messages.errors) {
+                messages.errors.forEach(el=>{ %>
+                    <div>
+                        <%= el.msg %>
+                    </div>
+               <% })
+            } %>
+            <% if(locals.messages.info) {
+                messages.info.forEach(el=>{ %>
+                    <div>
+                        <%= el.msg %>
+                    </div>
+               <% })
+            } %>
+            <form action='/login' 
+                  method='POST'
+                  style='text-align:center;'>
+
+            <h2>STAFF LOGIN</h2><br><br>
+            
+                <div>
+                    <label for='exampleInputEmail1'>
+                        Email Address
+                    </label><br>
+                    <input type='email' id='exampleInputEmail1' name='email'>
+                </div><br><br>
+
+                <div>
+                    <label for='exampleInputPassword1'>Password</label><br>
+                    <input type='password' id='exampleInputPassword1' name='password'>
+                </div><br><br>
+          
+                <button type='submit'>Submit</button>
+                
+                <br><br><br>
+
+
+            <a href='/signup'>Create New Account</a>
+            </form>
+        </section>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

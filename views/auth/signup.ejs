@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/main.css'>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+
+    
+</head>
+<body>
+    <div id="wrapper">
+ 
+<main>
+        <nav>
+            <a href='/dinner'>dinner</a>
+            <a href='/specials'>specials</a>
+            <a href='/dessert'>dessert</a>
+            <a href='/wine'>wine</a>
+            <a href='/drinks'>drinks</a>
+        </nav>
+    
+        <div>
+            <section>
+                <% if(locals.messages.errors) {%>
+                    <% messages.errors.forEach(el=>{ %>
+                        <div><%= el.msg %></div>
+                    <% }) %>
+                <%}%>
+                <% if(locals.messages.info) {%>
+                    <% messages.info.forEach(el=>{ %>
+                        <div><%= el.msg %></div>
+                    <% }) %>
+                <%}%>
+
+                <form action='/signup' method='POST'>
+
+                <h2>STAFF SIGNUP</h2>
+                <h3>Create New Account</h3><br><br>
+                
+                    <div>
+                        <label for='userName'>User Name</label><br>
+                        <input type='text' id='userName' name='userName'>
+                    </div><br><br>
+
+                    <div>
+                        <label for='exampleInputEmail1'>Email Address</label><br>
+                        <input type='email' id='exampleInputEmail1' name='email'>
+                    </div><br><br>
+
+                    <div>
+                        <label for='password'>Password</label><br>
+                        <input type='password' id='password' name='password'>
+                    </div><br><br>
+
+                    <div>
+                        <label for='confirmPassword'>Confirm Password</label><br>
+                        <input type='password' id='confirmPassword' name='confirmPassword'>
+                    </div><br><br>
+
+                    <button type='submit'>Submit</button><br><br>
+
+                    <a href='/login'>Log In to Existing Account</a>
+                </form>
+            </section>
+        </div>
+    </main>
+
+<%- include('partials/footer') %>
