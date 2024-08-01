@@ -11,6 +11,8 @@ router.get('/press', mainController.getPress)
 router.get('/giftcards', mainController.getGiftcards)
 router.get('/newsletter', mainController.getNewsletter)
 router.get('/dinner', mainController.getDinner)
+router.get('/specials', mainController.getSpecials)
+router.get('/dessert', mainController.getDessert)
 
 router.get('/')
 

@@ -59,5 +59,43 @@ module.exports = {
                                       appetizers:appetizers,
                                       entrees:entrees,
                                       sides:sides})
+    },
+    getSpecials: async(req,res)=>{
+        const appetizers = await MenuItem.find({
+            $and:[
+                {menu:'specials'},
+                {section:'appetizers'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const entrees = await MenuItem.find({
+            $and:[
+                {menu:'specials'},
+                {section:'entrees'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const desserts = await MenuItem.find({
+            $and:[
+                {menu:'specials'},
+                {section:'desserts'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('main/specials.ejs',{title:'olea new haven | daily specials',
+                                      appetizers:appetizers,
+                                      entrees:entrees,
+                                      desserts:desserts})        
+    },
+    getDessert: async(req,res)=>{
+        const desserts = await MenuItem.find({
+            $and:[
+                {menu:'dessert'},
+                {section:'desserts'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('main/dessert.ejs',{title:'olea new haven | dessert menu',
+                                      desserts:desserts})                
     }
 }
