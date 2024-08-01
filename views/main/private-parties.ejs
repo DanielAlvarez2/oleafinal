@@ -15,6 +15,9 @@
         h2{
             margin: 70px 0 20px;
         }
+        #events-page-flexbox{
+            display:flex;
+        }
     </style>
 </head>
 <body>
@@ -23,6 +26,11 @@
     <%- include('./partials/header.ejs')%>
 
         <main>            
+
+<div id='events-page-flexbox'>
+    <div id="left">
+
+
         <div id='events'>
             <img src='/pics/private-parties.jpg' width='535px'><br><br>
             Let Us Make Your Events Special, and Delicious<br><br>
@@ -44,7 +52,29 @@
             Call Olea at 203.780.8925, or email info@oleanewhaven.com, to begin the 
             process of creating a unique event.
         </div>
+    </div>
+
+    <div id='right'>
+
+        <div id='opentable'>
+            make a reservation<br>
+            <span>POWERED BY OPENTABLE</span>
+
+            <a target='_blank' href='http://www.opentable.com/rest_profile.aspx?rid=151186&restref=151186'><div id='find-a-table'>
+                FIND A TABLE
+            </div></a>
+        </div>
+
+    </div>
+</div>
+
+
             <%- include('./partials/footer.ejs') %>
+
+
+
+
+
         </main>
 
     </div>
