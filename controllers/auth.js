@@ -4,7 +4,7 @@ const User = require('../models/User')
 
 exports.getLogin = (req,res)=>{
     if(req.user){
-        return res.redirect('/')
+        return res.redirect('/auth/dashboard')
     }
     res.render('auth/login.ejs',{title:'olea new haven | login',
                                  req:req})
@@ -49,10 +49,10 @@ exports.postLogin = (req,res,next)=>{
             if(!user.approved){
                 req.session.destroy()
                 req.user=null
-                return res.redirect('auth/newUser')
+                return res.redirect('newUser')
             }else{
                 req.flash('success',{msg:'Success! You are logged in.'})
-                res.redirect(req.session.returnTo || '/edit/specilas')
+                res.redirect(req.session.returnTo || '/update/specials')
             }
         })
     })(req,res,next)
@@ -82,6 +82,10 @@ exports.getUsers = async(req,res)=>{
     res.render('users.ejs',{title:'USERS',
                             req:req,
                             allUsers:allUsers})    
+}
+
+exports.getDashboard = async(req,res)=>{
+    res.render('dashboard/index.ejs')
 }
 
 exports.postSignup = (req,res,next)=>{
