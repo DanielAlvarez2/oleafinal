@@ -85,6 +85,7 @@ exports.getUsers = async(req,res)=>{
 }
 
 exports.postSignup = (req,res,next)=>{
+    console.log('controllers/auth/postSignup***')
     const validationErrors = []
     if(!validator.isEmail(req.body.email))
         validationErrors.push({msg:'Please enter a valid email address.'})
@@ -132,7 +133,8 @@ exports.postSignup = (req,res,next)=>{
                         return next(err)
                     }
                     req.session.destroy()
-                    req.user=nullres.redirect('auth/newUser')
+                    req.user=null
+                    res.redirect('/auth/newUser')
                 })
             })
         }

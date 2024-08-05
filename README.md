@@ -19,6 +19,8 @@ add a PRESS update page
 
 add a page for NEWSLETTER
 
+move to .env file
+
 fix logic for displaying sides on printed menu
 
 edit existing menu item screen with no pic

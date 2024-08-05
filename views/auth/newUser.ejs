@@ -7,30 +7,37 @@
     <link rel='stylesheet' href='/main.css'>
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
 
-    
+    <style>
+        #wrapper{
+            display:grid;
+            min-height:100vh;
+            min-height:100svh;
+            place-content:center;
+        }
+        hr{
+            margin-top:10px;
+        }
+        h1{
+            text-align:left;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper">
  
 <main>
 
-        <nav>
-            <a href='/dinner'>dinner</a>
-            <a href='/specials'>specials</a>
-            <a href='/dessert'>dessert</a>
-            <a href='/wine'>wine</a>
-            <a href='/drinks'>drinks</a>
-        </nav>
-    
-        <div>
-        <h1>olea</h1>
-        <hr>
-        <h2>Account Created</h2>
-        <h3>Pending Approval</h3>
-        <br><br>
-            A Manager Must Validate Your Account<br>
-            Before You Can Access the Staff Portal
-        </div>
-    </main>
 
-<%- include('partials/footer') %>
+        <section>
+            <h1>olea</h1>
+            <hr>
+            <h2>STAFF: NEW ACCOUNT CREATED</h2><br>
+            <h3>Pending Approval</h3>  
+            <br>          
+            A Manager Must Validate Your Account<br>
+            Before You Can Access The Staff Portal
+
+
+        </section>
+</main>
+

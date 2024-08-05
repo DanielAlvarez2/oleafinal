@@ -48,7 +48,7 @@
                     </div>
                <% })
             } %>
-            <form action='/login' 
+            <form action='/auth/signup' 
                   method='POST'
                   style='text-align:center;'>
             <h1>olea</h1>
@@ -57,7 +57,7 @@
             
                 <div>
                     <label for='username'>User Name</label><br>
-                    <input type="text" id='username' name='username'>
+                    <input type="text" id='username' name='userName'>
                 </div>
                 <br>
                 <div>
@@ -76,7 +76,7 @@
                     <label for='confirm-password'>Confirm Password</label><br>
                     <input type='password' id='confirm-password' name='confirmPassword'>
                 </div><br>
-          
+      
                 <button type='submit'>Submit</button>
                 
                 <br><br><br>
