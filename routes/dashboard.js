@@ -8,5 +8,6 @@ const {ensureAuth} = require('../middleware/auth')
 
 router.get('/', dashboardController.getIndex)
 router.get('/users', dashboardController.getUsers)
+router.get('/updateMenus', dashboardController.getUpdateMenus)
 
 module.exports = router

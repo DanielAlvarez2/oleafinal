@@ -8,5 +8,8 @@ module.exports = {
     },
     getIndex: async(req,res)=>{
         res.render('dashboard/index.ejs', {req:req})
+    },
+    getUpdateMenus: async(req,res)=>{
+        res.render('dashboard/update-menus.ejs',{req:req})
     }
 }
