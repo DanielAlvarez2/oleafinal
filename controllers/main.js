@@ -97,5 +97,8 @@ module.exports = {
         }).sort({sequence:'asc'})
         res.render('main/dessert.ejs',{title:'olea new haven | dessert menu',
                                       desserts:desserts})                
+    },
+    getLogin: async(req,res)=>{
+        res.render('main/login.ejs', {title:'olea new haven | login'})
     }
 }

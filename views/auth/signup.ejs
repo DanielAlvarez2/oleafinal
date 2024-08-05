@@ -7,64 +7,84 @@
     <link rel='stylesheet' href='/main.css'>
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
 
-    
+    <style>
+        #wrapper{
+            display:grid;
+            min-height:100vh;
+            min-height:100svh;
+            place-content:center;
+        }
+        hr{
+            margin-top:10px;
+        }
+        button{
+            cursor:pointer;
+            padding:0.5em 1em;
+        }
+        a{
+            font-size:0.75rem;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper">
  
 <main>
-        <nav>
-            <a href='/dinner'>dinner</a>
-            <a href='/specials'>specials</a>
-            <a href='/dessert'>dessert</a>
-            <a href='/wine'>wine</a>
-            <a href='/drinks'>drinks</a>
-        </nav>
-    
-        <div>
-            <section>
-                <% if(locals.messages.errors) {%>
-                    <% messages.errors.forEach(el=>{ %>
-                        <div><%= el.msg %></div>
-                    <% }) %>
-                <%}%>
-                <% if(locals.messages.info) {%>
-                    <% messages.info.forEach(el=>{ %>
-                        <div><%= el.msg %></div>
-                    <% }) %>
-                <%}%>
 
-                <form action='/signup' method='POST'>
 
-                <h2>STAFF SIGNUP</h2>
-                <h3>Create New Account</h3><br><br>
+    <div id='login'>
+        <section>
+            <% if(locals.messages.errors) {
+                messages.errors.forEach(el=>{ %>
+                    <div>
+                        <%= el.msg %>
+                    </div>
+               <% })
+            } %>
+            <% if(locals.messages.info) {
+                messages.info.forEach(el=>{ %>
+                    <div>
+                        <%= el.msg %>
+                    </div>
+               <% })
+            } %>
+            <form action='/login' 
+                  method='POST'
+                  style='text-align:center;'>
+            <h1>olea</h1>
+            <hr>
+            <h2>STAFF: NEW ACCOUNT</h2><br>
+            
+                <div>
+                    <label for='username'>User Name</label><br>
+                    <input type="text" id='username' name='username'>
+                </div>
+                <br>
+                <div>
+                    <label for='email'>
+                        Email Address
+                    </label><br>
+                    <input type='email' id='email' name='email'>
+                </div><br>
+
+                <div>
+                    <label for='password'>Password</label><br>
+                    <input type='password' id='password' name='password'>
+                </div><br>
+
+                <div>
+                    <label for='confirm-password'>Confirm Password</label><br>
+                    <input type='password' id='confirm-password' name='confirmPassword'>
+                </div><br>
+          
+                <button type='submit'>Submit</button>
                 
-                    <div>
-                        <label for='userName'>User Name</label><br>
-                        <input type='text' id='userName' name='userName'>
-                    </div><br><br>
+                <br><br><br>
 
-                    <div>
-                        <label for='exampleInputEmail1'>Email Address</label><br>
-                        <input type='email' id='exampleInputEmail1' name='email'>
-                    </div><br><br>
 
-                    <div>
-                        <label for='password'>Password</label><br>
-                        <input type='password' id='password' name='password'>
-                    </div><br><br>
+            <a href='/login'>Log In to Existing Account</a>
+            </form>
+        </section>
+    </div>
+</main>
 
-                    <div>
-                        <label for='confirmPassword'>Confirm Password</label><br>
-                        <input type='password' id='confirmPassword' name='confirmPassword'>
-                    </div><br><br>
-
-                    <button type='submit'>Submit</button><br><br>
-
-                    <a href='/login'>Log In to Existing Account</a>
-                </form>
-            </section>
-        </div>
-    </main>
-
-<%- include('partials/footer') %>

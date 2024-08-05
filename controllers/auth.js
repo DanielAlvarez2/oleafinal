@@ -6,7 +6,14 @@ exports.getLogin = (req,res)=>{
     if(req.user){
         return res.redirect('/')
     }
-    res.render('auth/login.ejs',{title:'Login',req:req})
+    res.render('auth/login.ejs',{title:'olea new haven | login',
+                                 req:req})
+}
+exports.getSignUp = (req,res)=>{
+    if(req.user){
+        return res.redirect('/')
+    }
+    res.render('auth/signup.ejs', {title:'olea new haven | sign up',req:req})
 }
 
 exports.getNewUser = (req,res)=>{

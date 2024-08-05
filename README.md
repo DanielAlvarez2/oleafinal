@@ -1,5 +1,6 @@
 
-
+password input
+type=showPassword?'text':'password'
 
 check for glitch:
 changing the photo of an item,

@@ -7,20 +7,29 @@
     <link rel='stylesheet' href='/main.css'>
     <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
 
-    
+    <style>
+        #wrapper{
+            display:grid;
+            min-height:100vh;
+            min-height:100svh;
+            place-content:center;
+        }
+        hr{
+            margin-top:10px;
+        }
+        button{
+            cursor:pointer;
+            padding:0.5em 1em;
+        }
+        a{
+            font-size:0.75rem;
+        }
+    </style>
 </head>
 <body>
     <div id="wrapper">
  
 <main>
-
-<nav>
-    <a href='/dinner'>dinner</a>
-    <a href='/specials'>specials</a>
-    <a href='/dessert'>dessert</a>
-    <a href='/wine'>wine</a>
-    <a href='/drinks'>drinks</a>
-</nav>
 
 
     <div id='login'>
@@ -42,20 +51,21 @@
             <form action='/login' 
                   method='POST'
                   style='text-align:center;'>
-
-            <h2>STAFF LOGIN</h2><br><br>
+            <h1>olea</h1>
+            <hr>
+            <h2>STAFF LOGIN</h2><br>
             
                 <div>
-                    <label for='exampleInputEmail1'>
+                    <label for='email'>
                         Email Address
                     </label><br>
-                    <input type='email' id='exampleInputEmail1' name='email'>
-                </div><br><br>
+                    <input type='email' id='email' name='email'>
+                </div><br>
 
                 <div>
-                    <label for='exampleInputPassword1'>Password</label><br>
-                    <input type='password' id='exampleInputPassword1' name='password'>
-                </div><br><br>
+                    <label for='password'>Password</label><br>
+                    <input type='password' id='password' name='password'>
+                </div><br>
           
                 <button type='submit'>Submit</button>
                 
@@ -68,4 +78,3 @@
     </div>
 </main>
 
-<%- include('partials/footer') %>
