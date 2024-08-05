@@ -9,11 +9,12 @@ exports.getLogin = (req,res)=>{
     res.render('auth/login.ejs',{title:'olea new haven | login',
                                  req:req})
 }
-exports.getSignUp = (req,res)=>{
+exports.getSignup = (req,res)=>{
     if(req.user){
-        return res.redirect('/')
+        return res.redirect('/auth/dashboard')
     }
-    res.render('auth/signup.ejs', {title:'olea new haven | sign up',req:req})
+    res.render('auth/signup.ejs', {title:'olea new haven | sign up',
+                                   req:req})
 }
 
 exports.getNewUser = (req,res)=>{
@@ -52,10 +53,22 @@ exports.postLogin = (req,res,next)=>{
                 return res.redirect('newUser')
             }else{
                 req.flash('success',{msg:'Success! You are logged in.'})
-                res.redirect(req.session.returnTo || '/update/specials')
+                res.redirect(req.session.returnTo || '/dashboard')
             }
         })
     })(req,res,next)
+}
+
+exports.approve = async(req,res)=>{
+    await User.findByIdAndUpdate(req.body.id,{
+        approved: true
+    })
+    res.redirect('/dashboard/users')
+}
+
+exports.deleteUser = async(req,res)=>{
+    await User.findByIdAndDelete(req.body.id)
+    res.redirect('/dashboard/users')
 }
 
 exports.logout = (req,res)=>{
@@ -70,10 +83,6 @@ exports.logout = (req,res)=>{
     })
 }
 
-exports.getSignup = (req,res)=>{
-    // if(req.user) return res.redirect('/')
-    res.render('auth/signup.ejs',{title:'Create Account',req:req})
-}
 
 exports.getUsers = async(req,res)=>{
     // if(!req.user) res.redirect('/')

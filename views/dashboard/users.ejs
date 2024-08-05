@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script
+            src="https://kit.fontawesome.com/21ef82ed30.js"
+            crossorigin="anonymous">
+        </script>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        #wrapper{
+            width:100%;
+            height:100vh;
+            height:100svh;
+            display:grid;
+            place-content:center;
+        }
+        li{
+            list-style-type: none;
+            padding: 1em 0;
+        }
+        .timestamp{
+            padding-top:0.5em;
+            width:25ch;
+            height:1.5em;
+            overflow:hidden;
+            display:inline-block;
+        }
+        button{
+            padding:0.5em 1em;
+            cursor:pointer;
+            color:white;
+            border-radius:5px;
+        }
+        .approve{
+            background:green;
+        }
+        .approve:hover{
+            background:lightgreen;
+            color:black;
+        }
+        .delete:hover{
+            background:pink;
+            color:black;
+        }
+        .delete{
+            background:red;
+        }
+        form{
+            display:inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id='wrapper'>
+        <h2><i class="fa-solid fa-user"></i> Manage Users</h2>
+
+        <ul>
+            <% for(let i=0;i<users.length;i++){ %>
+                <% if(req.user.id != users[i].id){ %>
+
+                    <li>
+                        User Name: <%= users[i].userName %><br>
+                        Email: <%= users[i].email %><br>
+                        Created Account: <%= users[i].createdAt.toString().slice(0,21) %>
+                        <br>
+                        <% if(users[i].approved == false){ %>
+                            <form method='POST'
+                                  action='/auth/approve'>
+                                  <input type='hidden' name='id' value='<%= users[i].id %>'>
+                                <button class='approve'>Approve</button>
+                            </form>
+                        <% } %>
+                        <form method='POST'
+                              action='/auth/deleteUser'>
+                            <input type='hidden' name='id' value='<%= users[i].id %>'>  
+                            <button class='delete'>Delete</button>
+                        </form>
+                    </li>
+                <% } %>
+            <% } %>
+        </ul>
+
+
+
+    </div>
+</body>
+</html>

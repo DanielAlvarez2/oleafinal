@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 3001
 const mainRoutes = require('./routes/main')
 const updateRoutes = require('./routes/update')
 const authRoutes = require('./routes/auth')
+const dashboardRoutes = require('./routes/dashboard')
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(express.json())
@@ -37,6 +38,7 @@ app.use(logger('dev'))
 app.use('/', mainRoutes)
 app.use('/auth', authRoutes)
 app.use('/update', updateRoutes)
+app.use('/dashboard', dashboardRoutes)
 
 app.use(function(req,res){
     res.status(404).render('error404.ejs',{title:'404'})

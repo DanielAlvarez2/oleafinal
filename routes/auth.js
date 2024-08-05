@@ -10,5 +10,7 @@ router.get('/signup', authController.getSignup)
 router.post('/signup', authController.postSignup)
 router.get('/users', authController.getUsers)
 router.get('/dashboard', authController.getDashboard)
+router.post('/approve', authController.approve)
+router.post('/deleteUser', authController.deleteUser)
 
 module.exports = router
