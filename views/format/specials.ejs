@@ -63,7 +63,9 @@
             list-style-type:none;
             margin: <%= itemMargin %>px 0;
         }
-        #format-options,#digits{
+        #format-options,
+        #digits,
+        #lower-flexbox{
             display:flex;
         }
         #format-options,#digits{
@@ -72,9 +74,12 @@
         #format-options{
             column-gap:20px;
         }
+        #lower-flexbox{
+            width:4.25in;
+            justify-content:space-between;
+        }
         #toggle-div{
             display:inline-flex;
-            width:4.25in;
             justify-content:center;
         }
         #toggle-switch{
@@ -134,7 +139,8 @@
             </div>
 
             <div>
-                <form>
+                <form method='POST'
+                      action='/format/specials'>
                     <input type='hidden' id='show-legal-text-input' name='showLegalText' value=<%= showLegalText %>>
                     <input type='hidden' id='page-padding-input' name='pagePadding' value='<%= pagePadding %>'>
                     <input type='hidden' id='item-margin-input' name='itemMargin' value='<%= itemMargin %>'>
@@ -222,11 +228,21 @@
             </div><!--#flexbox-->
         </div><!--#format-specials-menu-->
         <br>
-        <div id='toggle-div'>
-        Legal Text: HIDE&nbsp; 
-        <i id='toggle-switch' class="fa-solid fa-toggle-on"></i>
-         &nbsp;SHOW
-        </div><!--#toggle-div-->
+
+        <div id='lower-flexbox'>
+            <div id='toggle-div'>
+                Legal Text: HIDE&nbsp; 
+                <i id='toggle-switch' class="fa-solid fa-toggle-on"></i>
+                &nbsp;SHOW
+            </div><!--#toggle-div-->
+            <div id='print-preview'>
+                <form action='/print/specials'>
+                    <button>
+                        <i class="fa-solid fa-print"></i> Print Preview
+                    </button>
+                </form>
+            </div>
+        </div><!--#lower-flexbox-->
     </div>
     </div>
 

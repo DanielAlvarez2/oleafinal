@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @font-face{
+            font-family: "futura light";
+            src: url("../FuturaLight.otf") format("opentype");
+        }        
+        @font-face{
+            font-family: "futura medium";
+            src: url("../FuturaMedium.otf") format("opentype");
+        }                
+        .flexbox{
+            display:flex;
+            flex-direction:column;
+            height:100%;
+        }
+        .flexbox-bottom{
+            margin-top:auto;
+        }
+        .legal{
+            font-size:0.7rem;
+        }
+        .name{
+            font-family:futura medium;
+            font-weight:600;
+        }
+        .description{
+            font-family:serif;
+        }
+        .price{
+            font-family:serif;
+            font-weight:900;
+        }
+        li{
+            list-style-type:none;
+            margin: <%= itemMargin %>px 0;
+        }
+        #format-options,
+        #digits,
+        #lower-flexbox{
+            display:flex;
+        }
+        #format-options,#digits{
+            align-items:center;
+        }
+        #format-options{
+            column-gap:20px;
+        }
+        #lower-flexbox{
+            width:4.25in;
+            justify-content:space-between;
+        }
+        #toggle-div{
+            display:inline-flex;
+            justify-content:center;
+        }
+        #toggle-switch{
+            cursor:pointer;
+        }
+        #tens,#ones{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        #digits{
+            visibility:hidden;
+        }
+        #up-ten,
+        #down-ten,
+        #up-one,
+        #down-one{
+            cursor:pointer;
+        }
+        button{
+            padding:0.5em 0.75em;
+            cursor:pointer;
+            border-radius:15px;
+        }
+        button:hover{
+            background:grey;
+            color:white;
+        }
+        *{
+            padding:0;
+            margin:0;
+            box-sizing:border-box;
+        }
+        #wrapper{
+            width:8.5in;
+            height:11in;
+            border:1px solid black;
+            display:flex;
+        }
+        #top-left,
+        #bottom-left,
+        #top-right,
+        #bottom-right{
+            padding:<%= pagePadding %>px;
+            width:4.25in;
+            height:5.5in;
+            border:1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id='wrapper'>
+        <div id='left'>
+            <div id='top-left'>
+
+            <div class='flexbox'>
+                <div class='flexbox-top'>
+                    <h2>today's specials</h2><br>
+
+                    <% if(appetizers.length){ %>
+                        <% if(appetizers.length == 1){ %>
+                            <h2>appetizer</h2>
+                        <% }else{ %>
+                            <h2>appetizers</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<appetizers.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= appetizers[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= appetizers[i].description %></span> 
+                                    <span class='price'>
+                                    <%= appetizers[i].price %></span>    
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(entrees.length){ %>
+                        <% if(entrees.length == 1){ %>
+                            <h2>entrée</h2>
+                        <% }else{ %>
+                            <h2>entrées</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<entrees.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= entrees[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= entrees[i].description %></span> 
+                                    <span class='price'>
+                                    <%= entrees[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(desserts.length){ %>
+                        <% if(desserts.length == 1){ %>
+                            <h2>dessert</h2>
+                        <% }else{ %>
+                            <h2>desserts</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<desserts.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= desserts[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= desserts[i].description %></span> 
+                                    <span class='price'>
+                                    <%= desserts[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </div><!--.flexbox-top-->
+                <div class='flexbox-bottom'>
+                    <div class='legal'>
+                        Consumer advisory: consumption of undercooked meat, 
+                        poultry, eggs, or seafood may increase the risk of 
+                        food-borne illnesses. Please alert your server if 
+                        you have special dietary requirements.
+                    </div><!--.legal-->
+                </div><!--.flexbox-bottom-->
+            </div><!--.flexbox-->
+
+            </div><!--#top-left-->
+
+            <div id='bottom-left'>
+            <div class='flexbox'>
+                <div class='flexbox-top'>
+                    <h2>today's specials</h2><br>
+
+                    <% if(appetizers.length){ %>
+                        <% if(appetizers.length == 1){ %>
+                            <h2>appetizer</h2>
+                        <% }else{ %>
+                            <h2>appetizers</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<appetizers.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= appetizers[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= appetizers[i].description %></span> 
+                                    <span class='price'>
+                                    <%= appetizers[i].price %></span>    
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(entrees.length){ %>
+                        <% if(entrees.length == 1){ %>
+                            <h2>entrée</h2>
+                        <% }else{ %>
+                            <h2>entrées</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<entrees.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= entrees[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= entrees[i].description %></span> 
+                                    <span class='price'>
+                                    <%= entrees[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(desserts.length){ %>
+                        <% if(desserts.length == 1){ %>
+                            <h2>dessert</h2>
+                        <% }else{ %>
+                            <h2>desserts</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<desserts.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= desserts[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= desserts[i].description %></span> 
+                                    <span class='price'>
+                                    <%= desserts[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </div><!--.flexbox-top-->
+                <div class='flexbox-bottom'>
+                    <div class='legal'>
+                        Consumer advisory: consumption of undercooked meat, 
+                        poultry, eggs, or seafood may increase the risk of 
+                        food-borne illnesses. Please alert your server if 
+                        you have special dietary requirements.
+                    </div><!--.legal-->
+                </div><!--.flexbox-bottom-->
+            </div><!--.flexbox-->
+            </div><!--#bottom-left-->
+        </div><!--#left-->
+
+        <div id='right'>
+            <div id='top-right'>
+            <div class='flexbox'>
+                <div class='flexbox-top'>
+                    <h2>today's specials</h2><br>
+
+                    <% if(appetizers.length){ %>
+                        <% if(appetizers.length == 1){ %>
+                            <h2>appetizer</h2>
+                        <% }else{ %>
+                            <h2>appetizers</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<appetizers.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= appetizers[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= appetizers[i].description %></span> 
+                                    <span class='price'>
+                                    <%= appetizers[i].price %></span>    
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(entrees.length){ %>
+                        <% if(entrees.length == 1){ %>
+                            <h2>entrée</h2>
+                        <% }else{ %>
+                            <h2>entrées</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<entrees.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= entrees[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= entrees[i].description %></span> 
+                                    <span class='price'>
+                                    <%= entrees[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(desserts.length){ %>
+                        <% if(desserts.length == 1){ %>
+                            <h2>dessert</h2>
+                        <% }else{ %>
+                            <h2>desserts</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<desserts.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= desserts[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= desserts[i].description %></span> 
+                                    <span class='price'>
+                                    <%= desserts[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </div><!--.flexbox-top-->
+                <div class='flexbox-bottom'>
+                    <div class='legal'>
+                        Consumer advisory: consumption of undercooked meat, 
+                        poultry, eggs, or seafood may increase the risk of 
+                        food-borne illnesses. Please alert your server if 
+                        you have special dietary requirements.
+                    </div><!--.legal-->
+                </div><!--.flexbox-bottom-->
+            </div><!--.flexbox-->
+            </div><!--#top-right-->
+
+            <div id='bottom-right'>
+            <div class='flexbox'>
+                <div class='flexbox-top'>
+                    <h2>today's specials</h2><br>
+
+                    <% if(appetizers.length){ %>
+                        <% if(appetizers.length == 1){ %>
+                            <h2>appetizer</h2>
+                        <% }else{ %>
+                            <h2>appetizers</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<appetizers.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= appetizers[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= appetizers[i].description %></span> 
+                                    <span class='price'>
+                                    <%= appetizers[i].price %></span>    
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(entrees.length){ %>
+                        <% if(entrees.length == 1){ %>
+                            <h2>entrée</h2>
+                        <% }else{ %>
+                            <h2>entrées</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<entrees.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= entrees[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= entrees[i].description %></span> 
+                                    <span class='price'>
+                                    <%= entrees[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+
+                    <% if(desserts.length){ %>
+                        <% if(desserts.length == 1){ %>
+                            <h2>dessert</h2>
+                        <% }else{ %>
+                            <h2>desserts</h2>
+                        <% } %>
+                        <ul>
+                            <% for(let i=0;i<desserts.length;i++){ %>
+                                <li>
+                                    <span class='name'>
+                                    <%= desserts[i].name %><br></span>
+                                    <span class='description'>
+                                    <%= desserts[i].description %></span> 
+                                    <span class='price'>
+                                    <%= desserts[i].price %></span>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </div><!--.flexbox-top-->
+                <div class='flexbox-bottom'>
+                    <div class='legal'>
+                        Consumer advisory: consumption of undercooked meat, 
+                        poultry, eggs, or seafood may increase the risk of 
+                        food-borne illnesses. Please alert your server if 
+                        you have special dietary requirements.
+                    </div><!--.legal-->
+                </div><!--.flexbox-bottom-->
+            </div><!--.flexbox-->
+            </div><!--#bottom-right-->
+        </div><!--#right-->
+    </div><!--#wrapper-->
+</body>
+</html>
