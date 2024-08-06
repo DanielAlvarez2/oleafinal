@@ -25,11 +25,14 @@ module.exports = {
         }).sort({sequence:'asc'})
         const pagePadding = Math.floor(Math.random() * 50)
         const itemMargin = Math.floor(Math.random() * 20)
+        let showLegalText = Math.floor(Math.random()*2)
+        showLegalText == 0 ? showLegalText = false : showLegalText = true 
         res.render('format/specials',{req:req,
                                       appetizers:appetizers,
                                       entrees:entrees,
                                       desserts:desserts,
                                       pagePadding:pagePadding,
-                                      itemMargin:itemMargin})
+                                      itemMargin:itemMargin,
+                                      showLegalText:showLegalText})
     }
 }

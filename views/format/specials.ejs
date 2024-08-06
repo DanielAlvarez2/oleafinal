@@ -94,6 +94,15 @@
         #down-one{
             cursor:pointer;
         }
+        button{
+            padding:0.5em 0.75em;
+            cursor:pointer;
+            border-radius:15px;
+        }
+        button:hover{
+            background:grey;
+            color:white;
+        }
     </style>
 </head>
 <body>
@@ -123,10 +132,18 @@
                     px
                 </div>
             </div>
-        </div>
-        
-        <br><br>
 
+            <div>
+                <form>
+                    <input type='hidden' id='show-legal-text-input' name='showLegalText' value=<%= showLegalText %>>
+                    <input type='hidden' id='page-padding-input' name='pagePadding' value='<%= pagePadding %>'>
+                    <input type='hidden' id='item-margin-input' name='itemMargin' value='<%= itemMargin %>'>
+                    <button>
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        Save Changes
+                    </button>
+                </form>
+            </div>
         </div><!--#format-options-->
 
         <div id='format-specials-menu'>
@@ -214,13 +231,24 @@
     </div>
 
     <script>
+        const toggleSwitch = document.querySelector('#toggle-switch')
+        toggleSwitch.addEventListener('click',toggleToggle)
+        const legal = document.querySelector('#legal')
+        let showLegalTextInput = document.querySelector('#show-legal-text-input')
+        let pagePaddingInput = document.querySelector('#page-padding-input')
+        let itemMarginInput = document.querySelector('#item-margin-input')
+
         function toggleToggle(){
             if(toggleSwitch.classList.contains('fa-toggle-on')){
                 toggleSwitch.classList.value = 'fa-solid fa-toggle-off'
                 legal.style.display = 'none'
+                showLegalText = false
+                showLegalTextInput.value = false
             }else{
                 toggleSwitch.classList.value = 'fa-solid fa-toggle-on'
                 legal.style.display = 'block'
+                showLegalText = true
+                showLegalTextInput.value = true
             }
         }
         function showDigits(){
@@ -243,6 +271,19 @@
                 onesNumber.textContent = itemMargin.toString().substring(tempString.length-1)
             }
         }
+        (function initializeToggle(){
+            console.log(<%= showLegalText %>)
+            if(!<%= showLegalText %>){
+                if(toggleSwitch.classList.contains('fa-toggle-on')){
+                    toggleSwitch.classList.value = 'fa-solid fa-toggle-off'
+                    legal.style.display = 'none'
+                }else{
+                    toggleSwitch.classList.value = 'fa-solid fa-toggle-on'
+                    legal.style.display = 'block'
+                }
+            }
+            let showLegalText = <%= showLegalText %>
+        })() 
         const formatSpecialsMenu = document.querySelector('#format-specials-menu')
         let pageBorder = <%= pagePadding %>
         let itemMargin = <%= itemMargin %>
@@ -251,9 +292,6 @@
         options.addEventListener('change', showDigits)
         const tensNumber = document.querySelector('#tens-number')
         const onesNumber = document.querySelector('#ones-number')
-        const legal = document.querySelector('#legal')
-        const toggleSwitch = document.querySelector('#toggle-switch')
-        toggleSwitch.addEventListener('click',toggleToggle)
         const upTen = document.querySelector('#up-ten')
         const downTen = document.querySelector('#down-ten')
         const upOne = document.querySelector('#up-one')
@@ -266,10 +304,12 @@
                     pageBorder += 10
                     tensNumber.textContent = pageBorder.toString().substring(0,1)                    
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
                 }
             }else if(options.value == 'item-margin'){
                 if(itemMargin < 90){
                     itemMargin += 10
+                    itemMarginInput.value = itemMargin
                     tensNumber.textContent = itemMargin.toString().substring(0,1)
                     for(let i=0;i<li.length;i++){
                         li[i].style.margin = `${itemMargin}px 0`
@@ -282,6 +322,7 @@
                 if(pageBorder > 9)
                     pageBorder -= 10
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
                     if (pageBorder > 9){
                         tensNumber.textContent = pageBorder.toString().substring(0,1)                    
                     }else{
@@ -290,6 +331,7 @@
             }else if(options.value == 'item-margin'){
                 if(itemMargin > 9){
                     itemMargin -= 10
+                    itemMarginInput.value = itemMargin
                     if(itemMargin < 10){
                         tensNumber.textContent = '0'
                     }else{
@@ -314,10 +356,12 @@
                         onesNumber.textContent = pageBorder                    
                     }
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
                 }
             }else if(options.value == 'item-margin'){
                 if(itemMargin < 99){
                     itemMargin ++
+                    itemMarginInput.value = itemMargin
                     if(itemMargin < 10){
                         tensNumber.textContent = '0'
                         onesNumber.textContent = itemMargin
@@ -346,10 +390,12 @@
                         onesNumber.textContent = pageBorder                    
                     }                    
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
                 }
             }else if(options.value == 'item-margin'){
                 if(itemMargin > 0){
                     itemMargin --
+                    itemMarginInput.value = itemMargin
                     if(itemMargin < 10){
                         tensNumber.textContent = '0'
                         onesNumber.textContent = itemMargin
