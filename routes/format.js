@@ -4,5 +4,6 @@ const formatController = require('../controllers/format')
 
 router.get('/specials', formatController.getSpecials)
 router.post('/specials', formatController.postSpecials)
+router.get('/dinner', formatController.getDinner)
 
 module.exports = router

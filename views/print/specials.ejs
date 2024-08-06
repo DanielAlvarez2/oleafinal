@@ -106,7 +106,6 @@
             padding:<%= pagePadding %>px;
             width:4.25in;
             height:5.5in;
-            border:1px solid red;
         }
         #print-button{
             position:fixed;
@@ -116,6 +115,9 @@
         #print-button button{
             padding:1em 2em;
             font-size:1.5rem;
+        }
+        h2{
+            font-family:futura medium;
         }
         @media print{
             .no-print{
@@ -137,7 +139,7 @@
 
             <div class='flexbox'>
                 <div class='flexbox-top'>
-                    <h2>today's specials</h2><br>
+                    <h2 style='font-family:futura light'>today's specials</h2><br>
 
                     <% if(appetizers.length){ %>
                         <% if(appetizers.length == 1){ %>
@@ -214,7 +216,7 @@
             <div id='bottom-left'>
             <div class='flexbox'>
                 <div class='flexbox-top'>
-                    <h2>today's specials</h2><br>
+                    <h2 style='font-family:futura light'>today's specials</h2><br>
 
                     <% if(appetizers.length){ %>
                         <% if(appetizers.length == 1){ %>
@@ -292,7 +294,7 @@
             <div id='top-right'>
             <div class='flexbox'>
                 <div class='flexbox-top'>
-                    <h2>today's specials</h2><br>
+                    <h2 style='font-family:futura light'>today's specials</h2><br>
 
                     <% if(appetizers.length){ %>
                         <% if(appetizers.length == 1){ %>
@@ -368,7 +370,7 @@
             <div id='bottom-right'>
             <div class='flexbox'>
                 <div class='flexbox-top'>
-                    <h2>today's specials</h2><br>
+                    <h2 style='font-family:futura light'>today's specials</h2><br>
 
                     <% if(appetizers.length){ %>
                         <% if(appetizers.length == 1){ %>
