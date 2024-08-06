@@ -10,5 +10,6 @@ router.get('/', dashboardController.getIndex)
 router.get('/users', dashboardController.getUsers)
 router.get('/updateMenus', dashboardController.getUpdateMenus)
 router.get('/formatMenus', dashboardController.getFormatMenus)
+router.get('/printMenus', dashboardController.getPrintMenus)
 
 module.exports = router

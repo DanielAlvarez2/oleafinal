@@ -14,5 +14,8 @@ module.exports = {
     },
     getFormatMenus: async(req,res)=>{
         res.render('dashboard/format-menus.ejs',{req:req})
+    },
+    getPrintMenus: async(req,res)=>{
+        res.render('dashboard/print-menus.ejs',{req,req})
     }
 }
