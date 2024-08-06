@@ -142,12 +142,12 @@ main{
     padding: 1.5rem 0;
 }
 
-.fa-gear{
+/* .fa-gear{
     position:absolute;
     top:5px;
     right:5px;
     font-size:40px;
-}
+} */
 .fa-folder-plus{
     color:grey;
 }
@@ -330,5 +330,8 @@ form{
 #footer-edit,
 #footer-edit a{
     background: black;
+    color:white;
+}
+#footer-edit i{
     color:white;
 }

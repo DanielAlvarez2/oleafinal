@@ -526,7 +526,7 @@ module.exports = {
             console.log(req.params.id)
             console.log(req.body)
             await MenuItem.findByIdAndUpdate(req.params.id,req.body)
-            res.redirect('/')
+            res.redirect(req.get('referer'))
         }catch(err){
             console.log(err)
         }        
@@ -549,7 +549,7 @@ module.exports = {
                 image:result.secure_url,
                 cloudinaryId:result.public_id
             })
-            res.redirect('/')
+            res.redirect(req.get('referer'))
         }catch(err){
             console.log(err)
         }        

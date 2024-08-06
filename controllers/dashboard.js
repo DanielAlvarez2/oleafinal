@@ -11,5 +11,8 @@ module.exports = {
     },
     getUpdateMenus: async(req,res)=>{
         res.render('dashboard/update-menus.ejs',{req:req})
+    },
+    getFormatMenus: async(req,res)=>{
+        res.render('dashboard/format-menus.ejs',{req:req})
     }
 }

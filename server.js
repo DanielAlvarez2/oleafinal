@@ -16,6 +16,7 @@ const path = require('path')
 const PORT = process.env.PORT || 3001
 const mainRoutes = require('./routes/main')
 const updateRoutes = require('./routes/update')
+const formatRoutes = require('./routes/format')
 const authRoutes = require('./routes/auth')
 const dashboardRoutes = require('./routes/dashboard')
 app.set('view engine','ejs')
@@ -38,6 +39,7 @@ app.use(logger('dev'))
 app.use('/', mainRoutes)
 app.use('/auth', authRoutes)
 app.use('/update', updateRoutes)
+app.use('/format', formatRoutes)
 app.use('/dashboard', dashboardRoutes)
 
 app.use(function(req,res){
