@@ -258,6 +258,8 @@
         const downTen = document.querySelector('#down-ten')
         const upOne = document.querySelector('#up-one')
         const downOne = document.querySelector('#down-one')
+        const li = document.querySelectorAll('li')
+
         function up10(){
             if(options.value == 'page-border'){
                 if(pageBorder < 90){
@@ -266,7 +268,13 @@
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
                 }
             }else if(options.value == 'item-margin'){
-                itemMargin += 10
+                if(itemMargin < 90){
+                    itemMargin += 10
+                    tensNumber.textContent = itemMargin.toString().substring(0,1)
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.margin = `${itemMargin}px 0`
+                    }
+                }
             }
         }
         function down10(){
@@ -280,7 +288,17 @@
                         tensNumber.textContent = '0'                    
                     }
             }else if(options.value == 'item-margin'){
-                itemMargin += 10
+                if(itemMargin > 9){
+                    itemMargin -= 10
+                    if(itemMargin < 10){
+                        tensNumber.textContent = '0'
+                    }else{
+                        tensNumber.textContent = itemMargin.toString().substring(0,1)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.margin = `${itemMargin}px 0`
+                    }
+                }
             }
 
         }
@@ -298,7 +316,19 @@
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
                 }
             }else if(options.value == 'item-margin'){
-                itemMargin += 10
+                if(itemMargin < 99){
+                    itemMargin ++
+                    if(itemMargin < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = itemMargin
+                    }else{
+                        tensNumber.textContent = itemMargin.toString().substring(0,1)
+                        onesNumber.textContent = itemMargin.toString().substring(1,2)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.margin = `${itemMargin}px 0`
+                    }
+                }
             }
         }
         function down1(){
@@ -318,7 +348,19 @@
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
                 }
             }else if(options.value == 'item-margin'){
-                itemMargin += 10
+                if(itemMargin > 0){
+                    itemMargin --
+                    if(itemMargin < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = itemMargin
+                    }else{
+                        tensNumber.textContent = itemMargin.toString().substring(0,1) 
+                        onesNumber.textContent = itemMargin.toString().substring(1,2)                         
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.margin = `${itemMargin}px 0`
+                    }
+                }
             }            
         }
         upTen.addEventListener('click', up10)
