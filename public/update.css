@@ -300,7 +300,7 @@ form{
     width:10em;
 }
 #drinks-sub-menu li{
-    width: 7em;
+    width: 9em;
 }
 #edit-nav,
 #edit-nav a,
@@ -310,6 +310,7 @@ form{
     color:white;
     margin:0;
     font-size:1rem;
+    position:relative;
     z-index: 100;
 }
 #edit-nav a:hover{
