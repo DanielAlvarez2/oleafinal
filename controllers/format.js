@@ -1,6 +1,7 @@
 const MenuItem = require('../models/MenuItem')
 const SpecialsFormat = require('../models/SpecialsFormat')
 const DinnerFormat = require('../models/DinnerFormat')
+const DessertFormat = require('../models/DessertFormat')
 
 module.exports = {
     getSpecials: async(req,res)=>{
@@ -127,8 +128,41 @@ module.exports = {
                 {archived:false}
             ]
         }).sort({sequence:'asc'})
-        
+        const temp = await DessertFormat.find()
+        let pageTopBottom
+        let pageLeftRight
+        let paddingVertical
+        if(temp.length == 0){
+            pageTopBottom = 0
+            pageLeftRight = 0
+            paddingVertical = 0
+            console.log('no dessert format entries exist')
+        }else{
+            ({ pageTopBottom, pageLeftRight, paddingVertical } = await DessertFormat.findOne({index:1}))
+        }
+        console.log(pageTopBottom, pageLeftRight, paddingVertical)
         res.render('format/dessert.ejs', {req,req,
-                                          desserts:desserts})
+                                          desserts:desserts,
+                                          pageTopBottom:pageTopBottom,
+                                          pageLeftRight:pageLeftRight,
+                                          paddingVertical:paddingVertical})
+    },
+    postDessert: async(req,res)=>{
+        const getFormat = await DessertFormat.find()
+        if(getFormat.length == 0){
+            await DessertFormat.create({
+                index:1,
+                pageTopBottom: req.body.pageTopBottom,
+                pageLeftRight: req.body.pageLeftRight,
+                paddingVertical: req.body.paddingVertical
+            })
+        }else{
+            await DessertFormat.findOneAndUpdate({index:1},{
+                pageTopBottom: req.body.pageTopBottom,
+                pageLeftRight: req.body.pageLeftRight,
+                paddingVertical: req.body.paddingVertical                
+            })
+        }
+        res.redirect(req.get('referer'))
     }
 }

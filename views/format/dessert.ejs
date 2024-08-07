@@ -33,11 +33,9 @@
             width:5.5in;
             height:8.5in;
             border:1px solid black;
-            padding: 10px 30px;
+            padding: <%= pageTopBottom %>px <%= pageLeftRight %>px;
         }
-        li{
-            list-style-type: none;
-        }
+
         h1{
             font-size:3rem;
             font-family:futura light;
@@ -55,9 +53,10 @@
         .name{
             font-family:futura medium;
             font-weight:900;
-        }
+        }        
         li{
-            padding: 7px 0;
+            list-style-type: none;
+            padding: <%= paddingVertical %>px 0;
         }
         .price{
             font-weight:600;
@@ -79,10 +78,99 @@
         hr{
             margin:5px 0;
         }
+        #format-options,
+        #digits,
+        #lower-flexbox{
+            display:flex;
+        }
+        #format-options,#digits{
+            align-items:center;
+        }
+        #format-options{
+            column-gap:20px;
+        }
+        #format-options{
+            width:5.5in;
+            justify-content:space-around;
+        }
+        #tens,#ones{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        #digits{
+            visibility:hidden;
+        }
+        #up-ten,
+        #down-ten,
+        #up-one,
+        #down-one{
+            cursor:pointer; 
+        }  
+        button{
+            padding:0.5em 0.75em;
+            cursor:pointer;
+            border-radius:15px;
+        }
+        button:hover{
+            background:grey;
+            color:white;
+        }                     
     </style>
 </head>
 <body>
     <div id='wrapper'>
+
+        <div id='format-options'>
+            <div>
+                <select id='options' name='options'>
+                    <option disabled selected value>Formatting Options...</option>
+                    <option value='page-top-bottom'>Page Border: Top & Bottom</option>
+                    <option value='page-left-right'>Page Border: Left & Right </option>
+                    <option value='padding-vertical'>Space Between Menu Items </option>
+                </select>
+            </div>
+
+            <div id='digits'>
+                <div id='tens'>
+                    <span id='up-ten'>&#11205;</span>
+                    <span id='tens-number'>0</span>
+                    <span id='down-ten'>&#11206;</span>
+                </div>
+                <div id='ones'>
+                    <span id='up-one'>&#11205;</span>
+                    <span id='ones-number'>0</span>
+                    <span id='down-one'>&#11206;</span>
+                </div>
+                <div>
+                    px
+                </div>
+            </div>
+
+            <div>
+                <form method='POST'
+                      action='/format/dessert'>
+                    <input type='hidden' id='page-top-bottom-input' name='pageTopBottom' value='<%= pageTopBottom %>'>
+                    <input type='hidden' id='page-left-right-input' name='pageLeftRight' value='<%= pageLeftRight %>'>
+                    <input type='hidden' id='padding-vertical-input' name='paddingVertical' value='<%= paddingVertical %>'>
+                    <button>
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        Save Changes
+                    </button>
+                </form>
+            </div>
+
+            <div id='print-preview'>
+                <form action='/print/dinner'>
+                    <button>
+                        <i class="fa-solid fa-print"></i> Print Preview
+                    </button>
+                </form>
+            </div>
+
+        </div><!--#format-options-->
+        <br>
+
         <div id='dessert-menu'>
             <div id='flexbox'>
                 <div id='flexbox-top'>
@@ -128,5 +216,227 @@
             </div><!--#flexbox-->
         </div><!--#dessert-menu-->
     </div><!--#wrapper-->
+
+
+    <script>
+        let pageTopBottomInput = document.querySelector('#page-top-bottom-input')
+        let pageLeftRightInput = document.querySelector('#page-left-right-input')
+        let paddingVerticalInput = document.querySelector('#padding-vertical-input')
+
+        function showDigits(){
+            digits.style.visibility = 'visible'
+            if(options.value == 'page-top-bottom'){
+                if (pageTopBottom < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = pageTopBottom.toString().substring(0,1)
+                }
+                const tempString = pageTopBottom.toString()
+                onesNumber.textContent = pageTopBottom.toString().substring(tempString.length-1)
+            }else if(options.value == 'padding-vertical'){
+                if (paddingVertical < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                }
+                const tempString = paddingVertical.toString()
+                onesNumber.textContent = paddingVertical.toString().substring(tempString.length-1)
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                }
+                const tempString = pageLeftRight.toString()
+                onesNumber.textContent = pageLeftRight.toString().substring(tempString.length-1)
+            }
+        }
+        const dessertMenu = document.querySelector('#dessert-menu')
+        let pageTopBottom = <%= pageTopBottom %>
+        let paddingVertical = <%= paddingVertical %>
+        let pageLeftRight = <%= pageLeftRight %>
+        const digits = document.querySelector('#digits')
+        const options = document.querySelector('#options')
+        options.addEventListener('change', showDigits)
+        const tensNumber = document.querySelector('#tens-number')
+        const onesNumber = document.querySelector('#ones-number')
+        const upTen = document.querySelector('#up-ten')
+        const downTen = document.querySelector('#down-ten')
+        const upOne = document.querySelector('#up-one')
+        const downOne = document.querySelector('#down-one')
+        const li = document.querySelectorAll('li')
+
+        function up10(){
+            if(options.value == 'page-top-bottom'){
+                if(pageTopBottom <= 10){
+                    pageTopBottom += 10
+                    tensNumber.textContent = pageTopBottom.toString().substring(0,1)                    
+                    dessertMenu.style.paddingTop = `${pageTopBottom}px`
+                    dessertMenu.style.paddingBottom = `${pageTopBottom}px`
+                    pageTopBottomInput.value = pageTopBottom
+                }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical == 0){
+                    paddingVertical += 10
+                    paddingVerticalInput.value = paddingVertical
+                    tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight <= 60){
+                    pageLeftRight += 10
+                    pageLeftRightInput.value = pageLeftRight
+                    tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                    dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                    dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }
+            }
+        }
+        function down10(){
+            if(options.value == 'page-top-bottom'){
+                if(pageTopBottom > 9)
+                    pageTopBottom -= 10
+                    dessertMenu.style.paddingTop = `${pageTopBottom}px`
+                    dessertMenu.style.paddingBottom = `${pageTopBottom}px`
+                    pageTopBottomInput.value = pageTopBottom
+                    if (pageTopBottom > 9){
+                        tensNumber.textContent = pageTopBottom.toString().substring(0,1)                    
+                    }else{
+                        tensNumber.textContent = '0'                    
+                    }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical > 9){
+                    paddingVertical -= 10
+                    paddingVerticalInput.value = paddingVertical
+                    if(paddingVertical < 10){
+                        tensNumber.textContent = '0'
+                    }else{
+                        tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight > 9){
+                    pageLeftRight -= 10
+                    pageLeftRightInput.value = pageLeftRight
+                    if(pageLeftRight < 10){
+                        tensNumber.textContent = '0'
+                    }else{
+                        tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                    }
+                        dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                        dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }                
+            }
+
+        }
+        function up1(){
+            if(options.value == 'page-top-bottom'){
+                if(pageTopBottom < 20){
+                    pageTopBottom += 1
+                    if (pageTopBottom > 9){
+                        tensNumber.textContent = pageTopBottom.toString().substring(0,1)
+                        onesNumber.textContent = pageTopBottom.toString().substring(1,2)                    
+                    }else{
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = pageTopBottom                    
+                    }
+                    dessertMenu.style.paddingTop = `${pageTopBottom}px`
+                    dessertMenu.style.paddingBottom = `${pageTopBottom}px`
+                    pageTopBottomInput.value = pageTopBottom
+                }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical < 10){
+                    paddingVertical++
+                    paddingVerticalInput.value = paddingVertical
+                    if(paddingVertical < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = paddingVertical
+                    }else{
+                        tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                        onesNumber.textContent = paddingVertical.toString().substring(1,2)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight < 70){
+                    pageLeftRight++
+                    pageLeftRightInput.value = pageLeftRight
+                    if (pageLeftRight > 9){
+                        tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                        onesNumber.textContent = pageLeftRight.toString().substring(1,2)                    
+                    }else{
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = pageLeftRight                    
+                    }
+                        dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                        dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }
+            }
+        }
+        function down1(){
+            if(options.value == 'page-top-bottom'){
+                if(pageTopBottom > 0){
+                    pageTopBottom -= 1
+                    if (pageTopBottom > 9){
+                        tensNumber.textContent = pageTopBottom.toString().substring(0,1)                    
+                    }else{
+                        tensNumber.textContent = '0'                    
+                    }
+                    if (pageTopBottom > 9){
+                        onesNumber.textContent = pageTopBottom.toString().substring(1,2)                    
+                    }else{
+                        onesNumber.textContent = pageTopBottom                    
+                    }                    
+                    dessertMenu.style.paddingTop = `${pageTopBottom}px`
+                    dessertMenu.style.paddingBottom = `${pageTopBottom}px`
+                    pageTopBottomInput.value = pageTopBottom
+                }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical > 0){
+                    paddingVertical--
+                    paddingVerticalInput.value = paddingVertical
+                    if(paddingVertical < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = paddingVertical
+                    }else{
+                        tensNumber.textContent = paddingVertical.toString().substring(0,1) 
+                        onesNumber.textContent = paddingVertical.toString().substring(1,2)                         
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight > 0){
+                    pageLeftRight--
+                    pageLeftRightInput.value = pageLeftRight
+                    if(pageLeftRight < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = pageLeftRight
+                    }else{
+                        tensNumber.textContent = pageLeftRight.toString().substring(0,1) 
+                        onesNumber.textContent = pageLeftRight.toString().substring(1,2)                         
+                    }
+                        dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                        dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }
+            }            
+        }
+        upTen.addEventListener('click', up10)
+        downTen.addEventListener('click', down10)
+        upOne.addEventListener('click', up1)
+        downOne.addEventListener('click', down1)
+    </script>    
 </body>
 </html>
