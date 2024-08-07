@@ -2,6 +2,7 @@ const MenuItem = require('../models/MenuItem')
 const SpecialsFormat = require('../models/SpecialsFormat')
 const DinnerFormat = require('../models/DinnerFormat')
 const DessertFormat = require('../models/DessertFormat')
+const DessertBackFormat = require('../models/DessertBackFormat')
 
 module.exports = {
     getSpecials: async(req,res)=>{
@@ -202,10 +203,8 @@ module.exports = {
                 {archived:false}
             ]
         }).sort({sequence:'asc'})  
-        const pageTop = Math.floor(Math.random()*100)                                      
-        const pageLeftRight = Math.floor(Math.random()*100)                                      
-        const verticalMargin = Math.floor(Math.random()*20) 
-        console.log(pageTop,pageLeftRight,verticalMargin)                                     
+        const {pageTop,verticalMargin,pageLeftRight} = await DessertBackFormat.findOne({index:1})
+        console.log(pageLeftRight,pageTop,verticalMargin)
         res.render('format/dessert-back.ejs',{req:req,
                                               pageTop:pageTop,
                                               verticalMargin:verticalMargin,
@@ -216,5 +215,23 @@ module.exports = {
                                               japaneseWhisky:japaneseWhisky,
                                               dessertCocktails:dessertCocktails,
                                               dessertWines:dessertWines})
+    },
+    postDessertBack: async(req,res)=>{
+        const getFormat = await DessertBackFormat.find()
+        if(getFormat.length == 0){
+            await DessertBackFormat.create({
+                index:1,
+                pageTop: req.body.pageTop,
+                pageLeftRight: req.body.pageLeftRight,
+                verticalMargin: req.body.verticalMargin
+            })
+        }else{
+            await DessertBackFormat.findOneAndUpdate({index:1},{
+                pageTop: req.body.pageTop,
+                pageLeftRight: req.body.pageLeftRight,
+                verticalMargin: req.body.verticalMargin                
+            })
+        }
+        res.redirect(req.get('referer'))        
     }
 }

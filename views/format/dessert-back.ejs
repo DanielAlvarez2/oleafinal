@@ -46,7 +46,7 @@
             font-family:futura medium;
         }
         li{
-            margin: <%= verticalMargin %> 0;
+            margin: <%= verticalMargin %>px 0;
             list-style-type: none;
         }
         .item{
@@ -137,7 +137,7 @@
 
             <div>
                 <form method='POST'
-                      action='/format/dessert'>
+                      action='/format/dessertBack'>
                     <input type='hidden' id='page-top-input' name='pageTop' value='<%= pageTop %>'>
                     <input type='hidden' id='page-left-right-input' name='pageLeftRight' value='<%= pageLeftRight %>'>
                     <input type='hidden' id='vertical-margin-input' name='verticalMargin' value='<%= verticalMargin %>'>
@@ -299,7 +299,7 @@
 
         function up10(){
             if(options.value == 'page-top'){
-                if(pageTop <= 80){
+                if(pageTop < 90){
                     pageTop += 10
                     tensNumber.textContent = pageTop.toString().substring(0,1)                    
                     dessertMenu.style.paddingTop = `${pageTop}px`
@@ -307,17 +307,17 @@
                     pageTopInput.value = pageTop
                 }
             }else if(options.value == 'vertical-margin'){
-                if(verticalMargin == 0){
+                if(verticalMargin <= 10){
                     verticalMargin += 10
                     verticalMarginInput.value = verticalMargin
                     tensNumber.textContent = verticalMargin.toString().substring(0,1)
                     for(let i=0;i<li.length;i++){
-                        li[i].style.paddingTop = `${verticalMargin}px`
-                        li[i].style.paddingBottom = `${verticalMargin}px`
+                        li[i].style.marginTop = `${verticalMargin}px`
+                        li[i].style.marginBottom = `${verticalMargin}px`
                     }
                 }
             }else if(options.value == 'page-left-right'){
-                if(pageLeftRight <= 60){
+                if(pageLeftRight < 90){
                     pageLeftRight += 10
                     pageLeftRightInput.value = pageLeftRight
                     tensNumber.textContent = pageLeftRight.toString().substring(0,1)
@@ -348,8 +348,8 @@
                         tensNumber.textContent = verticalMargin.toString().substring(0,1)
                     }
                     for(let i=0;i<li.length;i++){
-                        li[i].style.paddingTop = `${verticalMargin}px`
-                        li[i].style.paddingBottom = `${verticalMargin}px`
+                        li[i].style.marginTop = `${verticalMargin}px`
+                        li[i].style.marginBottom = `${verticalMargin}px`
                     }
                 }
             }else if(options.value == 'page-left-right'){
@@ -383,7 +383,7 @@
                     pageTopInput.value = pageTop
                 }
             }else if(options.value == 'vertical-margin'){
-                if(verticalMargin < 10){
+                if(verticalMargin < 20){
                     verticalMargin++
                     verticalMarginInput.value = verticalMargin
                     if(verticalMargin < 10){
@@ -394,12 +394,12 @@
                         onesNumber.textContent = verticalMargin.toString().substring(1,2)
                     }
                     for(let i=0;i<li.length;i++){
-                        li[i].style.paddingTop = `${verticalMargin}px`
-                        li[i].style.paddingBottom = `${verticalMargin}px`
+                        li[i].style.marginTop = `${verticalMargin}px`
+                        li[i].style.marginBottom = `${verticalMargin}px`
                     }
                 }
             }else if(options.value == 'page-left-right'){
-                if(pageLeftRight < 70){
+                if(pageLeftRight < 99){
                     pageLeftRight++
                     pageLeftRightInput.value = pageLeftRight
                     if (pageLeftRight > 9){
@@ -444,8 +444,8 @@
                         onesNumber.textContent = verticalMargin.toString().substring(1,2)                         
                     }
                     for(let i=0;i<li.length;i++){
-                        li[i].style.paddingTop = `${verticalMargin}px`
-                        li[i].style.paddingBottom = `${verticalMargin}px`
+                        li[i].style.marginTop = `${verticalMargin}px`
+                        li[i].style.marginBottom = `${verticalMargin}px`
                     }
                 }
             }else if(options.value == 'page-left-right'){

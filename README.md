@@ -2,6 +2,8 @@
 password input
 type=showPassword?'text':'password'
 
+add up/down arrow keypress to adjust formatting
+
 check for glitch:
 changing the photo of an item,
 you need to refresh to see new pic???
