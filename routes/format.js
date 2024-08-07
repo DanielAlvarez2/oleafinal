@@ -6,5 +6,6 @@ router.get('/specials', formatController.getSpecials)
 router.post('/specials', formatController.postSpecials)
 router.get('/dinner', formatController.getDinner)
 router.post('/dinner', formatController.postDinner)
+router.get('/dessert', formatController.getDessert)
 
 module.exports = router

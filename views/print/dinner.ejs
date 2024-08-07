@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script
+        src="https://kit.fontawesome.com/21ef82ed30.js"
+        crossorigin="anonymous">
+    </script>    
+    <style>
+        @font-face{
+            font-family: "futura light";
+            src: url("../FuturaLight.otf") format("opentype");
+        }        
+        @font-face{
+            font-family: "futura medium";
+            src: url("../FuturaMedium.otf") format("opentype");
+        }                    
+        *{
+            padding:0;
+            margin:0;
+            box-sizing:border-box;
+        }
+        #wrapper{
+            width:100%;
+            min-height:100vh;
+            min-height:100svh;
+            display:grid;
+            place-content:center;
+        }
+        #dinner-menu{
+            width:8.5in;
+            height: 14in;
+            border:1px solid black;
+            padding:<%= pagePadding %>px;
+        }
+        h1{
+            font-family:futura light;
+            font-size:3rem;
+            font-weight:100;
+        }
+        #top-menu{
+            display:flex;
+            width:100%;
+        }
+        #top-left,
+        #top-right{
+            width:50%;
+        }
+        #bottom-menu{
+        }
+        #bottom-menu ul{
+            display:flex;
+            flex-direction:row;
+            flex-wrap:wrap;
+            width:100%;
+        }
+        #bottom-menu li{
+            width:50%;
+        }
+        li,h1,h2,#chef{
+            list-style-type:none;
+            padding: <%= paddingVertical %>px <%= paddingHorizontal %>px;
+        }
+        .name{
+            font-family: futura medium;
+            font-size:1.2rem;
+            font-weight:600;
+        }
+        .price{
+            font-weight:600;
+        }
+        #chef-legal{
+            display:flex;
+        }
+        #chef{
+            width:40%;
+            font-family:futura medium;
+            font-size:1.2rem;
+        }
+        #legal{
+            font-size:0.6rem;
+        }
+        #charcuterie,
+        #tasting-menu,
+        #bottom-menu ul{
+            border:1px solid black;
+        }
+        #flexbox{
+            display:flex;
+            width:100%;
+            flex-direction:column;
+            height:100%;
+            justify-content:space-between;
+        }
+        h2{
+            font-family:futura medium;
+        }
+
+        button{
+            padding:0.5em 0.75em;
+            cursor:pointer;
+            border-radius:15px;
+        }
+        button:hover{
+            background:grey;
+            color:white;
+        }        
+        #print-button{
+            position:fixed;
+            top:20vh;
+            right:15vw;
+        }
+        #print-button button{
+            padding:1em 2em;
+            font-size:1.5rem;
+        }
+        @media print{
+            .no-print{
+                display:none !important;
+                height:0;
+                width:0;
+            }
+        }             
+    </style>
+
+</head>
+<body>
+
+    <div id='print-button' class='no-print'>
+        <button><i class="fa-solid fa-print"></i> Print</button>
+    </div><!--#print-button-->
+
+    <div id='dinner-menu'>
+    <div id='flexbox'>
+        <div id='flexbox-top'>
+            <h1>olea</h1>
+            <hr><br>
+            <div id='top-menu'>
+                <div id='top-left'>
+                    <ul id='charcuterie'>
+                        <% for(let i=0;i<charcuterie.length;i++){ %>
+                            <li>
+                                <span class='name'><%= charcuterie[i].name %></span><br>
+                                <span class='description'><%= charcuterie[i].description %></span>
+                                <span class='price'><%= charcuterie[i].price %></span>
+                            </li>
+                        <% } %>
+                    </ul>
+
+                    <ul>
+                        <% for(let i=0;i<appetizers.length;i++){ %>
+                            <li>
+                                <span class='name'><%= appetizers[i].name %></span><br>
+                                <span class='description'><%= appetizers[i].description %></span>
+                                <span class='price'><%= appetizers[i].price %></span>
+                            </li>
+                        <% } %>
+                    </ul>                    
+                </div><!--#top-left-->
+
+                <div id='top-right'>
+                    <ul>
+                        <% for(let i=0;i<entrees.length;i++){ %>
+                            <li>
+                                <span class='name'><%= entrees[i].name %></span><br>
+                                <span class='description'><%= entrees[i].description %></span>
+                                <span class='price'><%= entrees[i].price %></span>
+                            </li>
+                        <% } %>
+                    </ul>
+
+                    <div id='tasting-menu'>
+                    <ul>
+                    <li>
+                        <span class='name'>chef's tasting menu</span>
+                        <span style='font-style:italic'>
+                            six courses <b>98</b> / person<br>
+                            <b>24-hours notice and reservation required</b><br>
+                        </span>
+                        full table participation<br>
+                        available tuesday through thursday<br>
+                        <span style='font-style:italic'>
+                            optional wine pairing available <b>52</b> / person
+                        </span>
+                    </li>
+                    </ul>
+                    </div><!--#tasting-menu-->
+                </div><!--#top-right-->                
+            </div><!--#top-menu-->
+            <h2>sides</h2>
+            <div id='bottom-menu'>
+                    <ul>
+                        <% for(let i=0;i<sides.length;i++){ %>
+                            <li>
+                                <span class='name'><%= sides[i].name %></span><br>
+                                <span class='description'><%= sides[i].description %></span>
+                                <span class='price'><%= sides[i].price %></span>
+                            </li>
+                        <% } %>
+                    </ul>                
+            </div><!--#bottom-menu-->
+        </div><!--#flexbox-top-->
+
+        <div id='flexbox-bottom'>
+            <div id='chef-legal'>
+                <div id='chef'>
+                    manuel romero, chef
+                </div><!--#chef-->
+                <div id='legal'>
+                    consumer advisory: consumption of undercooked meat, 
+                    poultry, eggs, or seafood may increase the risk of 
+                    food-borne ilnesses<br>
+                    please alert your server if you have special dietary 
+                    requirements<br>
+                    all menu items are subject to change according to 
+                    seasonality and availability
+
+                </div><!--#legal-->
+            </div><!--#chef-legal-->
+        </div><!--#flexbox-bottom-->        
+        
+        </div><!--#flexbox-->    
+    </div><!--#dinner-menu-->
+
+    <script>
+        const printButton = document.querySelector('#print-button')
+        printButton.addEventListener('click',()=>window.print())
+    </script>    
+
+</body>
+</html>

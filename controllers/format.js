@@ -118,5 +118,17 @@ module.exports = {
                                     pagePadding:pagePadding,
                                     paddingVertical:paddingVertical,
                                     paddingHorizontal:paddingHorizontal})
+    },
+    getDessert: async(req,res)=>{
+        const desserts = await MenuItem.find({
+            $and:[
+                {menu:'dessert'},
+                {section:'desserts'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        
+        res.render('format/dessert.ejs', {req,req,
+                                          desserts:desserts})
     }
 }
