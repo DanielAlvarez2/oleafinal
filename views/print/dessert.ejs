@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+        src="https://kit.fontawesome.com/21ef82ed30.js"
+        crossorigin="anonymous">
+    </script>    
+    <style>
+        @font-face{
+            font-family: "futura light";
+            src: url("../FuturaLight.otf") format("opentype");
+        }        
+        @font-face{
+            font-family: "futura medium";
+            src: url("../FuturaMedium.otf") format("opentype");
+        }   
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        #wrapper{
+            width:11in;
+            height:8.5in;
+            border:1px solid black;
+            display:flex;
+        }
+        #left,#right{
+            width:5.5in;
+            height:8.5in;
+            padding: <%= pageTopBottom %>px <%= pageLeftRight %>px;
+        }
+        h1{
+            font-size:3rem;
+            font-family:futura light;
+            font-weight:100;
+        }
+        h2{
+            font-size:1.2rem;
+            font-family:futura medium;
+        }
+        h2 span{
+            font-family:serif;
+            font-size:1rem;
+            font-weight:100;
+        }
+        .name{
+            font-family:futura medium;
+            font-weight:900;
+        }        
+        li{
+            list-style-type: none;
+            padding: <%= paddingVertical %>px 0;
+        }
+        .price{
+            font-weight:600;
+        }
+        .flexbox{
+            display:flex;
+            flex-direction:column;
+            height:100%;
+        }
+        .flexbox-bottom{
+            margin-top:auto;
+        }
+        .chef{
+            font-weight:900;
+        }
+        .legal{
+            font-size:0.75rem;
+        }
+        hr{
+            margin:5px 0;
+        }
+        button{
+            padding:0.5em 0.75em;
+            cursor:pointer;
+            border-radius:15px;
+        }
+        button:hover{
+            background:grey;
+            color:white;
+        }             
+        #print-button{
+            position:fixed;
+            top:20vh;
+            right:5vw;
+        }
+        #print-button button{
+            padding:1em 2em;
+            font-size:1.5rem;
+        }
+        @media print{
+            .no-print{
+                display:none !important;
+                height:0;
+                width:0;
+            }
+        }                        
+    </style>
+
+</head>
+<body>
+
+    <div id='print-button' class='no-print'>
+        <button><i class="fa-solid fa-print"></i> Print</button>
+    </div><!--#print-button-->
+
+
+    <div id='wrapper'>
+        <div id='left'>
+            <div class='flexbox'>
+                <div class='flexbox-top'>
+                    <h1>olea</h1>
+                    <hr>
+
+                    <ul>
+                        <% for(let i=0;i<desserts.length;i++){ %>
+                            <li>
+                                <span class='name'><%= desserts[i].name %> </span>
+                                <span class='description'><%= desserts[i].description %></span>
+                                <span class='price'><%= desserts[i].price %></span>
+
+                            </li>
+                        <% } %>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <h2>coffee <span>(decaffeinated available)</span></h2>
+                            coffee <b>2.5</b> / cappuccino <b>5</b> / cortado <b>3.5</b><br>
+                            espresso <b>3.5</b> / double espresso <b>5</b> /
+                        </li>
+
+                        <li>
+                            <h2>organic-artisan whole leaf tea <span>(pouch) 3.75</span></h2>
+                            <b>black: </b> english breakfast, decaf earl grey<br>
+                            <b>green: </b> white orchard, spring jasmine, tropical<br>
+                            <b>herbal (caffeine free): </b> chamomile-citrus, mint<br>
+                        </li>
+                    </ul>
+                </div><!--.flexbox-top-->
+
+                <div class='flexbox-bottom'>
+                    <div class='chef'>jessica delgado, pastry chef</div>
+                    <hr>
+                    <div class='legal'>
+                        please alert your server if you have special 
+                        dietary requirements
+                    </div>
+                </div><!--.flexbox-bottom-->
+
+            </div><!--.flexbox-->
+        </div><!--#left-->
+
+        <div id='right'>
+            <div class='flexbox'>
+                <div class='flexbox-top'>
+                    <h1>olea</h1>
+                    <hr>
+
+                    <ul>
+                        <% for(let i=0;i<desserts.length;i++){ %>
+                            <li>
+                                <span class='name'><%= desserts[i].name %> </span>
+                                <span class='description'><%= desserts[i].description %></span>
+                                <span class='price'><%= desserts[i].price %></span>
+
+                            </li>
+                        <% } %>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <h2>coffee <span>(decaffeinated available)</span></h2>
+                            coffee <b>2.5</b> / cappuccino <b>5</b> / cortado <b>3.5</b><br>
+                            espresso <b>3.5</b> / double espresso <b>5</b> /
+                        </li>
+
+                        <li>
+                            <h2>organic-artisan whole leaf tea <span>(pouch) 3.75</span></h2>
+                            <b>black: </b> english breakfast, decaf earl grey<br>
+                            <b>green: </b> white orchard, spring jasmine, tropical<br>
+                            <b>herbal (caffeine free): </b> chamomile-citrus, mint<br>
+                        </li>
+                    </ul>
+                </div><!--.flexbox-top-->
+
+                <div class='flexbox-bottom'>
+                    <div class='chef'>jessica delgado, pastry chef</div>
+                    <hr>
+                    <div class='legal'>
+                        please alert your server if you have special 
+                        dietary requirements
+                    </div>
+                </div><!--.flexbox-bottom-->
+
+            </div><!--.flexbox-->
+        </div><!--#right-->
+    </div><!--#wrapper-->
+
+    <script>
+        const printButton = document.querySelector('#print-button')
+        printButton.addEventListener('click',()=>window.print())
+    </script>
+
+
+</body>
+</html>

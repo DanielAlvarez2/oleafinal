@@ -1,5 +1,6 @@
 const SpecialsFormat = require('../models/SpecialsFormat')
 const DinnerFormat = require('../models/DinnerFormat')
+const DessertFormat = require('../models/DessertFormat')
 const MenuItem = require('../models/MenuItem')
 
 module.exports = {
@@ -76,5 +77,20 @@ module.exports = {
                                    appetizers:appetizers,
                                    entrees:entrees,
                                    sides:sides})
+    },
+    getDessert: async(req,res)=>{
+        const desserts = await MenuItem.find({
+            $and:[
+                {menu:'dessert'},
+                {section:'desserts'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const {pageTopBottom,pageLeftRight,paddingVertical} = await DessertFormat.findOne({index:1})
+        res.render('print/dessert',{req:req,
+                                    desserts:desserts,
+                                    pageTopBottom:pageTopBottom,
+                                    pageLeftRight:pageLeftRight,
+                                    paddingVertical:paddingVertical})
     }
 }
