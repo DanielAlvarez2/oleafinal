@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script
+        src="https://kit.fontawesome.com/21ef82ed30.js"
+        crossorigin="anonymous">
+    </script>    
     <style>
         @font-face{
             font-family: "futura light";
@@ -29,7 +33,7 @@
             width:8.5in;
             height: 14in;
             border:1px solid black;
-            padding:30px;
+            padding:<%= pagePadding %>px;
         }
         h1{
             font-family:futura light;
@@ -53,8 +57,9 @@
         #bottom-menu li{
             width:50%;
         }
-        li{
-            list-style-type:none ;
+        li,h1,h2,#chef{
+            list-style-type:none;
+            padding: <%= paddingVertical %>px <%= paddingHorizontal %>px;
         }
         .name{
             font-family: futura medium;
@@ -90,12 +95,109 @@
         h2{
             font-family:futura medium;
         }
-        
+        #format-options,
+        #digits,
+        #lower-flexbox{
+            display:flex;
+        }
+        #format-options,#digits{
+            align-items:center;
+        }
+        #format-options{
+            column-gap:20px;
+        }
+        #lower-flexbox,
+        #format-options{
+            width:8.5in;
+            justify-content:space-around;
+        }
+        #toggle-div{
+            display:inline-flex;
+            justify-content:center;
+        }
+        #toggle-switch{
+            cursor:pointer;
+        }
+        #tens,#ones{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        #digits{
+            visibility:hidden;
+        }
+        #up-ten,
+        #down-ten,
+        #up-one,
+        #down-one{
+            cursor:pointer; 
+        }  
+        button{
+            padding:0.5em 0.75em;
+            cursor:pointer;
+            border-radius:15px;
+        }
+        button:hover{
+            background:grey;
+            color:white;
+        }             
     </style>
 
 </head>
 <body>
+<%console.log(paddingVertical, paddingHorizontal)%>
     <div id='wrapper'>
+
+        <div id='format-options'>
+            <div>
+                <select id='options' name='options'>
+                    <option disabled selected value>Formatting Options...</option>
+                    <option value='page-border'>Page Border</option>
+                    <option value='padding-vertical'>Space Above/Below Menu Items </option>
+                    <option value='padding-horizontal'>Space Left/Right of Menu Items </option>
+                </select>
+            </div>
+
+            <div id='digits'>
+                <div id='tens'>
+                    <span id='up-ten'>&#11205;</span>
+                    <span id='tens-number'>0</span>
+                    <span id='down-ten'>&#11206;</span>
+                </div>
+                <div id='ones'>
+                    <span id='up-one'>&#11205;</span>
+                    <span id='ones-number'>0</span>
+                    <span id='down-one'>&#11206;</span>
+                </div>
+                <div>
+                    px
+                </div>
+            </div>
+
+            <div>
+                <form method='POST'
+                      action='/format/dinner'>
+                    <input type='hidden' id='page-padding-input' name='pagePadding' value='<%= pagePadding %>'>
+                    <input type='hidden' id='padding-vertical-input' name='paddingVertical' value='<%= paddingVertical %>'>
+                    <input type='hidden' id='padding-horizontal-input' name='paddingHorizontal' value='<%= paddingHorizontal %>'>
+                    <button>
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        Save Changes
+                    </button>
+                </form>
+            </div>
+
+            <div id='print-preview'>
+                <form action='/print/dinner'>
+                    <button>
+                        <i class="fa-solid fa-print"></i> Print Preview
+                    </button>
+                </form>
+            </div>
+
+        </div><!--#format-options-->
+
+
     <div id='dinner-menu'>
     <div id='flexbox'>
         <div id='flexbox-top'>
@@ -136,6 +238,8 @@
                     </ul>
 
                     <div id='tasting-menu'>
+                    <ul>
+                    <li>
                         <span class='name'>chef's tasting menu</span>
                         <span style='font-style:italic'>
                             six courses <b>98</b> / person<br>
@@ -146,6 +250,8 @@
                         <span style='font-style:italic'>
                             optional wine pairing available <b>52</b> / person
                         </span>
+                    </li>
+                    </ul>
                     </div><!--#tasting-menu-->
                 </div><!--#top-right-->                
             </div><!--#top-menu-->
@@ -183,6 +289,236 @@
         
         </div><!--#flexbox-->    
         </div><!--#dinner-menu-->
+
+        <br>
+
+       
     </div><!--#wrapper-->
+
+
+    <script>
+        let pagePaddingInput = document.querySelector('#page-padding-input')
+        let paddingVerticalInput = document.querySelector('#padding-vertical-input')
+        let paddingHorizontalInput = document.querySelector('#padding-horizontal-input')
+
+        function showDigits(){
+            digits.style.visibility = 'visible'
+            if(options.value == 'page-border'){
+                if (pageBorder < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = pageBorder.toString().substring(0,1)
+                }
+                const tempString = pageBorder.toString()
+                onesNumber.textContent = pageBorder.toString().substring(tempString.length-1)
+            }else if(options.value == 'padding-vertical'){
+                if (paddingVertical < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                }
+                const tempString = paddingVertical.toString()
+                onesNumber.textContent = paddingVertical.toString().substring(tempString.length-1)
+            }else if(options.value == 'padding-horizontal'){
+                if(paddingHorizontal < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = paddingHorizontal.toString().substring(0,1)
+                }
+                const tempString = paddingHorizontal.toString()
+                onesNumber.textContent = paddingHorizontal.toString().substring(tempString.length-1)
+            }
+        }
+        const dinnerMenu = document.querySelector('#dinner-menu')
+        let pageBorder = <%= pagePadding %>
+        let paddingVertical = <%= paddingVertical %>
+        let paddingHorizontal = <%= paddingHorizontal %>
+        const digits = document.querySelector('#digits')
+        const options = document.querySelector('#options')
+        options.addEventListener('change', showDigits)
+        const tensNumber = document.querySelector('#tens-number')
+        const onesNumber = document.querySelector('#ones-number')
+        const upTen = document.querySelector('#up-ten')
+        const downTen = document.querySelector('#down-ten')
+        const upOne = document.querySelector('#up-one')
+        const downOne = document.querySelector('#down-one')
+        const li = document.querySelectorAll('li')
+
+        function up10(){
+            if(options.value == 'page-border'){
+                if(pageBorder < 90){
+                    pageBorder += 10
+                    tensNumber.textContent = pageBorder.toString().substring(0,1)                    
+                    dinnerMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
+                }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical <= 10){
+                    paddingVertical += 10
+                    paddingVerticalInput.value = paddingVertical
+                    tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'padding-horizontal'){
+                if(paddingHorizontal <= 40){
+                    paddingHorizontal += 10
+                    paddingHorizontalInput.value = paddingHorizontal
+                    tensNumber.textContent = paddingHorizontal.toString().substring(0,1)
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingLeft = `${paddingHorizontal}px`
+                        li[i].style.paddingRight = `${paddingHorizontal}px`
+                    }
+                }
+            }
+        }
+        function down10(){
+            if(options.value == 'page-border'){
+                if(pageBorder > 9)
+                    pageBorder -= 10
+                    dinnerMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
+                    if (pageBorder > 9){
+                        tensNumber.textContent = pageBorder.toString().substring(0,1)                    
+                    }else{
+                        tensNumber.textContent = '0'                    
+                    }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical > 9){
+                    paddingVertical -= 10
+                    paddingVerticalInput.value = paddingVertical
+                    if(paddingVertical < 10){
+                        tensNumber.textContent = '0'
+                    }else{
+                        tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'padding-horizontal'){
+                if(paddingHorizontal > 9){
+                    paddingHorizontal -= 10
+                    paddingHorizontalInput.value = paddingHorizontal
+                    if(paddingHorizontal < 10){
+                        tensNumber.textContent = '0'
+                    }else{
+                        tensNumber.textContent = paddingHorizontal.toString().substring(0,1)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingLeft = `${paddingHorizontal}px`
+                        li[i].style.paddingRight = `${paddingHorizontal}px`
+                    }                    
+                }                
+            }
+
+        }
+        function up1(){
+            if(options.value == 'page-border'){
+                if(pageBorder < 99){
+                    pageBorder += 1
+                    if (pageBorder > 9){
+                        tensNumber.textContent = pageBorder.toString().substring(0,1)
+                        onesNumber.textContent = pageBorder.toString().substring(1,2)                    
+                    }else{
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = pageBorder                    
+                    }
+                    dinnerMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
+                }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical < 20){
+                    paddingVertical++
+                    paddingVerticalInput.value = paddingVertical
+                    if(paddingVertical < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = paddingVertical
+                    }else{
+                        tensNumber.textContent = paddingVertical.toString().substring(0,1)
+                        onesNumber.textContent = paddingVertical.toString().substring(1,2)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'padding-horizontal'){
+                if(paddingHorizontal < 50){
+                    paddingHorizontal++
+                    paddingHorizontalInput.value = paddingHorizontal
+                    if (paddingHorizontal > 9){
+                        tensNumber.textContent = paddingHorizontal.toString().substring(0,1)
+                        onesNumber.textContent = paddingHorizontal.toString().substring(1,2)                    
+                    }else{
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = paddingHorizontal                    
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }
+        }
+        function down1(){
+            if(options.value == 'page-border'){
+                if(pageBorder > 0){
+                    pageBorder -= 1
+                    if (pageBorder > 9){
+                        tensNumber.textContent = pageBorder.toString().substring(0,1)                    
+                    }else{
+                        tensNumber.textContent = '0'                    
+                    }
+                    if (pageBorder > 9){
+                        onesNumber.textContent = pageBorder.toString().substring(1,2)                    
+                    }else{
+                        onesNumber.textContent = pageBorder                    
+                    }                    
+                    dinnerMenu.style.padding = `${pageBorder}px`
+                    pagePaddingInput.value = pageBorder
+                }
+            }else if(options.value == 'padding-vertical'){
+                if(paddingVertical > 0){
+                    paddingVertical--
+                    paddingVerticalInput.value = paddingVertical
+                    if(paddingVertical < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = paddingVertical
+                    }else{
+                        tensNumber.textContent = paddingVertical.toString().substring(0,1) 
+                        onesNumber.textContent = paddingVertical.toString().substring(1,2)                         
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${paddingVertical}px`
+                        li[i].style.paddingBottom = `${paddingVertical}px`
+                    }
+                }
+            }else if(options.value == 'padding-horizontal'){
+                if(paddingHorizontal > 0){
+                    paddingHorizontal--
+                    paddingHorizontalInput.value = paddingHorizontal
+                    if(paddingHorizontal < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = paddingHorizontal
+                    }else{
+                        tensNumber.textContent = paddingHorizontal.toString().substring(0,1) 
+                        onesNumber.textContent = paddingHorizontal.toString().substring(1,2)                         
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingLeft = `${paddingHorizontal}px`
+                        li[i].style.paddingRight = `${paddingHorizontal}px`
+                    }                    
+                }
+            }            
+        }
+        upTen.addEventListener('click', up10)
+        downTen.addEventListener('click', down10)
+        upOne.addEventListener('click', up1)
+        downOne.addEventListener('click', down1)
+    </script>    
 </body>
 </html>

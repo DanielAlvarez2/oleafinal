@@ -1,5 +1,6 @@
 const MenuItem = require('../models/MenuItem')
 const SpecialsFormat = require('../models/SpecialsFormat')
+const DinnerFormat = require('../models/DinnerFormat')
 
 module.exports = {
     getSpecials: async(req,res)=>{
@@ -24,7 +25,7 @@ module.exports = {
                 {archived:false}
             ]
         }).sort({sequence:'asc'})
-        let {pagePadding,itemMargin,showLegalText} = await SpecialsFormat.findOne({index:1})
+        let {pagePadding,itemMargin,showLegalText} = await DinnerFormat.findOne({index:1})
         if(pagePadding == undefined) pagePadding = 0
         if(itemMargin == undefined) itemMargin = 0
         if(showLegalText == undefined) showLegalText = true
@@ -40,7 +41,7 @@ module.exports = {
                                       showLegalText:showLegalText})
     },
     postSpecials: async(req,res)=>{
-        let specialsFormat = await SpecialsFormat.find()
+        const specialsFormat = await SpecialsFormat.find()
         if (specialsFormat.length == 0){
             await SpecialsFormat.create({
                 index:1,
@@ -56,6 +57,24 @@ module.exports = {
                 showLegalText: req.body.showLegalText
             })
         }
+        res.redirect(req.get('referer'))
+    },
+    postDinner: async(req,res)=>{
+        const dinnerFormat = await DinnerFormat.find()
+        if(dinnerFormat.length == 0){
+            await DinnerFormat.create({
+                index:1,
+                pagePadding: req.body.pagePadding,
+                paddingVertical: req.body.paddingVertical,
+                paddingHorizontal: req.body.paddingHorizontal
+            })
+        }else{
+            await DinnerFormat.findOneAndUpdate({index:1},{
+                pagePadding: req.body.pagePadding,
+                paddingVertical: req.body.paddingVertical,
+                paddingHorizontal: req.body.paddingHorizontal
+            })
+        } 
         res.redirect(req.get('referer'))
     },
     getDinner: async(req,res)=>{
@@ -86,10 +105,18 @@ module.exports = {
                 {archived:false}
             ]
         }).sort({sequence:'asc'})
+        let {pagePadding, paddingHorizontal, paddingVertical} = await DinnerFormat.findOne({index:1})
+        if(pagePadding == undefined) pagePadding = 0
+        if(paddingHorizontal == undefined) paddingHorizontal = 0
+        if(paddingVertical == undefined) paddingVertical = 0
+        console.log('getDinner: '+pagePadding,paddingHorizontal,paddingVertical)
         res.render('format/dinner',{req,req,
                                     charcuterie:charcuterie,
                                     appetizers:appetizers,
                                     entrees:entrees,
-                                    sides:sides})
+                                    sides:sides,
+                                    pagePadding:pagePadding,
+                                    paddingVertical:paddingVertical,
+                                    paddingHorizontal:paddingHorizontal})
     }
 }

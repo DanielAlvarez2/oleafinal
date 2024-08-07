@@ -19,6 +19,10 @@ add a PRESS update page
 
 add a page for NEWSLETTER
 
+create hyperlinks at each li with mongo id
+to redirect back to the same location on the page
+after move item up/down
+
 move to .env file
 
 fix logic for displaying sides on printed menu
