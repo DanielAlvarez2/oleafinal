@@ -342,6 +342,9 @@
         const upOne = document.querySelector('#up-one')
         const downOne = document.querySelector('#down-one')
         const li = document.querySelectorAll('li')
+        const h1 = document.querySelector('h1')
+        const h2 = document.querySelector('h2')
+        const chef = document.querySelector('#chef')
 
         function up10(){
             if(options.value == 'page-border'){
@@ -370,6 +373,12 @@
                         li[i].style.paddingLeft = `${paddingHorizontal}px`
                         li[i].style.paddingRight = `${paddingHorizontal}px`
                     }
+                    h1.style.paddingLeft = `${paddingHorizontal}px`
+                    h1.style.paddingRight = `${paddingHorizontal}px`
+                    h2.style.paddingLeft = `${paddingHorizontal}px`
+                    h2.style.paddingRight = `${paddingHorizontal}px`
+                    chef.style.paddingLeft = `${paddingHorizontal}px`
+                    chef.style.paddingRight = `${paddingHorizontal}px`
                 }
             }
         }
@@ -410,7 +419,13 @@
                     for(let i=0;i<li.length;i++){
                         li[i].style.paddingLeft = `${paddingHorizontal}px`
                         li[i].style.paddingRight = `${paddingHorizontal}px`
-                    }                    
+                    }         
+                    h1.style.paddingLeft = `${paddingHorizontal}px`
+                    h1.style.paddingRight = `${paddingHorizontal}px`
+                    h2.style.paddingLeft = `${paddingHorizontal}px`
+                    h2.style.paddingRight = `${paddingHorizontal}px`
+                    chef.style.paddingLeft = `${paddingHorizontal}px`
+                    chef.style.paddingRight = `${paddingHorizontal}px`                               
                 }                
             }
 
@@ -457,9 +472,15 @@
                         onesNumber.textContent = paddingHorizontal                    
                     }
                     for(let i=0;i<li.length;i++){
-                        li[i].style.paddingTop = `${paddingVertical}px`
-                        li[i].style.paddingBottom = `${paddingVertical}px`
+                        li[i].style.paddingTop = `${paddingHorizontal}px`
+                        li[i].style.paddingBottom = `${paddingHorizontal}px`
                     }
+                    h1.style.paddingLeft = `${paddingHorizontal}px`
+                    h1.style.paddingRight = `${paddingHorizontal}px`
+                    h2.style.paddingLeft = `${paddingHorizontal}px`
+                    h2.style.paddingRight = `${paddingHorizontal}px`
+                    chef.style.paddingLeft = `${paddingHorizontal}px`
+                    chef.style.paddingRight = `${paddingHorizontal}px`                    
                 }
             }
         }
@@ -510,7 +531,13 @@
                     for(let i=0;i<li.length;i++){
                         li[i].style.paddingLeft = `${paddingHorizontal}px`
                         li[i].style.paddingRight = `${paddingHorizontal}px`
-                    }                    
+                    }   
+                    h1.style.paddingLeft = `${paddingHorizontal}px`
+                    h1.style.paddingRight = `${paddingHorizontal}px`
+                    h2.style.paddingLeft = `${paddingHorizontal}px`
+                    h2.style.paddingRight = `${paddingHorizontal}px`
+                    chef.style.paddingLeft = `${paddingHorizontal}px`
+                    chef.style.paddingRight = `${paddingHorizontal}px`                                     
                 }
             }            
         }

@@ -316,14 +316,14 @@
 
         function up10(){
             if(options.value == 'page-border'){
-                if(pageBorder < 90){
+                if(pageBorder <= 89){
                     pageBorder += 10
                     tensNumber.textContent = pageBorder.toString().substring(0,1)                    
                     formatSpecialsMenu.style.padding = `${pageBorder}px`
                     pagePaddingInput.value = pageBorder
                 }
             }else if(options.value == 'item-margin'){
-                if(itemMargin < 90){
+                if(itemMargin <= 89){
                     itemMargin += 10
                     itemMarginInput.value = itemMargin
                     tensNumber.textContent = itemMargin.toString().substring(0,1)

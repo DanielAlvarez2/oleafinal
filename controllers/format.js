@@ -26,7 +26,7 @@ module.exports = {
                 {archived:false}
             ]
         }).sort({sequence:'asc'})
-        let {pagePadding,itemMargin,showLegalText} = await DinnerFormat.findOne({index:1})
+        let {pagePadding,itemMargin,showLegalText} = await SpecialsFormat.findOne({index:1})
         if(pagePadding == undefined) pagePadding = 0
         if(itemMargin == undefined) itemMargin = 0
         if(showLegalText == undefined) showLegalText = true
@@ -166,6 +166,55 @@ module.exports = {
         res.redirect(req.get('referer'))
     },
     getDessertBack: async(req,res)=>{
-        res.render('format/dessert-back.ejs',{req:req})
+        const dessertWines = await MenuItem.find({
+            $and:[
+                {section:'dessert wines'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const dessertCocktails = await MenuItem.find({
+            $and:[
+                {section:'dessert cocktails'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const japaneseWhisky = await MenuItem.find({
+            $and:[
+                {section:'japanese whisky'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                
+        const singleMaltScotch = await MenuItem.find({
+            $and:[
+                {section:'single malt scotch'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                        
+        const brandy = await MenuItem.find({
+            $and:[
+                {section:'brandy'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                
+        const grappa = await MenuItem.find({
+            $and:[
+                {section:'grappa'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})  
+        const pageTop = Math.floor(Math.random()*100)                                      
+        const pageLeftRight = Math.floor(Math.random()*100)                                      
+        const verticalMargin = Math.floor(Math.random()*20) 
+        console.log(pageTop,pageLeftRight,verticalMargin)                                     
+        res.render('format/dessert-back.ejs',{req:req,
+                                              pageTop:pageTop,
+                                              verticalMargin:verticalMargin,
+                                              pageLeftRight:pageLeftRight,
+                                              grappa:grappa,
+                                              brandy:brandy,
+                                              singleMaltScotch:singleMaltScotch,
+                                              japaneseWhisky:japaneseWhisky,
+                                              dessertCocktails:dessertCocktails,
+                                              dessertWines:dessertWines})
     }
 }

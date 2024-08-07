@@ -23,6 +23,8 @@ create hyperlinks at each li with mongo id
 to redirect back to the same location on the page
 after move item up/down
 
+after dinner drinks need update pages made
+
 move to .env file
 
 fix logic for displaying sides on printed menu

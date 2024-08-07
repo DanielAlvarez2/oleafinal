@@ -1,1 +1,474 @@
-dessert-back
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+        src="https://kit.fontawesome.com/21ef82ed30.js"
+        crossorigin="anonymous">
+    </script>        
+    <style>
+        @font-face{
+            font-family: "futura light";
+            src: url("../FuturaLight.otf") format("opentype");
+        }        
+        @font-face{
+            font-family: "futura medium";
+            src: url("../FuturaMedium.otf") format("opentype");
+        }       
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        #wrapper{
+            width:100%;
+            min-height:100vh;
+            min-height:100svh;
+            display:grid;
+            place-content:center;
+        }
+        .dessert-menu{
+            padding-top:<%= pageTop %>px;
+            padding-left:<%= pageLeftRight %>px;
+            padding-right:<%= pageLeftRight %>px;
+            width:5.5in;
+            height:8.5in;
+            border:1px solid black;
+        }
+        h1{
+            font-family:futura light;
+            font-weight:100;
+            font-size:3rem;
+        }
+        h2{
+            font-family:futura medium;
+        }
+        li{
+            margin: <%= verticalMargin %> 0;
+            list-style-type: none;
+        }
+        .item{
+            display:flex;
+            justify-content:space-between;
+            column-gap:5ch;
+        }
+        .item-left{
+            width:85%;
+        }
+        .item-right{
+            width:4ch;
+            font-weight:600;
+        }
+        .name{
+            font-weight:600;
+            font-size:1.2rem;
+        }
+        #format-options,
+        #digits,
+        #lower-flexbox{
+            display:flex;
+        }
+        #format-options,#digits{
+            align-items:center;
+        }
+        #format-options{
+            column-gap:20px;
+        }
+        #format-options{
+            width:5.5in;
+            justify-content:space-around;
+        }
+        #tens,#ones{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        #digits{
+            visibility:hidden;
+        }
+        #up-ten,
+        #down-ten,
+        #up-one,
+        #down-one{
+            cursor:pointer; 
+        }  
+        button{
+            padding:0.5em 0.75em;
+            cursor:pointer;
+            border-radius:15px;
+        }
+        button:hover{
+            background:grey;
+            color:white;
+        }                             
+    </style>
+
+</head>
+<body>
+    <div id='wrapper'>
+
+        <div id='format-options'>
+            <div>
+                <select id='options' name='options'>
+                    <option disabled selected value>Formatting Options...</option>
+                    <option value='page-top'>Page Border: Top</option>
+                    <option value='page-left-right'>Page Border: Left & Right </option>
+                    <option value='vertical-margin'>Space Between Sections </option>
+                </select>
+            </div>
+
+            <div id='digits'>
+                <div id='tens'>
+                    <span id='up-ten'>&#11205;</span>
+                    <span id='tens-number'>0</span>
+                    <span id='down-ten'>&#11206;</span>
+                </div>
+                <div id='ones'>
+                    <span id='up-one'>&#11205;</span>
+                    <span id='ones-number'>0</span>
+                    <span id='down-one'>&#11206;</span>
+                </div>
+                <div>
+                    px
+                </div>
+            </div>
+
+            <div>
+                <form method='POST'
+                      action='/format/dessert'>
+                    <input type='hidden' id='page-top-input' name='pageTop' value='<%= pageTop %>'>
+                    <input type='hidden' id='page-left-right-input' name='pageLeftRight' value='<%= pageLeftRight %>'>
+                    <input type='hidden' id='vertical-margin-input' name='verticalMargin' value='<%= verticalMargin %>'>
+                    <button>
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        Save Changes
+                    </button>
+                </form>
+            </div>
+
+            <div id='print-preview'>
+                <form action='/print/dessert'>
+                    <button>
+                        <i class="fa-solid fa-print"></i> Print Preview
+                    </button>
+                </form>
+            </div>
+
+        </div><!--#format-options-->
+        <br>
+
+
+        <div class='dessert-menu'>
+            <h1>olea</h1>
+            <hr>
+            <ul>
+                <li>
+                    <h2>dessert wines</h2>
+                    <% for(let i=0;i<dessertWines.length;i++){ %>
+                        <div class='item'>
+                            <div class='item-left'>
+                                <%= dessertWines[i].name %>
+                            </div><!--.item-left-->
+                            <div class='item-right'>
+                                <%= dessertWines[i].price %>
+                            </div><!--.item-right-->
+                        </div><!--.item-->
+                    <% } %>
+                </li>
+                <li>
+                    <h2>dessert cocktails</h2>
+                    <% for(let i=0;i<dessertCocktails.length;i++){ %>
+                        <div class='item'>
+                            <div class='item-left'>
+                                <span class='name'>
+                                    <%= dessertCocktails[i].name %>
+                                </span>
+                                <%= dessertCocktails[i].description %>
+                            </div><!--.item-left-->
+                            <div class='item-right'>
+                                <%= dessertCocktails[i].price %>
+                            </div><!--.item-right-->
+                        </div><!--.item-->
+                    <% } %>
+                </li>
+                <li>
+                    <h2>japanese whisky</h2>
+                    <% for(let i=0;i<japaneseWhisky.length;i++){ %>
+                        <div class='item'>
+                            <div class='item-left'>
+                                <%= japaneseWhisky[i].name %>
+                            </div><!--.item-left-->
+                            <div class='item-right'>
+                                <%= japaneseWhisky[i].price %>
+                            </div><!--.item-right-->
+                        </div><!--.item-->
+                    <% } %>
+                </li>
+                <li>
+                    <h2>single malt scotch</h2>
+                    <% for(let i=0;i<singleMaltScotch.length;i++){ %>
+                        <div class='item'>
+                            <div class='item-left'>
+                                <%= singleMaltScotch[i].name %>
+                            </div><!--.item-left-->
+                            <div class='item-right'>
+                                <%= singleMaltScotch[i].price %>
+                            </div><!--.item-right-->
+                        </div><!--.item-->
+                    <% } %>
+                </li>
+                <li>
+                    <h2>brandy de Jerez</h2>
+                    <% for(let i=0;i<brandy.length;i++){ %>
+                        <div class='item'>
+                            <div class='item-left'>
+                                <%= brandy[i].name %>
+                            </div><!--.item-left-->
+                            <div class='item-right'>
+                                <%= brandy[i].price %>
+                            </div><!--.item-right-->
+                        </div><!--.item-->
+                    <% } %>
+                </li>
+                <li>
+                    <h2>grappa</h2>
+                    <% for(let i=0;i<grappa.length;i++){ %>
+                        <div class='item'>
+                            <div class='item-left'>
+                                <%= grappa[i].name %>
+                            </div><!--.item-left-->
+                            <div class='item-right'>
+                                <%= grappa[i].price %>
+                            </div><!--.item-right-->
+                        </div><!--.item-->
+                    <% } %>
+                </li>
+            </ul>
+        </div><!--.dessert-menu-->
+    </div><!--#wrapper-->
+
+    <script>
+        let pageTopInput = document.querySelector('#page-top-input')
+        let pageLeftRightInput = document.querySelector('#page-left-right-input')
+        let verticalMarginInput = document.querySelector('#vertical-margin-input')
+
+        function showDigits(){
+            digits.style.visibility = 'visible'
+            if(options.value == 'page-top'){
+                if (pageTop < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = pageTop.toString().substring(0,1)
+                }
+                const tempString = pageTop.toString()
+                onesNumber.textContent = pageTop.toString().substring(tempString.length-1)
+            }else if(options.value == 'vertical-margin'){
+                if (verticalMargin < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = verticalMargin.toString().substring(0,1)
+                }
+                const tempString = verticalMargin.toString()
+                onesNumber.textContent = verticalMargin.toString().substring(tempString.length-1)
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight < 10){
+                    tensNumber.textContent = '0'
+                }else{
+                    tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                }
+                const tempString = pageLeftRight.toString()
+                onesNumber.textContent = pageLeftRight.toString().substring(tempString.length-1)
+            }
+        }
+        const dessertMenu = document.querySelector('.dessert-menu')
+        let pageTop = <%= pageTop %>
+        let verticalMargin = <%= verticalMargin %>
+        let pageLeftRight = <%= pageLeftRight %>
+        const digits = document.querySelector('#digits')
+        const options = document.querySelector('#options')
+        options.addEventListener('change', showDigits)
+        const tensNumber = document.querySelector('#tens-number')
+        const onesNumber = document.querySelector('#ones-number')
+        const upTen = document.querySelector('#up-ten')
+        const downTen = document.querySelector('#down-ten')
+        const upOne = document.querySelector('#up-one')
+        const downOne = document.querySelector('#down-one')
+        const li = document.querySelectorAll('li')
+
+        function up10(){
+            if(options.value == 'page-top'){
+                if(pageTop <= 80){
+                    pageTop += 10
+                    tensNumber.textContent = pageTop.toString().substring(0,1)                    
+                    dessertMenu.style.paddingTop = `${pageTop}px`
+                    dessertMenu.style.paddingBottom = `${pageTop}px`
+                    pageTopInput.value = pageTop
+                }
+            }else if(options.value == 'vertical-margin'){
+                if(verticalMargin == 0){
+                    verticalMargin += 10
+                    verticalMarginInput.value = verticalMargin
+                    tensNumber.textContent = verticalMargin.toString().substring(0,1)
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${verticalMargin}px`
+                        li[i].style.paddingBottom = `${verticalMargin}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight <= 60){
+                    pageLeftRight += 10
+                    pageLeftRightInput.value = pageLeftRight
+                    tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                    dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                    dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }
+            }
+        }
+        function down10(){
+            if(options.value == 'page-top'){
+                if(pageTop > 9)
+                    pageTop -= 10
+                    dessertMenu.style.paddingTop = `${pageTop}px`
+                    dessertMenu.style.paddingBottom = `${pageTop}px`
+                    pageTopInput.value = pageTop
+                    if (pageTop > 9){
+                        tensNumber.textContent = pageTop.toString().substring(0,1)                    
+                    }else{
+                        tensNumber.textContent = '0'                    
+                    }
+            }else if(options.value == 'vertical-margin'){
+                if(verticalMargin > 9){
+                    verticalMargin -= 10
+                    verticalMarginInput.value = verticalMargin
+                    if(verticalMargin < 10){
+                        tensNumber.textContent = '0'
+                    }else{
+                        tensNumber.textContent = verticalMargin.toString().substring(0,1)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${verticalMargin}px`
+                        li[i].style.paddingBottom = `${verticalMargin}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight > 9){
+                    pageLeftRight -= 10
+                    pageLeftRightInput.value = pageLeftRight
+                    if(pageLeftRight < 10){
+                        tensNumber.textContent = '0'
+                    }else{
+                        tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                    }
+                        dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                        dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }                
+            }
+
+        }
+        function up1(){
+            if(options.value == 'page-top'){
+                if(pageTop < 99){
+                    pageTop += 1
+                    if (pageTop > 9){
+                        tensNumber.textContent = pageTop.toString().substring(0,1)
+                        onesNumber.textContent = pageTop.toString().substring(1,2)                    
+                    }else{
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = pageTop                    
+                    }
+                    dessertMenu.style.paddingTop = `${pageTop}px`
+                    dessertMenu.style.paddingBottom = `${pageTop}px`
+                    pageTopInput.value = pageTop
+                }
+            }else if(options.value == 'vertical-margin'){
+                if(verticalMargin < 10){
+                    verticalMargin++
+                    verticalMarginInput.value = verticalMargin
+                    if(verticalMargin < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = verticalMargin
+                    }else{
+                        tensNumber.textContent = verticalMargin.toString().substring(0,1)
+                        onesNumber.textContent = verticalMargin.toString().substring(1,2)
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${verticalMargin}px`
+                        li[i].style.paddingBottom = `${verticalMargin}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight < 70){
+                    pageLeftRight++
+                    pageLeftRightInput.value = pageLeftRight
+                    if (pageLeftRight > 9){
+                        tensNumber.textContent = pageLeftRight.toString().substring(0,1)
+                        onesNumber.textContent = pageLeftRight.toString().substring(1,2)                    
+                    }else{
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = pageLeftRight                    
+                    }
+                        dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                        dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }
+            }
+        }
+        function down1(){
+            if(options.value == 'page-top'){
+                if(pageTop > 0){
+                    pageTop -= 1
+                    if (pageTop > 9){
+                        tensNumber.textContent = pageTop.toString().substring(0,1)                    
+                    }else{
+                        tensNumber.textContent = '0'                    
+                    }
+                    if (pageTop > 9){
+                        onesNumber.textContent = pageTop.toString().substring(1,2)                    
+                    }else{
+                        onesNumber.textContent = pageTop                    
+                    }                    
+                    dessertMenu.style.paddingTop = `${pageTop}px`
+                    dessertMenu.style.paddingBottom = `${pageTop}px`
+                    pageTopInput.value = pageTop
+                }
+            }else if(options.value == 'vertical-margin'){
+                if(verticalMargin > 0){
+                    verticalMargin--
+                    verticalMarginInput.value = verticalMargin
+                    if(verticalMargin < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = verticalMargin
+                    }else{
+                        tensNumber.textContent = verticalMargin.toString().substring(0,1) 
+                        onesNumber.textContent = verticalMargin.toString().substring(1,2)                         
+                    }
+                    for(let i=0;i<li.length;i++){
+                        li[i].style.paddingTop = `${verticalMargin}px`
+                        li[i].style.paddingBottom = `${verticalMargin}px`
+                    }
+                }
+            }else if(options.value == 'page-left-right'){
+                if(pageLeftRight > 0){
+                    pageLeftRight--
+                    pageLeftRightInput.value = pageLeftRight
+                    if(pageLeftRight < 10){
+                        tensNumber.textContent = '0'
+                        onesNumber.textContent = pageLeftRight
+                    }else{
+                        tensNumber.textContent = pageLeftRight.toString().substring(0,1) 
+                        onesNumber.textContent = pageLeftRight.toString().substring(1,2)                         
+                    }
+                        dessertMenu.style.paddingLeft = `${pageLeftRight}px`
+                        dessertMenu.style.paddingRight = `${pageLeftRight}px`
+                }
+            }            
+        }
+        upTen.addEventListener('click', up10)
+        downTen.addEventListener('click', down10)
+        upOne.addEventListener('click', up1)
+        downOne.addEventListener('click', down1)
+    </script>
+
+</body>
+</html>
