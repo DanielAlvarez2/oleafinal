@@ -233,5 +233,131 @@ module.exports = {
             })
         }
         res.redirect(req.get('referer'))        
+    },
+    getWineList: async(req,res)=>{
+        const btgCava = await MenuItem.find({
+            $and:[
+                {section:'btg cava'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const btgWhites = await MenuItem.find({
+            $and:[
+                {section:'btg whites'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const btgRose = await MenuItem.find({
+            $and:[
+                {section:'btg rose'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                
+        const btgReds = await MenuItem.find({
+            $and:[
+                {section:'btg reds'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                        
+        const cavaChampagne = await MenuItem.find({
+            $and:[
+                {section:'cava champagne'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                
+        const rose = await MenuItem.find({
+            $and:[
+                {section:'rose'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                        
+        const whiteSpain = await MenuItem.find({
+            $and:[
+                {section:'white spain'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                                
+        const whiteFrance = await MenuItem.find({
+            $and:[
+                {section:'white france'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const whiteItaly = await MenuItem.find({
+            $and:[
+                {section:'white italy'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const whiteGermany = await MenuItem.find({
+            $and:[
+                {section:'white germany'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const redSpain = await MenuItem.find({
+            $and:[
+                {section:'red spain'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                                
+        const redFrance = await MenuItem.find({
+            $and:[
+                {section:'red france'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const redItaly = await MenuItem.find({
+            $and:[
+                {section:'red italy'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                
+        const sangria = await MenuItem.find({
+            $and:[
+                {section:'sangria'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const nonAlcoholic = await MenuItem.find({
+            $and:[
+                {section:'non-alcoholic'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                
+        const beerCans = await MenuItem.find({
+            $and:[
+                {section:'beer can'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                        
+        const beerDrafts = await MenuItem.find({
+            $and:[
+                {section:'beer draft'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                
+        const craftDrinks = await MenuItem.find({
+            $and:[
+                {section:'craft drinks'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const btgSherries = await MenuItem.find({
+            $and:[
+                {section:'btg sherries'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                
+        res.render('format/wine-list.ejs',{req:req,
+            btgCava:btgCava,btgWhites:btgWhites,btgRose:btgRose,
+            btgReds:btgReds,cavaChampagne:cavaChampagne,rose:rose,
+            whiteSpain:whiteSpain,whiteFrance:whiteFrance,
+            whiteItaly:whiteItaly,whiteGermany:whiteGermany,
+            redSpain:redSpain,redFrance:redFrance,
+            redItaly:redItaly,sangria:sangria,
+            nonAlcoholic:nonAlcoholic,beerCans:beerCans,
+            beerDrafts:beerDrafts,craftDrinks:craftDrinks,
+            btgSherries:btgSherries})
     }
 }

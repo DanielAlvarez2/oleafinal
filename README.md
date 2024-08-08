@@ -69,3 +69,9 @@ charge future clients, fair market price
 
 feature: create a bar-only menu
 
+format/dinner glitches on save
+front-end not updating in sync with values sent to server????
+
+feature: use arrow keys on keyboard to control formatting 
+changes
+
