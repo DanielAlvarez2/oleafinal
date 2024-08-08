@@ -1,7 +1,9 @@
 const SpecialsFormat = require('../models/SpecialsFormat')
 const DinnerFormat = require('../models/DinnerFormat')
 const DessertFormat = require('../models/DessertFormat')
+const DessertBackFormat = require('../models/DessertBackFormat')
 const MenuItem = require('../models/MenuItem')
+const { getDessertBack } = require('./format')
 
 module.exports = {
     getSpecials: async(req,res)=>{
@@ -92,5 +94,57 @@ module.exports = {
                                     pageTopBottom:pageTopBottom,
                                     pageLeftRight:pageLeftRight,
                                     paddingVertical:paddingVertical})
+    },
+    
+    getDessertBack: async(req,res)=>{
+        const dessertWines = await MenuItem.find({
+            $and:[
+                {section:'dessert wines'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        const dessertCocktails = await MenuItem.find({
+            $and:[
+                {section:'dessert cocktails'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})        
+        const japaneseWhisky = await MenuItem.find({
+            $and:[
+                {section:'japanese whisky'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                
+        const singleMaltScotch = await MenuItem.find({
+            $and:[
+                {section:'single malt scotch'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                        
+        const brandy = await MenuItem.find({
+            $and:[
+                {section:'brandy'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})                                
+        const grappa = await MenuItem.find({
+            $and:[
+                {section:'grappa'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})  
+        const {pageTop,verticalMargin,pageLeftRight} = await DessertBackFormat.findOne({index:1})
+        console.log(pageLeftRight,pageTop,verticalMargin)
+        res.render('print/dessert-back.ejs',{req:req,
+                                              pageTop:pageTop,
+                                              verticalMargin:verticalMargin,
+                                              pageLeftRight:pageLeftRight,
+                                              grappa:grappa,
+                                              brandy:brandy,
+                                              singleMaltScotch:singleMaltScotch,
+                                              japaneseWhisky:japaneseWhisky,
+                                              dessertCocktails:dessertCocktails,
+                                              dessertWines:dessertWines})        
     }
+    
 }

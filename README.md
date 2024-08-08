@@ -51,3 +51,21 @@ right above </footer>
                 <a href='/login'>login</a>
             <% } %>
         </div>
+
+add google analytics
+
+add "Lost Password" instructions to login page:
+"first have a manager DELETE old account, THEN create new 
+account, since 2 accounts can't have the same email
+to log in with"
+
+make sure oleademo.com/print does not require a login
+to make it easier to print when in a hurry
+
+feature: allow managers to add new pics to homepage slideshow
+
+ask olea owners to give me an estimate on how much to 
+charge future clients, fair market price
+
+feature: create a bar-only menu
+
