@@ -75,3 +75,5 @@ front-end not updating in sync with values sent to server????
 feature: use arrow keys on keyboard to control formatting 
 changes
 
+end of week, no napkins left to fold
+should be studying menu

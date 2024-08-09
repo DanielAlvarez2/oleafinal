@@ -39,11 +39,11 @@
                 <% for (let i=0;i<appetizers.length;i++){ %>
                     <li>
                         <% if(i!=0) { %>
-                            <a href='/edit/moveUp/<%= appetizers[i].id %>'>
+                            <a href='/update/moveUp/<%= appetizers[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveUp/<%= appetizers[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveUp/<%= appetizers[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>
                         <% } %>                        
@@ -79,11 +79,11 @@
                             </button>
                         </form>
                         <% if(i!=appetizers.length-1){ %>
-                            <a href='/edit/moveDown/<%= appetizers[i].id %>'>
+                            <a href='/update/moveDown/<%= appetizers[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveDown/<%= appetizers[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveDown/<%= appetizers[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>
                         <% } %>
@@ -102,11 +102,11 @@
                 <% for (let i=0;i<entrees.length;i++){ %>
                     <li>
                         <% if(i!=0) { %>
-                            <a href='/edit/moveUp/<%= entrees[i].id %>'>
+                            <a href='/update/moveUp/<%= entrees[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveUp/<%= entrees[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveUp/<%= entrees[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>
                         <% } %>
@@ -143,11 +143,11 @@
                         </form>
                         
                         <% if(i!=entrees.length-1){ %>
-                            <a href='/edit/moveDown/<%= entrees[i].id %>'>
+                            <a href='/update/moveDown/<%= entrees[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveDown/<%= entrees[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveDown/<%= entrees[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>
                         <% } %>
@@ -165,11 +165,11 @@
                 <% for (let i=0;i<desserts.length;i++){ %>
                     <li>
                         <% if(i!=0) { %>
-                            <a href='/edit/moveUp/<%= desserts[i].id %>'>
+                            <a href='/update/moveUp/<%= desserts[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveUp/<%= desserts[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveUp/<%= desserts[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>
                         <% } %>                    
@@ -205,11 +205,11 @@
                             </button>
                         </form>
                         <% if(i!=desserts.length-1){ %>
-                            <a href='/edit/moveDown/<%= desserts[i].id %>'>
+                            <a href='/update/moveDown/<%= desserts[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveDown/<%= desserts[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveDown/<%= desserts[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>
                         <% } %>

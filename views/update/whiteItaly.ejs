@@ -43,11 +43,11 @@
                 <% for (let i=0;i<whiteItaly.length;i++){ %>
                     <li>
                         <% if(i!=0) { %>
-                            <a href='/edit/moveUp/<%= whiteItaly[i].id %>'>
+                            <a href='/update/moveUp/<%= whiteItaly[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveUp/<%= whiteItaly[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveUp/<%= whiteItaly[i].id %>'>
                                 <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
                             </a>                            
                         <% } %>
@@ -87,11 +87,11 @@
                         </form>
                         
                         <% if(i!=whiteItaly.length-1){ %>
-                            <a href='/edit/moveDown/<%= whiteItaly[i].id %>'>
+                            <a href='/update/moveDown/<%= whiteItaly[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>
                         <% }else{ %>
-                            <a style='visibility:hidden;' href='/edit/moveDown/<%= whiteItaly[i].id %>'>
+                            <a style='visibility:hidden;' href='/update/moveDown/<%= whiteItaly[i].id %>'>
                                 <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
                             </a>                            
                         <% } %>
