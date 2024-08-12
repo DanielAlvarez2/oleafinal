@@ -77,3 +77,21 @@ changes
 
 end of week, no napkins left to fold
 should be studying menu
+
+/update/item
+when editing btg rose, allergies should not display???
+
+chef:"allergies"
+servers:write in notepads???
+
+ask for testimonials for codbasesoftware.com
+
+need a "loading" spinner for uploading/editing menu items
+
+liquors: constantly changing without updating servers
+
+look for reviews on fb/ig/yelp/google/opentable
+
+"compliments to the chef" page
+ask your server for your table#
+

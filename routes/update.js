@@ -27,6 +27,9 @@ router.get('/whiteItaly', updateController.getWhiteItaly)
 router.get('/whiteSpain', updateController.getWhiteSpain)
 router.get('/menuItem', updateController.getUpdateMenuItem)
 
+router.get('/moveUp/:id', updateController.moveUp)
+router.get('/moveDown/:id', updateController.moveDown)
+
 
 router.post('/createNopic', updateController.createNOpic)
 router.post('/createWpic', upload.single('file'),updateController.createWpic)
