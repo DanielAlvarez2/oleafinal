@@ -28,6 +28,7 @@
         body{
             font-family:futura light;
         }
+
         #page1{
             width:13.5in;
             height:8in;
@@ -48,16 +49,24 @@
             height:8in;
             column-count:2;
             column-fill:auto;
-            column-gap:100px;            
-        }
-
-        #btg,.reds-spain{
-            column-gap:50px;
+            column-gap:100px;    
         }
         #btg,
         .reds-spain{
-            padding:0 25px;
+            z-index:-1;        
         }
+
+
+
+        #btg,.reds-spain{
+            column-gap:<%= padding*2 %>px;
+        }
+        #btg,
+        .reds-spain{
+            padding:0 <%= padding %>px;
+        }
+
+
 
 
         li{
@@ -74,7 +83,7 @@
             padding:0.5rem 0;
         }
         h2{
-            font-size:2rem;
+            font-size:1.5rem;
         }
         h3{
             font-size:1rem;
@@ -89,200 +98,242 @@
             margin-bottom:20px;
         }
         .paper{
-            max-width:14in;
+            width:14in;
             height:8.5in;
             border: 0.25in solid white;
+            z-index:1000;
         }
-        
+        #buttons{
+            position:fixed;
+            top:10px;
+            right:10px;
+        }
+        button{
+            border-radius:15px;
+            padding:1em 1.5em;
+            font-size:1.5rem;
+        }
+        button:hover{
+            cursor:pointer;
+            background:grey;
+            color:white;
+        }
+        @media print{
+            .no-print{
+                display:none !important;
+                height:0;
+                width:0;
+            }
+        }
     </style>
 
 </head>
 <body>
+
+    <div id='buttons' class='no-print'>
+        <button id='print-button'>
+            <i class="fa-solid fa-print"></i> 
+            Print Front
+        </button>
+        <br><br>
+        <a href='/print/wineListBack'>
+            <button>
+                <i class="fa-solid fa-rotate"></i>
+                Flip
+            </button>
+        </a>
+    </div><!--#buttons-->
+
+
     <div id='wrapper'>
-        <div id='flexbox'>
-            <div id='page1-wrapper'>
-                <div class='paper'>
-                    <div id='page1'>
-                        <div id='btg'>
-                            <h2 style='padding-top:0;padding-bottom:0;'>wine by the glass</h2>
-                            <h3>Cava</h3>
-                            <ul>
-                                <% for(let i=0;i<btgCava.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= btgCava[i].grapes %></span>
-                                        <span class='name'><%= btgCava[i].name %></span>
-                                        <span class='vintage'><%= btgCava[i].vintage %></span>
-                                        <span class='description'><%= btgCava[i].description %></span>
-                                        / 
-                                        <span class='price'><%= btgCava[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
+        <div id='outer-flexbox'>
+            <div id='flexbox'>
+                <div id='page1-wrapper'>
+                    <div class='paper'>
+                        <div id='page1'>
+                            <div id='btg'>
+                                <h2 style='padding-top:0;padding-bottom:0;'>wine by the glass</h2>
+                                <h3>Cava</h3>
+                                <ul>
+                                    <% for(let i=0;i<btgCava.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= btgCava[i].grapes %>,</span>
+                                            <span class='name'><%= btgCava[i].name %>,</span>
+                                            <span class='vintage'><%= btgCava[i].vintage %>,</span>
+                                            <span class='description'><%= btgCava[i].description %></span>
+                                            / 
+                                            <span class='price'><%= btgCava[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
 
-                            <h3>White</h3>
-                            <ul>
-                                <% for(let i=0;i<btgWhites.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= btgWhites[i].grapes %></span>
-                                        <span class='name'><%= btgWhites[i].name %></span>
-                                        <span class='vintage'><%= btgWhites[i].vintage %></span>
-                                        <span class='description'><%= btgWhites[i].description %></span>
-                                        / 
-                                        <span class='price'><%= btgWhites[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
+                                <h3>White</h3>
+                                <ul>
+                                    <% for(let i=0;i<btgWhites.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= btgWhites[i].grapes %>,</span>
+                                            <span class='name'><%= btgWhites[i].name %>,</span>
+                                            <span class='vintage'><%= btgWhites[i].vintage %>,</span>
+                                            <span class='description'><%= btgWhites[i].description %></span>
+                                            / 
+                                            <span class='price'><%= btgWhites[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
 
-                            <h3>Rosé</h3>
-                            <ul>
-                                <% for(let i=0;i<btgRose.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= btgRose[i].grapes %></span>
-                                        <span class='name'><%= btgRose[i].name %></span>
-                                        <span class='vintage'><%= btgRose[i].vintage %></span>
-                                        <span class='description'><%= btgRose[i].description %></span>
-                                        / 
-                                        <span class='price'><%= btgRose[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
+                                <h3>Rosé</h3>
+                                <ul>
+                                    <% for(let i=0;i<btgRose.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= btgRose[i].grapes %>,</span>
+                                            <span class='name'><%= btgRose[i].name %>,</span>
+                                            <span class='vintage'><%= btgRose[i].vintage %>,</span>
+                                            <span class='description'><%= btgRose[i].description %></span>
+                                            / 
+                                            <span class='price'><%= btgRose[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
 
-                            <h3>Red</h3>
-                            <ul>
-                                <% for(let i=0;i<btgReds.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= btgReds[i].grapes %></span>
-                                        <span class='name'><%= btgReds[i].name %></span>
-                                        <span class='vintage'><%= btgReds[i].vintage %></span>
-                                        <span class='description'><%= btgReds[i].description %></span>
-                                        / 
-                                        <span class='price'><%= btgReds[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
-
-
-                            <h2>cava & champagne</h2>
-                            <ul>
-                                <% for(let i=0;i<cavaChampagne.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= cavaChampagne[i].grapes %></span>
-                                        <span class='name'><%= cavaChampagne[i].name %></span>
-                                        <span class='vintage'><%= cavaChampagne[i].vintage %></span>
-                                        <span class='description'><%= cavaChampagne[i].description %></span>
-                                        / 
-                                        <span class='price'><%= cavaChampagne[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
-
-                            <h2>rosé</h2>
-                            <ul>
-                                <% for(let i=0;i<rose.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= rose[i].grapes %></span>
-                                        <span class='name'><%= rose[i].name %></span>
-                                        <span class='vintage'><%= rose[i].vintage %></span>
-                                        <span class='description'><%= rose[i].description %></span>
-                                        / 
-                                        <span class='price'><%= rose[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
-
-                            <h2 style='padding-bottom:0;'>white</h2>
-                            <h3>Spain</h3>
-                            <ul>
-                                <% for(let i=0;i<whiteSpain.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= whiteSpain[i].grapes %></span>
-                                        <span class='name'><%= whiteSpain[i].name %></span>
-                                        <span class='vintage'><%= whiteSpain[i].vintage %></span>
-                                        <span class='description'><%= whiteSpain[i].description %></span>
-                                        / 
-                                        <span class='price'><%= whiteSpain[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
-
-                            <h3>France</h3>
-                            <ul>
-                                <% for(let i=0;i<whiteFrance.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= whiteFrance[i].grapes %></span>
-                                        <span class='name'><%= whiteFrance[i].name %></span>
-                                        <span class='vintage'><%= whiteFrance[i].vintage %></span>
-                                        <span class='description'><%= whiteFrance[i].description %></span>
-                                        / 
-                                        <span class='price'><%= whiteFrance[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
-
-                            <h3>Italy</h3>
-                            <ul>
-                                <% for(let i=0;i<whiteItaly.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= whiteItaly[i].grapes %></span>
-                                        <span class='name'><%= whiteItaly[i].name %></span>
-                                        <span class='vintage'><%= whiteItaly[i].vintage %></span>
-                                        <span class='description'><%= whiteItaly[i].description %></span>
-                                        / 
-                                        <span class='price'><%= whiteItaly[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
-
-                            <h3>Germany</h3>
-                            <ul>
-                                <% for(let i=0;i<whiteGermany.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= whiteGermany[i].grapes %></span>
-                                        <span class='name'><%= whiteGermany[i].name %></span>
-                                        <span class='vintage'><%= whiteGermany[i].vintage %></span>
-                                        <span class='description'><%= whiteGermany[i].description %></span>
-                                        / 
-                                        <span class='price'><%= whiteGermany[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
+                                <h3>Red</h3>
+                                <ul>
+                                    <% for(let i=0;i<btgReds.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= btgReds[i].grapes %>,</span>
+                                            <span class='name'><%= btgReds[i].name %>,</span>
+                                            <span class='vintage'><%= btgReds[i].vintage %>,</span>
+                                            <span class='description'><%= btgReds[i].description %></span>
+                                            / 
+                                            <span class='price'><%= btgReds[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
 
 
-                        </div><!--#btg-->
+                                <h2>cava & champagne</h2>
+                                <ul>
+                                    <% for(let i=0;i<cavaChampagne.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= cavaChampagne[i].grapes %>,</span>
+                                            <span class='name'><%= cavaChampagne[i].name %>,</span>
+                                            <span class='vintage'><%= cavaChampagne[i].vintage %>,</span>
+                                            <span class='description'><%= cavaChampagne[i].description %></span>
+                                            / 
+                                            <span class='price'><%= cavaChampagne[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
 
-                        <div class='reds-spain'>
-                            <h2 style='padding-top:0;padding-bottom:0;'>red</h2>
-                            <h3>Spain</h3>
-                            <ul>
-                                <% for(let i=0;i<redSpain.length;i++){ %>
-                                    <li>
-                                        <span class='grapes'><%= redSpain[i].grapes %></span>
-                                        <span class='name'><%= redSpain[i].name %></span>
-                                        <span class='vintage'><%= redSpain[i].vintage %></span>
-                                        <span class='description'><%= redSpain[i].description %></span>
-                                        / 
-                                        <span class='price'><%= redSpain[i].price %></span>
-                                    </li>
-                                <% } %>
-                            </ul>
+                                <h2>rosé</h2>
+                                <ul>
+                                    <% for(let i=0;i<rose.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= rose[i].grapes %>,</span>
+                                            <span class='name'><%= rose[i].name %>,</span>
+                                            <span class='vintage'><%= rose[i].vintage %>,</span>
+                                            <span class='description'><%= rose[i].description %></span>
+                                            / 
+                                            <span class='price'><%= rose[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
+
+                                <h2 style='padding-bottom:0;'>white</h2>
+                                <h3>Spain</h3>
+                                <ul>
+                                    <% for(let i=0;i<whiteSpain.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= whiteSpain[i].grapes %>,</span>
+                                            <span class='name'><%= whiteSpain[i].name %>,</span>
+                                            <span class='vintage'><%= whiteSpain[i].vintage %>,</span>
+                                            <span class='description'><%= whiteSpain[i].description %></span>
+                                            / 
+                                            <span class='price'><%= whiteSpain[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
+
+                                <h3>France</h3>
+                                <ul>
+                                    <% for(let i=0;i<whiteFrance.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= whiteFrance[i].grapes %>,</span>
+                                            <span class='name'><%= whiteFrance[i].name %>,</span>
+                                            <span class='vintage'><%= whiteFrance[i].vintage %>,</span>
+                                            <span class='description'><%= whiteFrance[i].description %></span>
+                                            / 
+                                            <span class='price'><%= whiteFrance[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
+
+                                <h3>Italy</h3>
+                                <ul>
+                                    <% for(let i=0;i<whiteItaly.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= whiteItaly[i].grapes %>,</span>
+                                            <span class='name'><%= whiteItaly[i].name %>,</span>
+                                            <span class='vintage'><%= whiteItaly[i].vintage %>,</span>
+                                            <span class='description'><%= whiteItaly[i].description %></span>
+                                            / 
+                                            <span class='price'><%= whiteItaly[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
+
+                                <h3>Germany</h3>
+                                <ul>
+                                    <% for(let i=0;i<whiteGermany.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= whiteGermany[i].grapes %>,</span>
+                                            <span class='name'><%= whiteGermany[i].name %>,</span>
+                                            <span class='vintage'><%= whiteGermany[i].vintage %>,</span>
+                                            <span class='description'><%= whiteGermany[i].description %></span>
+                                            / 
+                                            <span class='price'><%= whiteGermany[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
 
 
-                        </div><!--.reds-spain-->
+                            </div><!--#btg-->
+
+                            <div class='reds-spain'>
+                                <h2 style='padding-top:0;padding-bottom:0;'>red</h2>
+                                <h3>Spain</h3>
+                                <ul>
+                                    <% for(let i=0;i<redSpain.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= redSpain[i].grapes %>,</span>
+                                            <span class='name'><%= redSpain[i].name %>,</span>
+                                            <span class='vintage'><%= redSpain[i].vintage %>,</span>
+                                            <span class='description'><%= redSpain[i].description %></span>
+                                            / 
+                                            <span class='price'><%= redSpain[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
 
 
-                    </div><!--#page1-->
-                </div><!--.paper-->
-                <hr>
-            </div><!--#page1-wrapper-->
+                            </div><!--.reds-spain-->
 
 
+                        </div><!--#page1-->
+                    </div><!--.paper-->
+                    <hr>
+                </div><!--#page1-wrapper-->
 
 
+            </div><!--#flexbox-->
 
 
-
-
-        </div><!--#flexbox-->
+        </div><!--#outer-flexbox-->
     </div><!--#wrapper-->
+
+    <script>
+        const printButton = document.querySelector('#print-button')
+        printButton.addEventListener('click',()=>window.print())
+    </script>
+
 </body>
 </html>

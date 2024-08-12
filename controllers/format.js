@@ -357,7 +357,6 @@ module.exports = {
         }else{
             padding = format.padding
         }
-        console.log(padding)                
         res.render('format/wine-list.ejs',{req:req,
             padding:padding,
             btgCava:btgCava,btgWhites:btgWhites,btgRose:btgRose,

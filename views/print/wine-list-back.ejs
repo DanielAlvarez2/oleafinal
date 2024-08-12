@@ -23,56 +23,58 @@
             box-sizing:border-box;
         }
         html{
-            font-size:15px;
+            font-size:14px;
         }
         body{
             font-family:futura light;
         }
-        #wrapper{
-        }
-        #flexbox{
+
+        #page2{
+            width:13.5in;
+            height:8in;
             display:flex;
-            flex-direction:column;
-        }
-        #page1,#page2{
-            width:14in;
-            height:8.5in;
-            display:flex;
-        }
-        #page1{
-            width:21in;
         }
         #page2{
-            width:17.5in;
-        }
-        #btg{
-            width:10.5in;
-            height:8.5in;
-            column-count: 3;
-            column-fill:auto;
-            column-gap:0;            
-        }
-        .reds{
-            width:10.5in;
-            height:8.5in;
-            column-count: 3;
-            column-fill:auto;
-            column-gap:0;            
+            width:16.875in;
         }
         .reds-spain{
-            width:7in;
-            height:8.5in;
+            width:6.75in;
+            height:8in;
             column-count:2;
             column-fill:auto;
-            column-gap:0;            
+            column-gap:100px;    
         }
-        .reds-other{
-            width:3.5in;
-            height:8.5in;
+        
+        .reds-spain,
+        #reds-other,
+        #sangria,
+        #craft-drinks{
+            z-index:-1;        
+        }
+        #reds-other{
+            width:3.375in;
+            height:8in;
         }
         #sangria,#craft-drinks{
-            width:3.5in;
+            width:3.375in;
         }
+
+
+
+        .reds-spain{
+            column-gap:<%= padding*2 %>px;
+        }
+        
+        .reds-spain,
+        #reds-other,
+        #sangria,
+        #craft-drinks{
+            padding:0 <%= padding %>px;
+        }
+
+
+
+
         li{
             list-style-type: none;
             margin:9px 0;
@@ -87,173 +89,224 @@
             padding:0.5rem 0;
         }
         h2{
-            font-size:2rem;
+            font-size:1.5rem;
         }
         h3{
             font-size:1rem;
         }
-        #page1-wrapper,
         #page2-wrapper{
             width:14in;
             height:8.5in;
-            overflow:hidden;
             border:1px solid black;
+            overflow:hidden;
         }
         #page2{
             position:relative;
-            right:3.5in;
+            right:3.375in;
         }
-        
+        .paper{
+            width:14in;
+            height:8.5in;
+            border: 0.25in solid white;
+            z-index:1000;
+        }
+        #buttons{
+            position:fixed;
+            top:10px;
+            right:10px;
+        }
+        button{
+            border-radius:15px;
+            padding:1em 1.5em;
+            font-size:1.5rem;
+        }
+        button:hover{
+            cursor:pointer;
+            background:grey;
+            color:white;
+        }
+        @media print{
+            .no-print{
+                display:none !important;
+                height:0;
+                width:0;
+            }
+        }
     </style>
 
 </head>
 <body>
+
+    <div id='buttons' class='no-print'>
+        <button id='print-button'>
+            <i class="fa-solid fa-print"></i> 
+            Print Back
+        </button>
+        <br><br>
+        <a href='/print/wineListFront'>
+            <button>
+                <i class="fa-solid fa-rotate"></i>
+                Flip
+            </button>
+        </a>
+    </div><!--#buttons-->
+
+
     <div id='wrapper'>
-        <div id='flexbox'>
+        <div id='outer-flexbox'>
+            <div id='flexbox'>
+
+
+                <div id='page2-wrapper'>
+                    <div class='paper'>
+                        <div id='page2'>
+                            <div class='reds-spain'>
+                                <h2 style='padding-top:0;padding-bottom:0;'>red</h2>
+                                <h3>Spain</h3>
+                                <ul>
+                                    <% for(let i=0;i<redSpain.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= redSpain[i].grapes %>,</span>
+                                            <span class='name'><%= redSpain[i].name %>,</span>
+                                            <span class='vintage'><%= redSpain[i].vintage %>,</span>
+                                            <span class='description'><%= redSpain[i].description %></span>
+                                            / 
+                                            <span class='price'><%= redSpain[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
+
+
+                            </div><!--.reds-spain-->
+
+                            <div id='reds-other'>
+                                <h3 style='padding-top:0;'>France</h3>
+                                <ul>
+                                    <% for(let i=0;i<redFrance.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= redFrance[i].grapes %>,</span>
+                                            <span class='name'><%= redFrance[i].name %>,</span>
+                                            <span class='vintage'><%= redFrance[i].vintage %>,</span>
+                                            <span class='description'><%= redFrance[i].description %></span>
+                                            / 
+                                            <span class='price'><%= redFrance[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
+
+                                <h3>Italy</h3>
+                                <ul>
+                                    <% for(let i=0;i<redItaly.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= redItaly[i].grapes %>,</span>
+                                            <span class='name'><%= redItaly[i].name %>,</span>
+                                            <span class='vintage'><%= redItaly[i].vintage %>,</span>
+                                            <span class='description'><%= redItaly[i].description %></span>
+                                            / 
+                                            <span class='price'><%= redItaly[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>
+
+                            </div><!--#reds-other-->
+
+                            <div id='sangria'>
+                                <h2 style='padding-top:0;'>sangria</h2>
+                                <ul>
+                                    <% for(let i=0;i<sangria.length;i++){ %>
+                                        <li>
+                                            <span class='name'><%= sangria[i].name %>,</span>
+                                            <span class='description'><%= sangria[i].description %></span>
+                                            / 
+                                            <span class='price'><%= sangria[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>                    
+                            
+                                <h2>non-alcoholic</h2>
+                                <ul>
+                                    <% for(let i=0;i<nonAlcoholic.length;i++){ %>
+                                        <li>
+                                            <span class='name'><%= nonAlcoholic[i].name %>,</span>
+                                            <span class='description'><%= nonAlcoholic[i].description %></span>
+                                            / 
+                                            <span class='price'><%= nonAlcoholic[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>                    
+
+                                <h2 style='padding-bottom:0;'>beer</h2>
+                                <h3>CAN</h3>
+                                <ul>
+                                    <% for(let i=0;i<beerCans.length;i++){ %>
+                                        <li>
+                                            <span class='name'><%= beerCans[i].name %>,</span>
+                                            <span class='description'><%= beerCans[i].description %></span>
+                                            / 
+                                            <span class='price'><%= beerCans[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>                    
+
+                                <h3>DRAFT</h3>
+                                <ul>
+                                    <% for(let i=0;i<beerDrafts.length;i++){ %>
+                                        <li>
+                                            <span class='name'><%= beerDrafts[i].name %>,</span>
+                                            <span class='description'><%= beerDrafts[i].description %></span>
+                                            / 
+                                            <span class='price'><%= beerDrafts[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>                                        
+
+                            </div><!--#sangria-->
 
 
 
 
+                            <div id='craft-drinks'>
+                                <h2 style='padding-top:0;'>craft drinks</h2>
+                                <ul>
+                                    <% for(let i=0;i<craftDrinks.length;i++){ %>
+                                        <li>
+                                            <span class='name'><%= craftDrinks[i].name %>,</span>
+                                            <span class='description'><%= craftDrinks[i].description %></span>
+                                            / 
+                                            <span class='price'><%= craftDrinks[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>                    
+
+                                <h2>Jerez, Sanlúcar de Barrameda</h2>
+                                <ul>
+                                    <% for(let i=0;i<btgSherries.length;i++){ %>
+                                        <li>
+                                            <span class='grapes'><%= btgSherries[i].grapes %>,</span>
+                                            <span class='name'><%= btgSherries[i].name %>,</span>
+                                            <span class='description'><%= btgSherries[i].description %></span>
+                                            / 
+                                            <span class='price'><%= btgSherries[i].price %></span>
+                                        </li>
+                                    <% } %>
+                                </ul>                                        
+
+                            </div><!--#craft-drinks-->
+
+                        </div><!--#page2-->
+                    </div><!--.paper-->
+                </div><!--#page2-wrapper-->
+            </div><!--#flexbox-->
 
 
-
-            <div id='page2-wrapper'>
-                <div id='page2'>
-                    <div class='reds-spain'>
-                        <h2 style='padding-top:0;padding-bottom:0;'>red</h2>
-                        <h3>Spain</h3>
-                        <ul>
-                            <% for(let i=0;i<redSpain.length;i++){ %>
-                                <li>
-                                    <span class='grapes'><%= redSpain[i].grapes %></span>
-                                    <span class='name'><%= redSpain[i].name %></span>
-                                    <span class='vintage'><%= redSpain[i].vintage %></span>
-                                    <span class='description'><%= redSpain[i].description %></span>
-                                    / 
-                                    <span class='price'><%= redSpain[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>
-
-
-                    </div><!--.reds-spain-->
-
-                    <div class='reds-other'>
-                        <h3 style='padding-top:0;'>France</h3>
-                        <ul>
-                            <% for(let i=0;i<redFrance.length;i++){ %>
-                                <li>
-                                    <span class='grapes'><%= redFrance[i].grapes %></span>
-                                    <span class='name'><%= redFrance[i].name %></span>
-                                    <span class='vintage'><%= redFrance[i].vintage %></span>
-                                    <span class='description'><%= redFrance[i].description %></span>
-                                    / 
-                                    <span class='price'><%= redFrance[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>
-
-                        <h3>Italy</h3>
-                        <ul>
-                            <% for(let i=0;i<redItaly.length;i++){ %>
-                                <li>
-                                    <span class='grapes'><%= redItaly[i].grapes %></span>
-                                    <span class='name'><%= redItaly[i].name %></span>
-                                    <span class='vintage'><%= redItaly[i].vintage %></span>
-                                    <span class='description'><%= redItaly[i].description %></span>
-                                    / 
-                                    <span class='price'><%= redItaly[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>
-
-                    </div><!--.reds-other-->
-
-                    <div id='sangria'>
-                        <h2 style='padding-top:0;'>sangria</h2>
-                        <ul>
-                            <% for(let i=0;i<sangria.length;i++){ %>
-                                <li>
-                                    <span class='name'><%= sangria[i].name %></span>
-                                    <span class='description'><%= sangria[i].description %></span>
-                                    / 
-                                    <span class='price'><%= sangria[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>                    
-                    
-                        <h2>non-alcoholic</h2>
-                        <ul>
-                            <% for(let i=0;i<nonAlcoholic.length;i++){ %>
-                                <li>
-                                    <span class='name'><%= nonAlcoholic[i].name %></span>
-                                    <span class='description'><%= nonAlcoholic[i].description %></span>
-                                    / 
-                                    <span class='price'><%= nonAlcoholic[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>                    
-
-                        <h2 style='padding-bottom:0;'>beer</h2>
-                        <h3>CAN</h3>
-                        <ul>
-                            <% for(let i=0;i<beerCans.length;i++){ %>
-                                <li>
-                                    <span class='name'><%= beerCans[i].name %></span>
-                                    <span class='description'><%= beerCans[i].description %></span>
-                                    / 
-                                    <span class='price'><%= beerCans[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>                    
-
-                        <h3>DRAFT</h3>
-                        <ul>
-                            <% for(let i=0;i<beerDrafts.length;i++){ %>
-                                <li>
-                                    <span class='name'><%= beerDrafts[i].name %></span>
-                                    <span class='description'><%= beerDrafts[i].description %></span>
-                                    / 
-                                    <span class='price'><%= beerDrafts[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>                                        
-
-                    </div><!--#sangria-->
-
-
-
-
-                    <div id='craft-drinks'>
-                        <h2 style='padding-top:0;'>craft drinks</h2>
-                        <ul>
-                            <% for(let i=0;i<craftDrinks.length;i++){ %>
-                                <li>
-                                    <span class='name'><%= craftDrinks[i].name %></span>
-                                    <span class='description'><%= craftDrinks[i].description %></span>
-                                    / 
-                                    <span class='price'><%= craftDrinks[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>                    
-
-                        <h2>Jerez, Sanlúcar de Barrameda</h2>
-                        <ul>
-                            <% for(let i=0;i<btgSherries.length;i++){ %>
-                                <li>
-                                    <span class='name'><%= btgSherries[i].name %></span>
-                                    <span class='description'><%= btgSherries[i].description %></span>
-                                    / 
-                                    <span class='price'><%= btgSherries[i].price %></span>
-                                </li>
-                            <% } %>
-                        </ul>                                        
-
-                    </div><!--#craft-drinks-->
-
-                </div><!--#page2-->
-            </div><!--#page2-wrapper-->
-        </div><!--#flexbox-->
+        </div><!--#outer-flexbox-->
     </div><!--#wrapper-->
+
+    <script>
+        const printButton = document.querySelector('#print-button')
+        printButton.addEventListener('click',()=>window.print())
+    </script>
+
+
 </body>
 </html>

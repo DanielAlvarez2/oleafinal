@@ -2,6 +2,7 @@ const SpecialsFormat = require('../models/SpecialsFormat')
 const DinnerFormat = require('../models/DinnerFormat')
 const DessertFormat = require('../models/DessertFormat')
 const DessertBackFormat = require('../models/DessertBackFormat')
+const WineListFormat = require('../models/WineListFormat')
 const MenuItem = require('../models/MenuItem')
 const { getDessertBack } = require('./format')
 
@@ -260,8 +261,16 @@ module.exports = {
                 {section:'btg sherries'},
                 {archived:false}
             ]
-        }).sort({sequence:'asc'})                        
+        }).sort({sequence:'asc'})  
+        const format = await WineListFormat.findOne({index:1})
+        let padding;
+        if(format == null){
+            padding = 0
+        }else{
+            padding = format.padding
+        }                              
         res.render('print/wine-list-front.ejs',{req:req,
+            padding:padding,
             btgCava:btgCava,btgWhites:btgWhites,btgRose:btgRose,
             btgReds:btgReds,cavaChampagne:cavaChampagne,rose:rose,
             whiteSpain:whiteSpain,whiteFrance:whiteFrance,
@@ -387,8 +396,16 @@ module.exports = {
                 {section:'btg sherries'},
                 {archived:false}
             ]
-        }).sort({sequence:'asc'})                        
+        }).sort({sequence:'asc'})  
+        const format = await WineListFormat.findOne({index:1})
+        let padding;
+        if(format == null){
+            padding = 0
+        }else{
+            padding = format.padding
+        }                                                            
         res.render('print/wine-list-back.ejs',{req:req,
+            padding:padding,
             btgCava:btgCava,btgWhites:btgWhites,btgRose:btgRose,
             btgReds:btgReds,cavaChampagne:cavaChampagne,rose:rose,
             whiteSpain:whiteSpain,whiteFrance:whiteFrance,
