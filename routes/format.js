@@ -11,5 +11,6 @@ router.post('/dessert', formatController.postDessert)
 router.get('/dessertBack', formatController.getDessertBack)
 router.post('/dessertBack', formatController.postDessertBack)
 router.get('/wineList', formatController.getWineList)
+router.post('/wineList', formatController.postWineList)
 
 module.exports = router

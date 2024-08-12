@@ -64,9 +64,15 @@
             column-count:2;
             column-fill:auto;
             column-gap:100px;    
+        }
+        #btg,
+        .reds-spain,
+        #reds-other,
+        #sangria,
+        #craft-drinks{
             z-index:-1;        
         }
-        .reds-other{
+        #reds-other{
             width:3.375in;
             height:8in;
         }
@@ -77,14 +83,14 @@
 
 
         #btg,.reds-spain{
-            column-gap:0px;
+            column-gap:<%= padding*2 %>px;
         }
         #btg,
         .reds-spain,
-        .reds-other,
+        #reds-other,
         #sangria,
         #craft-drinks{
-            padding:0 0px;
+            padding:0 <%= padding %>px;
         }
 
 
@@ -139,6 +145,16 @@
             font-family:sans-serif;
             width:18ch;
             text-align:center;
+        }
+        #controls button{
+            font-size:3rem;
+            padding:0.5em 1em;
+            border-radius:15px;
+            cursor:pointer;
+        }
+        button:hover{
+            background:grey;
+            color:white;
         }
         #digits,#tens,#ones{
             display:flex;
@@ -355,7 +371,7 @@
 
                             </div><!--.reds-spain-->
 
-                            <div class='reds-other'>
+                            <div id='reds-other'>
                                 <h3 style='padding-top:0;'>France</h3>
                                 <ul>
                                     <% for(let i=0;i<redFrance.length;i++){ %>
@@ -384,7 +400,7 @@
                                     <% } %>
                                 </ul>
 
-                            </div><!--.reds-other-->
+                            </div><!--#reds-other-->
 
                             <div id='sangria'>
                                 <h2 style='padding-top:0;'>sangria</h2>
@@ -493,7 +509,29 @@
                 </div>
             </div>
 
+            <form method='POST'
+                  action='/format/wineList'>
+                <input type='hidden' value='0' name='padding' id='wine-list-padding'>
+                <button>
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    Save Changes
+                </button>
+            </form>
 
+                <a href='/print/wineListFront'>
+                    <button>
+                        <i class="fa-solid fa-print"></i>
+                        Print Front
+                    </button>
+                </a>
+                <br>
+
+                <a href='/print/wineListBack'>
+                    <button>
+                        <i class="fa-solid fa-print"></i>
+                        Print Back
+                    </button>
+                </a>
 
             </div><!--#controls-->
         </div><!--#outer-flexbox-->
@@ -506,7 +544,29 @@
         const down1arrow = document.querySelector('#down-one')
         const up10arrow = document.querySelector('#up-ten')
         const down10arrow = document.querySelector('#down-ten')
-        let columnGap = 0
+        const btg = document.querySelector('#btg')
+        const redsSpain = document.querySelectorAll('.reds-spain')
+        const redsOther = document.querySelector('#reds-other')
+        const sangria = document.querySelector('#sangria')
+        const craftDrinks = document.querySelector('#craft-drinks')
+        const wineListPadding = document.querySelector('#wine-list-padding')
+        let columnGap = <%= padding %>
+        
+
+        function updatePadding(padding){
+            btg.style.columnGap = `${padding*2}px`
+            redsSpain.forEach(el=>{
+                el.style.columnGap = `${padding*2}px`
+            })
+            btg.style.padding = `0 ${padding}px`
+            redsOther.style.padding = `0 ${padding}px`
+            sangria.style.padding = `0 ${padding}px`
+            craftDrinks.style.padding = `0 ${padding}px`
+            redsSpain.forEach(el=>{
+                el.style.padding = `0 ${padding}px`
+            })
+            wineListPadding.value = padding
+        }
         function upOne(){
             if(columnGap<99){
                 columnGap++
@@ -518,6 +578,7 @@
                 const tempString = columnGap.toString()
                 onesNumber.textContent = columnGap.toString().substring(tempString.length-1)            
             }
+            updatePadding(columnGap)
         }
         function downOne(){
             if(columnGap>0){
@@ -530,6 +591,7 @@
                 const tempString = columnGap.toString()
                 onesNumber.textContent = columnGap.toString().substring(tempString.length-1)            
             }
+            updatePadding(columnGap)
         }
         function upTen(){
             if(columnGap<90){
@@ -542,6 +604,7 @@
                 const tempString = columnGap.toString()
                 onesNumber.textContent = columnGap.toString().substring(tempString.length-1)            
             }
+            updatePadding(columnGap)
         }
         function downTen(){
             if(columnGap>9){
@@ -554,7 +617,17 @@
                 const tempString = columnGap.toString()
                 onesNumber.textContent = columnGap.toString().substring(tempString.length-1)            
             }
+            updatePadding(columnGap)
         }
+        (function initializeDisplay(){
+                if(columnGap<10){
+                    tensNumber.textContent = 0
+                }else{
+                    tensNumber.textContent = columnGap.toString().substring(0,1)
+                }
+                const tempString = columnGap.toString()
+                onesNumber.textContent = columnGap.toString().substring(tempString.length-1)                        
+        })()
         up1arrow.addEventListener('click',upOne)
         down1arrow.addEventListener('click',downOne)
         up10arrow.addEventListener('click',upTen)

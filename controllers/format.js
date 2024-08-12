@@ -3,6 +3,7 @@ const SpecialsFormat = require('../models/SpecialsFormat')
 const DinnerFormat = require('../models/DinnerFormat')
 const DessertFormat = require('../models/DessertFormat')
 const DessertBackFormat = require('../models/DessertBackFormat')
+const WineListFormat = require('../models/WineListFormat')
 
 module.exports = {
     getSpecials: async(req,res)=>{
@@ -348,8 +349,17 @@ module.exports = {
                 {section:'btg sherries'},
                 {archived:false}
             ]
-        }).sort({sequence:'asc'})                
+        }).sort({sequence:'asc'})
+        const format = await WineListFormat.findOne({index:1})
+        let padding;
+        if(format == null){
+            padding = 0
+        }else{
+            padding = format.padding
+        }
+        console.log(padding)                
         res.render('format/wine-list.ejs',{req:req,
+            padding:padding,
             btgCava:btgCava,btgWhites:btgWhites,btgRose:btgRose,
             btgReds:btgReds,cavaChampagne:cavaChampagne,rose:rose,
             whiteSpain:whiteSpain,whiteFrance:whiteFrance,
@@ -359,5 +369,19 @@ module.exports = {
             nonAlcoholic:nonAlcoholic,beerCans:beerCans,
             beerDrafts:beerDrafts,craftDrinks:craftDrinks,
             btgSherries:btgSherries})
+    },
+    postWineList: async(req,res)=>{
+        const format = await WineListFormat.find()
+        if(format.length == 0){
+            WineListFormat.create({
+                padding:req.body.padding,
+                index:1
+            })
+        }else{
+            await WineListFormat.findOneAndUpdate({index:1},{
+                padding:req.body.padding
+            })
+        }
+        res.redirect(req.get('referer'))
     }
 }
