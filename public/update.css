@@ -290,10 +290,11 @@ form{
 #dinner-sub-menu li,
 #wine-sub-menu li,
 #drinks-sub-menu li,
-#dessert-button li{
+#dessert-sub-menu li{
     background: black;
     padding: 0.5em 0;
 }
+
 #dinner-sub-menu li{
     width:6em;
 }
@@ -313,7 +314,6 @@ form{
     margin:0;
     font-size:1rem;
     position:relative;
-    z-index: 100;
 }
 #edit-nav a:hover{
     background:grey;
@@ -337,4 +337,14 @@ form{
 }
 #footer-edit i{
     color:white;
+}
+#dessert-sub-menu li,
+#dessert-sub-menu a{
+    height:0;
+    padding:0;
+    display:block;
+    visibility: hidden;
+}
+#dessert-sub-menu{
+    text-align: center;
 }

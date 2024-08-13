@@ -21,7 +21,7 @@
     
     <li><a href='/update/specials'>specials</a></li>
     <li>
-        <ul id='dessert-button'>dessert
+        <ul id='dessert-sub-menu'>dessert
             <li><a href='/update/desserts'>desserts</a></li>
             <li><a href='/update/dessertWines'>dessert wines</a></li>
             <li><a href='/update/dessertCocktails'>dessert cocktails</a></li>
@@ -88,4 +88,27 @@
             </ul>
         </div>
     </li>
+
+    <script>
+
+        function showDessertSubMenu(){
+            dessertSubMenuLIs.forEach(el=>{
+                el.style.height = '1rem'
+                el.style.visibility = 'visible'
+                el.style.padding = '0.5em 0'
+            })
+            dessertSubMenuAs.forEach(el=>{
+                el.style.height = '1rem'
+                el.style.visibility = 'visible'
+                el.style.padding = '0.5em 0'
+            })
+
+        }
+        function hideDessertSubMenu(){}
+        const dessertSubMenu = document.querySelector('#dessert-sub-menu')
+        const dessertSubMenuLIs = document.querySelectorAll('#dessert-sub-menu li')
+        const dessertSubMenuAs = document.querySelectorAll('#dessert-sub-menu a')
+        dessertSubMenu.addEventListener('mouseover', showDessertSubMenu)
+        dessertSubMenu.addEventListener('mouseout', hideDessertSubMenu)
+    </script>
 </nav>

@@ -1,0 +1,71 @@
+<div id='nav2' style='width:100%;
+                      background:black;
+                      color:white;
+                      height:20px;
+                      position:fixed;
+                      top:0;
+                      left:0;
+                      z-index:100;
+                      display:flex;
+                      justify-content:space-around;
+                      font-family:futura light;
+
+'>
+    <ul id='dinner-drop-menu' style='text-align:center;'>dinner
+        <li>charcuterie</li>
+        <li>appetizers</li>
+        <li>entrees</li>
+        <li>sides</li>
+    </ul>
+    <ul>specials</ul>
+    <ul id='dessert-drop-menu' style='text-align:center;'>dessert
+        <li>desserts</li>
+        <li>dessert wines</li>
+        <li>dessert cocktails</li>
+        <li>japanese whisky</li>
+        <li>single malt scotch</li>
+        <li>brandy</li>
+        <li>grappa</li>
+    </ul>
+    <ul id='wine-drop-menu' style='text-align:center;'>wine
+        <li>btg</li>
+        <li>cava & champagne</li>
+        <li>rose</li>
+        <li>white spain</li>
+        <li>white france</li>
+        <li>white italy</li>
+        <li>white germany</li>
+        <li>red spain</li>
+        <li>red france</li>
+        <li>red italy</li>
+    </ul>
+    <ul id='drinks-drop-menu' style='text-align:center;'>drinks
+        <li>craft drinks</li>
+        <li>sangria</li>
+        <li>non-alcoholic</li>
+        <li>beer</li>
+    </ul>
+
+    <script>
+        const dinnerDropMenu = document.querySelector('#dinner-drop-menu')
+        const dessertDropMenu = document.querySelector('#dessert-drop-menu')
+        const wineDropMenu = document.querySelector('#wine-drop-menu')
+        const drinksDropMenu = document.querySelector('#drinks-drop-menu')
+        const dinnerDropMenuLIs = document.querySelectorAll('#dinner-drop-menu li')
+        const dessertDropMenuLIs = document.querySelectorAll('#dessert-drop-menu li')
+        const wineDropMenuLIs = document.querySelectorAll('#wine-drop-menu li')
+        const drinksDropMenuLIs = document.querySelectorAll('#drinks-drop-menu li')
+        function showDinnerDropMenu(){
+            dinnerDropMenuLIs.forEach(el=>{
+                el.classList.add('show')
+            })
+        }
+        function hideDinnerDropMenu(){
+            dinnerDropMenuLIs.forEach(el=>{
+                el.classList.remove('show')
+            })
+        }        
+        dinnerDropMenu.addEventListener('mouseover', showDinnerDropMenu)
+        dinnerDropMenu.addEventListener('mouseout', hideDinnerDropMenu)
+    </script>
+</div><!--#nav2-->
