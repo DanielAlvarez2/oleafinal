@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name='description' 
+          content='Olea Restaurant, New Haven, Connecticut, 
+          Current Dessert Menu'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/update.css'>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    #dessert-menu{
+        max-width:5.5in;
+        min-height:8.5in;
+        position:relative;
+        padding:10px;
+        background-image: url('menu-background.jpg');    
+    }
+</style>
+</head>
+
+<body>
+
+<div id="wrapper">
+ 
+
+
+
+<main>
+
+<%- include('partials/editNav') %>
+
+
+<%- include('partials/editMenu') %>
+
+<div id='dessert-menu' class='menu'>
+
+<% if(req.user){ %>
+    <a href='/edit/dessert'>
+        <i class="fa-solid fa-gear"></i>
+    </a>
+<% } %>
+
+
+            <h1>olea</h1>
+            <hr>
+            <ul>
+                <% for (let i=0;i<japaneseWhisky.length;i++){ %>
+                    <li>
+                        <% if(i!=0) { %>
+                            <a href='/update/moveUp/<%= japaneseWhisky[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden;' href='/update/moveUp/<%= japaneseWhisky[i].id %>'>
+                                <div id='arrow-up'><i class="fa-solid fa-caret-up"></i></div>
+                            </a>
+                        <% } %>
+                        <div onclick='showModal(<%= JSON.stringify(japaneseWhisky[i]) %>)'>
+                            <span class='name'><%= japaneseWhisky[i].name %></span>
+                            &nbsp; 
+                            <span class='price'><%= japaneseWhisky[i].price %></span><br><br>
+                        </div>          
+
+                        <form method='POST'
+                              action='../update/item/<%= japaneseWhisky[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-pen"></i>
+                                <span class='edit-text'>Edit</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../update/delete/<%= japaneseWhisky[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-trash"></i>
+                                <span class='delete-text'>Delete</span>
+                            </button>
+                        </form>
+
+                        <form method='POST'
+                            action='../update/archive/<%= japaneseWhisky[i].id %>'>
+                            <button>
+                                <i class="fa-solid fa-folder-plus"></i>
+                                <span class='archive-text'>Archive</span>
+                            </button>
+                        </form>
+                        
+                        <% if(i!=japaneseWhisky.length-1){ %>
+                            <a href='/update/moveDown/<%= japaneseWhisky[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% }else{ %>
+                            <a style='visibility:hidden' href='/update/moveDown/<%= japaneseWhisky[i].id %>'>
+                                <div id='arrow-down'><i class="fa-solid fa-caret-down"></i></div>                        
+                            </a>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+
+
+   
+
+    <div id='modal'>
+        <i class='fa-solid fa-square-xmark x'
+           id='close-modal-button'
+           onclick='closeModal()'></i>
+        <div id='modal-item'>
+            <figure>
+                <img src='' id='modal-image'>
+                <figcaption>
+                    <div id='modal-text'>
+                        <span id='modal-name'></span><br>
+                        <span id='modal-description'></span>&nbsp;
+                        <span id='modal-price'></span><br>
+                        <span id='modal-allergies'></span>
+                    </div>
+                </figcaption>
+            </figure>
+        </div><!--#modal-item-->
+    </div><!--#modal-->
+</div><!--#specials-menu-->
+
+<%- include('partials/editMenu') %>
+
+</main>
+
+<script>
+    const modal = document.querySelector('#modal')
+    const modalImage = document.querySelector('#modal-image')
+    const modalName = document.querySelector('#modal-name')
+    const modalDescription = document.querySelector('#modal-description')
+    const modalPrice = document.querySelector('#modal-price')
+    const modalAllergies = document.querySelector('#modal-allergies')
+    const dinnerSubMenu = document.querySelector('#dinner-sub-menu')
+    const drinksSubMenu = document.querySelector('#drinks-sub-menu')
+    const wineSubMenu = document.querySelector('#wine-sub-menu')
+
+
+    function showModal(item){
+        if (!item.image) return
+        console.log(item)
+        modalImage.src=item.image
+        modalName.innerHTML = item.name
+        modalDescription.innerHTML = item.description
+        modalPrice.innerHTML = item.price
+        modalAllergies.innerHTML = item.allergies
+        modal.style.display = 'grid'
+    }
+    function closeModal(){
+        modal.style.display = 'none'
+    }
+    function displayDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'block'
+    }
+    function hideDinnerSubMenu(){
+        dinnerSubMenu.style.display = 'none'
+    }
+    function displayDrinksSubMenu(){
+        drinksSubMenu.style.display = 'block'
+    }
+    function hideDrinksSubMenu(){
+        drinksSubMenu.style.display = 'none'
+    }
+    function displayWineSubMenu(){
+        wineSubMenu.style.display = 'block'
+    }
+    function hideWineSubMenu(){
+        wineSubMenu.style.display = 'none'
+    }    
+</script>
+<%- include('partials/footerEdit') %>
+
+</body>
+</html>

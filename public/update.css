@@ -289,7 +289,8 @@ form{
 }
 #dinner-sub-menu li,
 #wine-sub-menu li,
-#drinks-sub-menu li{
+#drinks-sub-menu li,
+#dessert-button li{
     background: black;
     padding: 0.5em 0;
 }
@@ -302,6 +303,7 @@ form{
 #drinks-sub-menu li{
     width: 9em;
 }
+
 #edit-nav,
 #edit-nav a,
 #edit-nav li{

@@ -72,6 +72,78 @@ module.exports = {
                                       desserts:desserts})
         
     },
+    getDessertWines: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        const dessertWines = await MenuItem.find({
+            $and:[
+                {section:'dessert wines'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/dessert-wines.ejs', {req:req,
+                                                title:'olea new haven | update dessert wines',
+                                                dessertWines:dessertWines})
+    },
+    getDessertCocktails: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        const dessertCocktails = await MenuItem.find({
+            $and:[
+                {section:'dessert cocktails'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/dessert-cocktails.ejs', {req:req,
+                                                title:'olea new haven | update dessert cocktails',
+                                                dessertCocktails:dessertCocktails})
+    },
+    getJapaneseWhisky: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        const japaneseWhisky = await MenuItem.find({
+            $and:[
+                {section:'japanese whisky'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/japanese-whisky.ejs', {req:req,
+                                                title:'olea new haven | update japanese whisky',
+                                                japaneseWhisky:japaneseWhisky})
+    },        
+    getSingleMaltScotch: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        const singleMaltScotch = await MenuItem.find({
+            $and:[
+                {section:'single malt scotch'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/single-malt-scotch.ejs', {req:req,
+                                                title:'olea new haven | update single malt scotch',
+                                                singleMaltScotch:singleMaltScotch})
+    },        
+    getBrandy: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        const brandy = await MenuItem.find({
+            $and:[
+                {section:'brandy'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/brandy.ejs', {req:req,
+                                                title:'olea new haven | update brandy',
+                                                brandy:brandy})
+    },            
+    getGrappa: async(req,res)=>{
+        // if(!req.user) res.redirect('/')
+        const grappa = await MenuItem.find({
+            $and:[
+                {section:'grappa'},
+                {archived:false}
+            ]
+        }).sort({sequence:'asc'})
+        res.render('update/grappa.ejs', {req:req,
+                                                title:'olea new haven | update grappa',
+                                                grappa:grappa})
+    },                
     getCraftDrinks: async(req,res)=>{
         // if(!req.user) res.redirect('/drinks')
         try{
