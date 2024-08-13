@@ -69,17 +69,11 @@ charge future clients, fair market price
 
 feature: create a bar-only menu
 
-format/dinner glitches on save
-front-end not updating in sync with values sent to server????
-
 feature: use arrow keys on keyboard to control formatting 
 changes
 
 end of week, no napkins left to fold
 should be studying menu
-
-/update/item
-when editing btg rose, allergies should not display???
 
 chef:"allergies"
 servers:write in notepads???

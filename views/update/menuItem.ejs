@@ -90,9 +90,13 @@
                 <input type='text' id='price' name='price' value='<%= item.price %>'>
                 <br><br>
 
-                Allergies:<br>
-                <input type='text' id='allergies' name='allergies' value='<%= item.allergies %>'>
-                <br><br>
+                <% if(item.menu == 'dinner' ||
+                   item.menu == 'specials' ||
+                   item.section == 'desserts'){ %> 
+                        Allergies:<br>
+                        <input type='text' id='allergies' name='allergies' value='<%= item.allergies %>'>
+                        <br><br>
+                <% } %>
 
                 <% if(item.image){ %>
                     <input type='hidden' id='cloudinary-id' name='cloudinaryId' value='<%= item.cloudinaryId %>'>
