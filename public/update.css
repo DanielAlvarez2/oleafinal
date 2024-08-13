@@ -348,3 +348,50 @@ form{
 #dessert-sub-menu{
     text-align: center;
 }
+
+
+#nav2 li{
+    background:black;
+    margin:0;
+    padding:0;
+    height:0;
+    visibility:hidden;
+}
+#nav2 a{
+    color:white;
+    text-decoration:none;
+}
+#nav2 a:visited,
+#nav2 a:link,
+#nav2 a:active{
+    color:white;
+}
+#nav2 a:hover{
+    color:#bbb;
+}
+.show{
+    height:auto !important;
+    padding:0.5em 0.25em !important;
+    visibility: visible !important;
+}
+#nav2 ul{
+    text-align:center;
+}
+#nav2{
+    width:100%;
+    background:black;
+    color:white;
+    height:20px;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-around;
+    font-family:futura light;        
+}
+@media (width < 321px){
+    #nav2{
+        font-size: 0.85rem;
+    }
+}

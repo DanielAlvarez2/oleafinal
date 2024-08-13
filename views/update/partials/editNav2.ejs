@@ -1,49 +1,39 @@
-<div id='nav2' style='width:100%;
-                      background:black;
-                      color:white;
-                      height:20px;
-                      position:fixed;
-                      top:0;
-                      left:0;
-                      z-index:100;
-                      display:flex;
-                      justify-content:space-around;
-                      font-family:futura light;
-
-'>
-    <ul id='dinner-drop-menu' style='text-align:center;'>dinner
-        <li>charcuterie</li>
-        <li>appetizers</li>
-        <li>entrees</li>
-        <li>sides</li>
+<div id='nav2'>
+    <ul id='dinner-drop-menu'>dinner
+        <li><a href='/update/charcuterie'>charcuterie</a></li>
+        <li><a href='/update/appetizers'>appetizers</a></li>
+        <li><a href='/update/entrees'>entrées</a></li>
+        <li><a href='/update/sides'>sides</a></li>
     </ul>
-    <ul>specials</ul>
-    <ul id='dessert-drop-menu' style='text-align:center;'>dessert
-        <li>desserts</li>
-        <li>dessert wines</li>
-        <li>dessert cocktails</li>
-        <li>japanese whisky</li>
-        <li>single malt scotch</li>
-        <li>brandy</li>
-        <li>grappa</li>
+    <ul><a href='/update/specials'>specials</a>
+        <li>charcuteriehg</li>
     </ul>
-    <ul id='wine-drop-menu' style='text-align:center;'>wine
-        <li>btg</li>
-        <li>cava & champagne</li>
-        <li>rose</li>
-        <li>white spain</li>
-        <li>white france</li>
-        <li>white italy</li>
-        <li>white germany</li>
-        <li>red spain</li>
-        <li>red france</li>
-        <li>red italy</li>
+    <ul id='dessert-drop-menu'>dessert
+        <li><a href='/update/desserts'>desserts</a></li>
+        <li><a href='/update/dessertWines'>dessert<br>wines</a></li>
+        <li><a href='/update/dessertCocktails'>dessert<br>cocktails</a></li>
+        <li><a href='/update/japaneseWhisky'>japanese<br>whisky</a></li>
+        <li><a href='/update/singleMaltScotch'>single<br>malt<br>scotch</a></li>
+        <li><a href='/update/brandy'>brandy</a></li>
+        <li><a href='/update/grappa'>grappa</a></li>
     </ul>
-    <ul id='drinks-drop-menu' style='text-align:center;'>drinks
-        <li>craft drinks</li>
-        <li>sangria</li>
-        <li>non-alcoholic</li>
-        <li>beer</li>
+    <ul id='wine-drop-menu'>wine
+        <li><a href='/update/btg'>btg</a></li>
+        <li><a href='/update/cavaChampagne'>cava<br>champagne</a></li>
+        <li><a href='/update/rose'>rosé</a></li>
+        <li><a href='/update/whiteSpain'>white<br>spain</a></li>
+        <li><a href='/update/whiteFrance'>white<br>france</a></li>
+        <li><a href='/update/whiteItaly'>white<br>italy</a></li>
+        <li><a href='/update/whiteGermany'>white<br>germany</a></li>
+        <li><a href='/update/redSpain'>red<br>spain</a></li>
+        <li><a href='/update/redFrance'>red<br>france</a></li>
+        <li><a href='/update/redItaly'>red<br>italy</a></li>
+    </ul>
+    <ul id='drinks-drop-menu'>drinks
+        <li><a href='/update/craftDrinks'>craft drinks</a></li>
+        <li><a href='/update/sangria'>sangria</a></li>
+        <li><a href='/update/nonAlcoholic'>non-alcoholic</a></li>
+        <li><a href='/update/beer'>beer</a></li>
     </ul>
 
     <script>
@@ -64,8 +54,45 @@
             dinnerDropMenuLIs.forEach(el=>{
                 el.classList.remove('show')
             })
-        }        
+        }       
+        function showDessertDropMenu(){
+            dessertDropMenuLIs.forEach(el=>{
+                el.classList.add('show')
+            })
+        }
+        function hideDessertDropMenu(){
+            dessertDropMenuLIs.forEach(el=>{
+                el.classList.remove('show')
+            })
+        }               
+        function showWineDropMenu(){
+            wineDropMenuLIs.forEach(el=>{
+                el.classList.add('show')
+            })
+        }
+        function hideWineDropMenu(){
+            wineDropMenuLIs.forEach(el=>{
+                el.classList.remove('show')
+            })
+        }               
+        function showDrinksDropMenu(){
+            drinksDropMenuLIs.forEach(el=>{
+                el.classList.add('show')
+            })
+        }
+        function hideDrinksDropMenu(){
+            drinksDropMenuLIs.forEach(el=>{
+                el.classList.remove('show')
+            })
+        }                
         dinnerDropMenu.addEventListener('mouseover', showDinnerDropMenu)
         dinnerDropMenu.addEventListener('mouseout', hideDinnerDropMenu)
+        dessertDropMenu.addEventListener('mouseover', showDessertDropMenu)
+        dessertDropMenu.addEventListener('mouseout', hideDessertDropMenu)
+        wineDropMenu.addEventListener('mouseover', showWineDropMenu)
+        wineDropMenu.addEventListener('mouseout', hideWineDropMenu)
+        drinksDropMenu.addEventListener('mouseover', showDrinksDropMenu)
+        drinksDropMenu.addEventListener('mouseout', hideDrinksDropMenu)
+
     </script>
 </div><!--#nav2-->
