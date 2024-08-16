@@ -95,44 +95,8 @@ input,textarea{
 ul{
     list-style-type:none;
 }
-nav a,
-nav a:visited,
-nav a:link{
-    color:black;
-}
-nav a:hover{
-    color:#ddd;
-    background:#888;
-}
-nav a{
-    padding:2px 5px;
-    font-family:sans-serif;
-    font-size:0.9rem;
-}
-.active-page{
-    background:black;
-    color:white !important;
-    pointer-events:none;
-}
-#nav-top{
-    left:0;
-    top:0;
-    position:fixed;
-    z-index:100;
-}
-nav{
-    width:100%;
-    background:#ccc;
-    display:flex;
-    position:fixed;
-    left:0;
-    top:0;
-    justify-content:space-around;
-    height: 1.5rem;
-}
-nav a{
-    text-decoration:none;
-}
+
+
 main{
     min-height:calc(100svh - 3rem);
     font-family:serif;
@@ -197,6 +161,7 @@ body{
     max-width: 100vw;
     max-width: 100svw;
     overflow-x: hidden;
+    overflow-y:scroll;
 }
 #modal{
     width:100%;
@@ -229,24 +194,6 @@ figcaption{
 
 
 
-#dinner-menu{
-    padding:5px;
-    max-width:8.5in;
-    min-height:14in;
-    background-image: url('/menu-background.jpg');
-}
-
-@media(min-width:8.5in){
-    #dinner-menu{
-        padding:0.3in 0.52in 0.5in;
-    }
-    #top-left, #bottom-left{
-        padding-right:0.25in;
-    }
-    #top-right, #bottom-right{
-        padding-left:0.25in;
-    }
-}
 
 
 main h1{
@@ -287,43 +234,7 @@ form{
     width: 100%;
     margin: 1rem 0;
 }
-#dinner-sub-menu li,
-#wine-sub-menu li,
-#drinks-sub-menu li,
-#dessert-sub-menu li{
-    background: black;
-    padding: 0.5em 0;
-}
 
-#dinner-sub-menu li{
-    width:6em;
-}
-#wine-sub-menu li{
-    width:10em;
-}
-#drinks-sub-menu li{
-    width: 9em;
-}
-
-#edit-nav,
-#edit-nav a,
-#edit-nav li{
-    background: black;
-    font-family: futura light;
-    color:white;
-    margin:0;
-    font-size:1rem;
-    position:relative;
-}
-#edit-nav a:hover{
-    background:grey;
-    color:black;
-}
-#edit-nav{
-    position:fixed;
-    top:0;
-    left:0;
-}
 .edit-menu{
     padding:0.5em;
 }
@@ -338,60 +249,46 @@ form{
 #footer-edit i{
     color:white;
 }
-#dessert-sub-menu li,
-#dessert-sub-menu a{
-    height:0;
-    padding:0;
-    display:block;
-    visibility: hidden;
-}
-#dessert-sub-menu{
-    text-align: center;
-}
 
-
-#nav2 li{
-    background:black;
-    margin:0;
-    padding:0;
-    height:0;
-    visibility:hidden;
-}
-#nav2 a{
-    color:white;
-    text-decoration:none;
-}
-#nav2 a:visited,
-#nav2 a:link,
-#nav2 a:active{
-    color:white;
-}
-#nav2 a:hover{
-    color:#bbb;
-}
-.show{
-    height:auto !important;
-    padding:0.5em 0.25em !important;
-    visibility: visible !important;
-}
-#nav2 ul{
-    text-align:center;
-}
-#nav2{
+nav>ul{
+    font-family: futura light;
+    z-index: 100;
     width:100%;
-    background:black;
-    color:white;
     height:20px;
     position:fixed;
     top:0;
     left:0;
-    z-index:100;
+    background:black;
     display:flex;
-    justify-content:space-around;
-    font-family:futura light;        
+    justify-content: space-around;
+    color:white;
+    text-align: center;
 }
-@media (width < 321px){
-    #nav2{
-        font-size: 0.85rem;
+nav li{
+    background:black;
+    margin: 0;
+    border-bottom: 1px solid white;
+    border-left: 1px solid white;
+    padding:0.5em 0;
+}
+nav a,
+nav a:link,
+nav a:visited{
+    color:white;
+    text-decoration: none;
+}
+nav a:hover{
+    color:grey;
+    cursor:pointer;
+}
+.hide{
+    height:0;
+    padding-top:0;
+    padding-bottom: 0;
+    visibility: hidden;
+}
+@media (width<321px){
+    nav{
+        font-size: 14px;
     }
 }

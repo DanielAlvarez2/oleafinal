@@ -1,114 +1,201 @@
-<nav id='edit-nav'>
-    <li style='position:relative;'>
-        <div style='color:white;' 
-             onmouseover = 'displayDinnerSubMenu()'
-             onmouseout  = 'hideDinnerSubMenu()'
-             id='dinner-button'>
-             dinner
-        </div>
-        <div id='dinner-sub-menu' 
-             style='display:none;position:absolute;color:black;'
-             onmouseover = 'displayDinnerSubMenu()'
-             onmouseout = 'hideDinnerSubMenu()'>
-            <ul>
-                <li><a href='/update/charcuterie'>Charcuterie</a></li>
-                <li><a href='/update/appetizers'>Appetizers</a></li>
-                <li><a href='/update/entrees'>Entrées</a></li>
-                <li><a href='/update/sides'>Sides</a></li>
-            </ul>
-        </div>
-    </li>
-    
-    <li><a href='/update/specials'>specials</a></li>
-    <li>
-        <ul id='dessert-sub-menu'>dessert
-            <li><a href='/update/desserts'>desserts</a></li>
-            <li><a href='/update/dessertWines'>dessert wines</a></li>
-            <li><a href='/update/dessertCocktails'>dessert cocktails</a></li>
-            <li><a href='/update/japaneseWhisky'>japanese whisky</a></li>
-            <li><a href='/update/singleMaltScotch'>single malt scotch</a></li>
-            <li><a href='/update/brandy'>brandy</a></li>
-            <li><a href='/update/grappa'>grappa</a></li>
+<nav>
+    <ul>
+        <ul id='dinner-drop-menu'>dinner
+            <li class='hide'> 
+                <a href='/update/charcuterie'>
+                    &nbsp;charcuterie&nbsp; 
+                </a>
+            </li>
+            <li class='hide'>
+                <a href='/update/appetizers'>
+                    &nbsp;appetizers&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'>
+                <a href='/update/entrees'>
+                    &nbsp;entrées&nbsp; 
+                </a>
+            </li>
+            <li class='hide'> 
+                <a href='/update/sides'>
+                    &nbsp;sides&nbsp; 
+                </a>        
+            </li>
         </ul>
-    </li>
 
-    <li style='position:relative;'>
-        <div style='color:white'
-             id='wine-button'
-             onmouseover = 'displayWineSubMenu()'
-             onmouseout = 'hideWineSubMenu()'>
-            wine
-        </div>
-        <div id='wine-sub-menu'
-             style='display:none;
-                    position:absolute;
-                    color:black;
-                    right:0;'
-             onmouseover = 'displayWineSubMenu()'
-             onmouseout = 'hideWineSubMenu()'>
-            <ul>
-                <li><a href='/update/btg'>BTG</a></li>
-                <li><a href='/update/cavaChampagne'>Cava & Champagne</a></li>
-                <li><a href='/update/rose'>Rosé</a></li>
-                <li><a href='/update/whiteSpain'>White Spain</a></li>
-                <li><a href='/update/whiteFrance'>White France</a></li>
-                <li><a href='/update/whiteItaly'>White Italy</a></li>
-                <li><a href='/update/whiteGermany'>White Germany</a></li>
-                <li><a href='/update/redSpain'>Red Spain</a></li>
-                <li><a href='/update/redFrance'>Red France</a></li>
-                <li><a href='/update/redItaly'>Red Italy</a></li>
-            </ul>
-        </div>
-    </li>
-    
-    <li style='position:relative;'>
-        <div style='color:white'
-             onmouseover = 'displayDrinksSubMenu()'
-             onmouseout = 'hideDrinksSubMenu()'>
-            drinks
-        </div>
-        <div id='drinks-sub-menu'
-             style='display:none;
-                    position:absolute;
-                    color:black;
-                    right:0;'
-             onmouseover = 'displayDrinksSubMenu()'
-             onmouseout = 'hideDrinksSubMenu()'>
-            <ul>
-                <li><a href='/update/craftDrinks'>Craft Drinks</a></li>
-                <li><a href='/update/sangria'>Sangria</a></li>
-                <li><a href='/update/nonAlcoholic'>Non-Alcoholic</a></li>
-                <li><a href='/update/beer'>Beer</a></li>
-                <li><a href='/update/dessertWines'>Dessert Wines</a></li>
-                <li><a href='/update/dessertCocktails'>Dessert Cocktails</a></li>
-                <li><a href='/update/japaneseWhisky'>Japanese Whisky</a></li>
-                <li><a href='/update/singleMaltScotch'>Single Malt Scotch</a></li>
-                <li><a href='/update/brandy'>Brandy</a></li>
-                <li><a href='/update/grappa'>Grappa</a></li>
-            </ul>
-        </div>
-    </li>
+        <a href='/update/specials'>specials</a>
+        <ul id='dessert-drop-menu'>dessert
+            <li class='hide'>
+                <a href='/update/desserts'>
+                    &nbsp;desserts&nbsp; 
+                </a>
+            </li>
+            <li class='hide'> 
+                <a href='/update/dessertWines'>
+                    &nbsp;dessert&nbsp;<br>
+                    &nbsp;wines&nbsp; 
+                </a>
+            </li>
+            <li class='hide'> 
+                <a href='/update/dessertCocktails'>
+                    &nbsp;dessert&nbsp;<br>
+                    &nbsp;cocktails&nbsp; 
+                </a>
+            </li>
+            <li class='hide'> 
+                <a href='/update/japaneseWhisky'>
+                    &nbsp;japanese&nbsp;<br>
+                    &nbsp;whisky&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/singleMaltScotch'>
+                    &nbsp;single&nbsp;<br>
+                    &nbsp;malt&nbsp;<br>
+                    &nbsp;scotch&nbsp; 
+                </a>
+            </li>
+            <li class='hide'> 
+                <a href='/update/brandy'>
+                    &nbsp;brandy&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/grappa'>
+                    &nbsp;grappa&nbsp; 
+                </a>        
+            </li>
+        </ul>
+        <ul id='wine-drop-menu'>wine
+            <li class='hide'> 
+                <a href='/update/btg'>
+                    &nbsp;btg&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/cavaChampagne'>
+                    &nbsp;cava&nbsp;<br>
+                    &nbsp;champagne&nbsp; 
+                </a>
+            </li>
+            <li class='hide'> 
+                <a href='/update/rose'>
+                    &nbsp;rosé&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/whiteSpain'>
+                    &nbsp;white&nbsp;<br>
+                    &nbsp;spain&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/whiteFrance'>
+                    &nbsp;white&nbsp;<br>
+                    &nbsp;france&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/whiteItaly'>
+                    &nbsp;white&nbsp;<br>
+                    &nbsp;italy&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/whiteGermany'>
+                    &nbsp;white&nbsp;<br>
+                    &nbsp;germany&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/redSpain'>
+                    &nbsp;red&nbsp;<br>
+                    &nbsp;spain&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/redFrance'>
+                    &nbsp;red&nbsp;<br>
+                    &nbsp;france&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/redItaly'>
+                    &nbsp;red&nbsp;<br>
+                    &nbsp;italy&nbsp; 
+                </a>        
+            </li>
+        </ul>
+        <ul id='drinks-drop-menu'>drinks
+            <li class='hide'> 
+                <a href='/update/craftDrinks'>
+                    &nbsp;craft&nbsp;<br>
+                    &nbsp;drinks&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/sangria'>
+                    &nbsp;sangria&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/nonAlcoholic'>
+                    &nbsp;non&nbsp;<br>
+                    &nbsp;alcoholic&nbsp; 
+                </a>        
+            </li>
+            <li class='hide'> 
+                <a href='/update/beer'>
+                    &nbsp;beer&nbsp; 
+                </a>        
+            </li>
+        </ul>
+    </ul>
+
 
     <script>
+        const dinnerDropMenu = document.querySelector('#dinner-drop-menu')
+        const dinnerDropMenuLIs = document.querySelectorAll('#dinner-drop-menu li')
+        const dessertDropMenu = document.querySelector('#dessert-drop-menu')
+        const dessertDropMenuLIs = document.querySelectorAll('#dessert-drop-menu li')
+        const wineDropMenu = document.querySelector('#wine-drop-menu')
+        const wineDropMenuLIs = document.querySelectorAll('#wine-drop-menu li')
+        const drinksDropMenu = document.querySelector('#drinks-drop-menu')
+        const drinksDropMenuLIs = document.querySelectorAll('#drinks-drop-menu li')
 
-        function showDessertSubMenu(){
-            dessertSubMenuLIs.forEach(el=>{
-                el.style.height = '1rem'
-                el.style.visibility = 'visible'
-                el.style.padding = '0.5em 0'
-            })
-            dessertSubMenuAs.forEach(el=>{
-                el.style.height = '1rem'
-                el.style.visibility = 'visible'
-                el.style.padding = '0.5em 0'
-            })
-
+        function showDinnerDropMenu(){
+            dinnerDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
         }
-        function hideDessertSubMenu(){}
-        const dessertSubMenu = document.querySelector('#dessert-sub-menu')
-        const dessertSubMenuLIs = document.querySelectorAll('#dessert-sub-menu li')
-        const dessertSubMenuAs = document.querySelectorAll('#dessert-sub-menu a')
-        dessertSubMenu.addEventListener('mouseover', showDessertSubMenu)
-        dessertSubMenu.addEventListener('mouseout', hideDessertSubMenu)
+        function hideDinnerDropMenu(){
+            dinnerDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
+        }
+        function showDessertDropMenu(){
+            dessertDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
+        }
+        function hideDessertDropMenu(){
+            dessertDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
+        }
+        function showWineDropMenu(){
+            wineDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
+        }
+        function hideWineDropMenu(){
+            wineDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
+        }
+        function showDrinksDropMenu(){
+            drinksDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
+        }
+        function hideDrinksDropMenu(){
+            drinksDropMenuLIs.forEach(el=>el.classList.toggle('hide'))
+        }
+
+        dinnerDropMenu.addEventListener('mouseover', showDinnerDropMenu)
+        dinnerDropMenu.addEventListener('mouseout', hideDinnerDropMenu)
+        dessertDropMenu.addEventListener('mouseover', showDessertDropMenu)
+        dessertDropMenu.addEventListener('mouseout', hideDessertDropMenu)
+        wineDropMenu.addEventListener('mouseover', showWineDropMenu)
+        wineDropMenu.addEventListener('mouseout', hideWineDropMenu)
+        drinksDropMenu.addEventListener('mouseover', showDrinksDropMenu)
+        drinksDropMenu.addEventListener('mouseout', hideDrinksDropMenu)
     </script>
+
 </nav>
