@@ -9,6 +9,7 @@ const {ensureAuth, ensureGuest} = require('../middleware/auth')
 
 
 router.get('/', mainController.getIndex)
+router.get('/index2', mainController.getIndex2)
 router.get('/info', mainController.getInfo)
 router.get('/free-parking', mainController.getFreeParking)
 router.get('/chef-bio', mainController.getChefBio)

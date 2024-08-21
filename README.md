@@ -24,6 +24,7 @@ add a page for NEWSLETTER
 create hyperlinks at each li with mongo id
 to redirect back to the same location on the page
 after move item up/down
+NOT when deleting item!!!
 
 after dinner drinks need update pages made
 

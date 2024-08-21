@@ -2,8 +2,10 @@ const MenuItem = require('../models/MenuItem')
 
 module.exports = {
     getIndex: (req,res)=>{
-        console.log('getIndex running')
         res.render('main/index.ejs', {title:'olea new haven'})
+    },
+    getIndex2: (req,res)=>{
+        res.render('main/index2.ejs', {title:'olea new haven'})
     },
     getInfo: (req,res)=>{
         res.render('main/info.ejs', {title:'olea new haven | info'})
