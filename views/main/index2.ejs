@@ -9,30 +9,45 @@
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="main.css">
     <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
         .pic-large{
             margin:0 auto;
             display: block;
-            margin-top: 40px;
-            margin-bottom: 20px;
             width:940px;
             height:626px;
             object-fit:cover;
+            position:absolute;
+            top:0;
+            left:0;
+            overflow:hidden;
+        }
+        .pic-large-hidden{
+            opacity:0;
+        }
+        .pic-large-current{
+            opacity:1;
         }
         .pic-small{
             width:120px;
             height:80px;
+            display:inline-block;
         }
         #slideshow{
-            max-width:940px;
-            margin-bottom: 20px;
+            width:940px;
+            height:626px;
             position: relative;
         }
         #small-slideshow{
-            width:7781px;
+            width:7550px;
             position:relative;
-            right:3483px;
+            right:3310px;
         }
         #small-slideshow-wrapper{
+            margin-top:20px;
             width:940px;
             overflow:hidden;
             position:relative;
@@ -62,6 +77,7 @@
             bottom:0;
             display: flex;
             align-items: center;
+            z-index:1000;
         }
         #left{
             left:0;
@@ -138,29 +154,17 @@
 
 
                 <script>
-                    document.write(`
-                        <img src="${picsShuffled[0]}" class="pic-large">
-                    `)
+                    document.write(`<img src="${picsShuffled[0]}" class="pic-large pic-large-current" id="pic-large-0">`)
                     for(let i=1;i<picsLength;i++){
-                        document.write(`
-                            <img src="${picsShuffled[i]}" class="pic-large">
-                        `)
+                        document.write(`<img src="${picsShuffled[i]}" class="pic-large pic-large-hidden" id='pic-large-${i}'>`)
                     }
-                    document.write(`
-                        </div><!--#slideshow-->
-                        <div id='small-slideshow-wrapper'>
-                        <div id="small-slideshow">
-                    `)
-                
-                    for(let i=0;i<picsLength;i++)
-                    document.write(`
-                        <img src="${picsShuffled[i]}" class="pic-small">
-                    `)
-                    for(let i=0;i<picsLength;i++)
-                    document.write(`
-                        <img src="${picsShuffled[i]}" class="pic-small">
-                    `)
-
+                    document.write(`</div><div id='small-slideshow-wrapper'><div id="small-slideshow">`)
+                    for(let i=0;i<picsLength;i++){
+                        document.write(`<img src="${picsShuffled[i]}" class="pic-small">`)
+                    }
+                    for(let i=0;i<picsLength;i++){
+                        document.write(`<img src="${picsShuffled[i]}" class="pic-small">`)
+                    }
                 </script>
             </div><!--#small-slideshow-->
             <div id='shader-left'></div><!--#shader-left-->
@@ -173,5 +177,69 @@
 
     </div>
     <script src="main.js"></script>
+    <script>
+        const picLarge0 = document.querySelector(`#pic-large-0`)
+        const picLarge1 = document.querySelector(`#pic-large-1`)
+        const picLarge2 = document.querySelector(`#pic-large-2`)
+        const picLarge3 = document.querySelector(`#pic-large-3`)
+        const picLarge4 = document.querySelector(`#pic-large-4`)
+        const picLarge5 = document.querySelector(`#pic-large-5`)
+        const picLarge6 = document.querySelector(`#pic-large-6`)
+        const picLarge7 = document.querySelector(`#pic-large-7`)
+        const picLarge8 = document.querySelector(`#pic-large-8`)
+        const picLarge9 = document.querySelector(`#pic-large-9`)
+        const picLarge10 = document.querySelector(`#pic-large-10`)
+        const picLarge11 = document.querySelector(`#pic-large-11`)
+        const picLarge12 = document.querySelector(`#pic-large-12`)
+        const picLarge13 = document.querySelector(`#pic-large-13`)
+        const picLarge14 = document.querySelector(`#pic-large-14`)
+        const picLarge15 = document.querySelector(`#pic-large-15`)
+        const picLarge16 = document.querySelector(`#pic-large-16`)
+        const picLarge17 = document.querySelector(`#pic-large-17`)
+        const picLarge18 = document.querySelector(`#pic-large-18`)
+        const picLarge19 = document.querySelector(`#pic-large-19`)
+        const picLarge20 = document.querySelector(`#pic-large-20`)
+        const picLarge21 = document.querySelector(`#pic-large-21`)
+        const picLarge22 = document.querySelector(`#pic-large-22`)
+        const picLarge23 = document.querySelector(`#pic-large-23`)
+        const picLarge24 = document.querySelector(`#pic-large-24`)
+        const picLarge25 = document.querySelector(`#pic-large-25`)
+        const picLarge26 = document.querySelector(`#pic-large-26`)
+        const picLarge27 = document.querySelector(`#pic-large-27`)
+        const picLarge28 = document.querySelector(`#pic-large-28`)
+        const picLarge29 = document.querySelector(`#pic-large-29`)
+        const picLarge30 = document.querySelector(`#pic-large-30`)
+        const rightArrow = document.querySelector('#right')
+        const leftArrow = document.querySelector('#left')
+        leftArrow.addEventListener('click',moveLeft)
+        rightArrow.addEventListener('click',moveRight)
+        let picLargeCurrent = 0
+        const smallSlideshow = document.querySelector('#small-slideshow')
+        function moveRight(){
+            document.querySelector('.pic-large-current').classList.toggle('pic-large-current')
+            if (picLargeCurrent == 30){
+                picLargeCurrent = 0
+            }else{
+                picLargeCurrent++
+            }
+            document.querySelector(`#pic-large-${picLargeCurrent}`).classList.toggle('pic-large-current')
+            const smallPicMove = document.querySelector('.pic-small')
+            const lastSmallPic = document.querySelector('.pic-small:last-child')
+            lastSmallPic.after(smallPicMove)            
+        }
+        function moveLeft(){
+            document.querySelector('.pic-large-current').classList.toggle('pic-large-current')
+            if (picLargeCurrent == 0){
+                picLargeCurrent = 30
+            }else{
+                picLargeCurrent--
+            }
+            document.querySelector(`#pic-large-${picLargeCurrent}`).classList.toggle('pic-large-current')
+            const smallPicMove = document.querySelector('.pic-small:last-child')
+            const firstSmallPic = smallSlideshow.firstChild
+            smallSlideshow.insertBefore(smallPicMove, firstSmallPic)
+        }
+        setInterval(moveRight,5000)
+    </script>
 </body>
 </html>
