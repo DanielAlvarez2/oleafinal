@@ -90,3 +90,4 @@ look for reviews on fb/ig/yelp/google/opentable
 "compliments to the chef" page
 ask your server for your table#
 
+META tags for each page

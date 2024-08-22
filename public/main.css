@@ -26,7 +26,7 @@ h1{
     color: #fff;
     font-weight: 100;
     font-size: 55px;
-    width:236px;
+    width:260px;
     text-align: center;
 }
 a,
@@ -103,8 +103,12 @@ header{
     display: flex;
     align-items: center;
 }
+#nav-socials{
+    display:flex;
+    width:100%;
+    justify-content: space-between;
+}
 #socials{
-    padding-top: 10px;
     margin-left: auto;
     width: 126px;
     align-self: flex-start;
@@ -156,4 +160,15 @@ footer{
     font-family:serif;
     font-size:13px;
     cursor:pointer;
+}
+@media (width<850px){
+    header{
+        flex-direction: column;
+    }
+    #nav-socials{
+        padding-left: 5vw;
+    }
+}
+@media (width<700px){
+    
 }

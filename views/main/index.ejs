@@ -18,7 +18,7 @@
             margin:0 auto;
             display: block;
             width:940px;
-            height:626px;
+            aspect-ratio:16/10;
             object-fit:cover;
             position:absolute;
             top:0;
@@ -39,8 +39,9 @@
         }
         #slideshow{
             width:940px;
-            height:626px;
+            aspect-ratio:16/10;
             position: relative;
+            margin:0 auto;
         }
         #small-slideshow{
             width:7550px;
@@ -52,6 +53,8 @@
             width:940px;
             overflow:hidden;
             position:relative;
+            margin-left:auto;
+            margin-right:auto;
         }
         #shader-left,
         #shader-right{
@@ -97,6 +100,13 @@
         #right-arrow:hover{
             background: #44444444;
             cursor: default;
+        }
+        @media (width<1000px){
+            .pic-large,
+            #slideshow,
+            #small-slideshow-wrapper{
+                width:90vw;
+            }
         }
     </style>
 
