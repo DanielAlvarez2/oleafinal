@@ -161,6 +161,26 @@ footer{
     font-size:13px;
     cursor:pointer;
 }
+#nav-mobile{
+    display:none;
+    width:100%;
+    text-align: center;
+    padding-top: 20px;
+}
+#nav-mobile hr{
+    border-bottom:transparent;
+    border-top:1px solid #5c5c5c22;
+}
+.mobile-button{
+    color:white;
+    padding:10px 0;
+}
+.mobile-sub-menu{
+    background:#1e1e1e;
+}
+#mobile-info-menu{
+    display:none;
+}
 @media (width<850px){
     header{
         flex-direction: column;
@@ -170,5 +190,16 @@ footer{
     }
 }
 @media (width<700px){
-    
+    #nav-socials{
+        display:none;
+    }
+    #nav-mobile{
+        display:block;
+    }
+}
+.fa-bars{
+    color:white;
+    position:absolute;
+    left:15px;
+    top:15px;
 }

@@ -1,4 +1,51 @@
         <header>
+
+            <div id='nav-mobile'>
+                <i class="fa-solid fa-bars"></i>
+
+                <hr>
+                <div class='mobile-button'>home</div>
+                <hr>
+                <div class='mobile-button' id='plus-info'>+ info</div>
+                <hr>
+
+                <div id='mobile-info-menu'>
+                    <div class='mobile-button' id='minus-info'>- info</div>
+                    <hr>
+                    <div class='mobile-button mobile-sub-menu'>info</div>
+                    <hr>
+                    <div class='mobile-button mobile-sub-menu'>free parking</div>
+                    <hr>
+                    <div class='mobile-button mobile-sub-menu'>chef bio</div>
+                    <hr>
+                    <div class='mobile-button mobile-sub-menu'>private parties</div>
+                    <hr>
+                </div>
+
+                <div class='mobile-button'>+ menus</div>
+                <hr>
+                <div class='mobile-button'>- menus</div>
+                <hr>
+                <div class='mobile-button mobile-sub-menu'>dinner</div>
+                <hr>
+                <div class='mobile-button mobile-sub-menu'>specials</div>
+                <hr>
+                <div class='mobile-button mobile-sub-menu'>dessert</div>
+                <hr>
+                <div class='mobile-button'>press</div>
+                <hr>
+                <div class='mobile-button'>gift cards</div>
+                <hr>
+                <div class='mobile-button'>newsletter</div>
+                <hr>
+                <div class='mobile-button'>reservations</div>
+
+
+
+
+
+            </div><!--#nav-mobile-->
+
             <h1><a href='/'>olea</a></h1>
 
             <div id='nav-socials'>
@@ -46,5 +93,19 @@
                     </a>
                 </div>    
             </div><!--#nav-socials-->
+
+        <script>
+            const plusInfo = document.querySelector('#plus-info')
+            const minusInfo = document.querySelector('#minus-info')
+            const mobileInfoMenu = document.querySelector('#mobile-info-menu')
+            plusInfo.addEventListener('click',()=>{
+                mobileInfoMenu.style.display = 'block'
+                plusInfo.style.display = 'none'
+            })
+            minusInfo.addEventListener('click',()=>{
+                mobileInfoMenu.style.display = 'none'
+                plusInfo.style.display = 'block'
+            })
+        </script>
         </header>
         <hr>
