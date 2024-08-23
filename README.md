@@ -91,3 +91,12 @@ look for reviews on fb/ig/yelp/google/opentable
 ask your server for your table#
 
 META tags for each page
+
+example: new vegetarian entree - 
+hummus: chick peas, cumin, lemon juice, garlic, pepper, tahini, salt
+where would servers "save" that info???
+in their notebooks???
+
+add feature to delete pic of an existing menu item
+and replace it with blank/no image
+

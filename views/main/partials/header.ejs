@@ -1,10 +1,11 @@
         <header>
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-solid fa-rectangle-xmark hide-mobile-nav"></i>
 
-            <div id='nav-mobile'>
-                <i class="fa-solid fa-bars"></i>
+            <div id='nav-mobile' class='hide-mobile-nav'>
 
                 <hr>
-                <div class='mobile-button'>home</div>
+                <div class='mobile-button'><a href='/'>home</a></div>
                 <hr>
                 <div class='mobile-button' id='plus-info'>+ info</div>
                 <hr>
@@ -12,38 +13,40 @@
                 <div id='mobile-info-menu'>
                     <div class='mobile-button' id='minus-info'>- info</div>
                     <hr>
-                    <div class='mobile-button mobile-sub-menu'>info</div>
+                    <div class='mobile-button mobile-sub-menu'><a href='/info'>info</a></div>
                     <hr>
-                    <div class='mobile-button mobile-sub-menu'>free parking</div>
+                    <div class='mobile-button mobile-sub-menu'><a href='/freeParking'>free parking</a></div>
                     <hr>
-                    <div class='mobile-button mobile-sub-menu'>chef bio</div>
+                    <div class='mobile-button mobile-sub-menu'><a href='/chefBio'>chef bio</a></div>
                     <hr>
-                    <div class='mobile-button mobile-sub-menu'>private parties</div>
+                    <div class='mobile-button mobile-sub-menu'><a href='/privateParties'>private parties</a></div>
                     <hr>
                 </div>
 
-                <div class='mobile-button'>+ menus</div>
+                <div class='mobile-button' id='plus-menus'>+ menus</div>
                 <hr>
-                <div class='mobile-button'>- menus</div>
-                <hr>
-                <div class='mobile-button mobile-sub-menu'>dinner</div>
-                <hr>
-                <div class='mobile-button mobile-sub-menu'>specials</div>
-                <hr>
-                <div class='mobile-button mobile-sub-menu'>dessert</div>
-                <hr>
-                <div class='mobile-button'>press</div>
-                <hr>
-                <div class='mobile-button'>gift cards</div>
-                <hr>
-                <div class='mobile-button'>newsletter</div>
-                <hr>
-                <div class='mobile-button'>reservations</div>
 
-
-
-
-
+                <div id='mobile-menus-menu'>
+                    <div class='mobile-button' id='minus-menus'>- menus</div>
+                    <hr>
+                    <div class='mobile-button mobile-sub-menu'><a href='/dinner'>dinner</a></div>
+                    <hr>
+                    <div class='mobile-button mobile-sub-menu'><a href='/specials'>specials</a></div>
+                    <hr>
+                    <div class='mobile-button mobile-sub-menu'><a href='/dessert'>dessert</a></div>
+                    <hr>
+                </div>
+                <div class='mobile-button'><a href='/press'>press</a></div>
+                <hr>
+                <div class='mobile-button'><a href='/giftCards'>gift cards</a></div>
+                <hr>
+                <div class='mobile-button'><a href='/newsletter'>newsletter</a></div>
+                <hr>
+                <div class='mobile-button'>
+                    <a target='_blank' href='https://www.opentable.com/restref/client/?rid=151186&restref=151186&corrid=151d97f9-d94e-4350-8850-e26422c98169'>
+                        reservations
+                    </a>    
+                </div>
             </div><!--#nav-mobile-->
 
             <h1><a href='/'>olea</a></h1>
@@ -56,9 +59,9 @@
                             <span id="info-wrapper">info
                             <ul id="info-sub-menu">
                                 <li><a href='/info'>info</a></li>
-                                <li><a href='/free-parking'>free parking</a></li>
-                                <li><a href='/chef-bio'>chef bio</a></li>
-                                <li><a href='/private-parties'>private parties</a></li>
+                                <li><a href='/freeParking'>free parking</a></li>
+                                <li><a href='/chefBio'>chef bio</a></li>
+                                <li><a href='/privateParties'>private parties</a></li>
                             </ul>
                             </span>
                         </li>
@@ -105,6 +108,30 @@
             minusInfo.addEventListener('click',()=>{
                 mobileInfoMenu.style.display = 'none'
                 plusInfo.style.display = 'block'
+            })
+            const plusMenus = document.querySelector('#plus-menus')
+            const minusMenus = document.querySelector('#minus-menus')
+            const mobileMenusMenu = document.querySelector('#mobile-menus-menu')
+            plusMenus.addEventListener('click',()=>{
+                mobileMenusMenu.style.display = 'block'
+                plusMenus.style.display = 'none'
+            })
+            minusMenus.addEventListener('click',()=>{
+                mobileMenusMenu.style.display = 'none'
+                plusMenus.style.display = 'block'
+            })
+            const navMobile = document.querySelector('#nav-mobile')
+            const hamburgerMenu = document.querySelector('.fa-bars')
+            const closeMenu = document.querySelector('.fa-rectangle-xmark')
+            hamburgerMenu.addEventListener('click',()=>{
+                navMobile.classList.toggle('hide-mobile-nav')
+                closeMenu.classList.toggle('hide-mobile-nav')
+                hamburgerMenu.classList.toggle('hide-mobile-nav')
+                })
+            closeMenu.addEventListener('click',()=>{
+                navMobile.classList.toggle('hide-mobile-nav')
+                closeMenu.classList.toggle('hide-mobile-nav')
+                hamburgerMenu.classList.toggle('hide-mobile-nav')
             })
         </script>
         </header>
