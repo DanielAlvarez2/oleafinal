@@ -100,3 +100,20 @@ in their notebooks???
 add feature to delete pic of an existing menu item
 and replace it with blank/no image
 
+SENDGRID:
+all MANAGERS get email notifications of
+-new staff account signups
+-newsletter
+demonstrate that STAFF will not receive these
+i.e. do not approve application for 2 owners
+leave them as STAFF roles
+and send a newsletter/signup request
+
+print on menus:
+"for allergies go to oleanewhaven.com/allergies"
+
+sidework checklist including:
+"check bathroom air fresheners blinking red"
+
+a{width:100%;height:100%;}
+<a href=''></a>
