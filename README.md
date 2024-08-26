@@ -119,3 +119,5 @@ a{width:100%;height:100%;}
 <a href=''></a>
 
 print menu without prices
+
+add modal with a loading spinner for any database actions
