@@ -217,7 +217,8 @@ footer{
     }
 }
 @media (width>=700px){
-    .fa-bars{
+    .fa-bars,
+    .fa-rectangle-xmark{
         display:none;
     }
 }
