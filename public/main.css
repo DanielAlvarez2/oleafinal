@@ -191,6 +191,15 @@ footer{
 .fa-rectangle-xmark{
     font-size:1.25rem;
 }
+.hide-mobile-nav{
+    display:none;
+}
+.shrink{
+    height:0;
+    width:0;
+    overflow: hidden;
+}
+
 
 @media (width<1000px){
     footer{
@@ -198,13 +207,18 @@ footer{
         padding-right:5vw;
     }
 }
-@media (width<850px){
+@media (width<875px){
     header{
         flex-direction: column;
     }
     #nav-socials,
     footer{
         padding-left: 5vw;
+    }
+}
+@media (width>=700px){
+    .fa-bars{
+        display:none;
     }
 }
 @media (width<700px){
@@ -214,12 +228,12 @@ footer{
     .fa-bars{
         display:block;
     }
+    #nav-mobile{
+        display:block;
+    }
 }
 #nav-mobile a{
     display:inline-block;
     width:100%;
     height:100%;
-}
-.hide-mobile-nav{
-    display:none;
 }
