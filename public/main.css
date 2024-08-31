@@ -187,6 +187,7 @@ footer{
     position:absolute;
     left:15px;
     top:15px;
+    cursor:pointer;
 }
 .fa-rectangle-xmark{
     font-size:1.25rem;
