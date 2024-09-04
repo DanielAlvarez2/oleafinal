@@ -11,12 +11,31 @@
     <style>
         #info-page-flexbox{
             display:flex;
+            gap:75px;
         }
         #left{
-            max-width:53ch;
+            max-width:535px;
         }
         h2{
             margin: 70px 0 20px;
+        }
+        @media(width<1000px){
+            #info-page-flexbox{
+                padding-left:5vw;
+                padding-right:5vw;
+            }
+        }
+        @media(width<900px){
+            #info-page-flexbox{
+                flex-direction:column;
+            }
+            #left,img{
+                max-width:90vw;
+            }
+            #opentable{
+                width:300px;
+                margin:0 auto;
+            }
         }
     </style>
 </head>
@@ -31,7 +50,10 @@
 
     <img src='/pics/chef-tv.jpg' width='535px'><br><br>
 
-    Manuel Romero, Executive Chef at Olea<br><br>
+    <span class='bold-text'>
+    Manuel Romero, Executive Chef at Olea
+    </span>
+    <br><br>
 
     Born in Spain, Chef Manuel Romero was raised in a family that loved 
     cooking traditional and tasty food. When he was a child, his family 

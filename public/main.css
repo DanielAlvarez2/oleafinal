@@ -33,6 +33,12 @@ h1{
     width:260px;
     text-align: center;
 }
+.bold-text{
+    color:white;
+    letter-spacing:1px;
+    font-family:futura medium;
+    font-weight:900;
+}
 a,
 a:link,
 a:visited,
