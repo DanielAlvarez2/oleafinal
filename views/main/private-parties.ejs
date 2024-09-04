@@ -9,14 +9,35 @@
     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/main.css">
     <style>
-        #events{
-            max-width:53ch;
+        #left{
+            max-width:535px;
         }
         h2{
             margin: 70px 0 20px;
         }
         #events-page-flexbox{
             display:flex;
+            gap:75px;
+        }
+        @media(width<1000px){
+            #events-page-flexbox{
+                padding-left:5vw;
+                padding-right:5vw;
+            }
+        }
+        @media(width<875px){
+            #events-page-flexbox{
+                flex-direction:column;
+            }
+            #opentable{
+                width:300px;
+                margin:0 auto;
+            }
+        }
+        @media(width<600px){
+            #events,img,#opentable{
+                max-width:90vw;
+            }
         }
     </style>
 </head>
@@ -32,16 +53,18 @@
 
 
         <div id='events'>
-            <img src='/pics/private-parties.jpg' width='535px'><br><br>
+            <img src='/pics/private-parties.jpg' width='535px'>
             
-            <h2>private parties</h2>
+            <h2 style='margin-top:15px;'>private parties</h2>
             
+            <span class='bold-text'>
             Let Us Make Your Events Special, and Delicious<br><br>
+            </span>
 
             Plan a festive and delicious gathering at Olea, where guests will 
             enjoy Chef Manuel Romero's innovative interpretation of Spanish 
             and Mediterranean cuisine, <a href='https://www.nytimes.com/2015/03/22/nyregion/curtain-rises-on-a-spanish-second-act.html?_r=1' target='_blank'>praised as "creative, beautifully 
-            prepared" by The New York Times</a> and <a target='_blank' href=''>given an Extraordinary 
+            prepared" by The New York Times</a> and <a target='_blank' href='http://www.connecticutmag.com/Blog/The-Connecticut-Table/January-2015/Olea-in-New-Haven-Delivers-Extraordinary-Spanish-Dining-Our-Review/'>given an Extraordinary 
             rating from Connecticut Magazine.</a> <span style="color:red">broken link</span><br><br>
             
             A special menu will be designed for each gathering, or guests may build an 
