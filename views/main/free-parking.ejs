@@ -11,12 +11,30 @@
     <style>
         #info-page-flexbox{
             display:flex;
+            gap:75px;
         }
         #left{
             max-width:53ch;
         }
         h2{
             margin: 70px 0 20px;
+        }
+        #opentable{
+            width:300px;
+        }
+        @media(width<1000px){
+            #info-page-flexbox{
+                padding-left:5vw;
+                padding-right:5vw;
+            }
+        }
+        @media(width<700px){
+            #info-page-flexbox{
+                flex-direction:column;
+            }
+            #opentable{
+                margin:0 auto;
+            }
         }
     </style>
 </head>
@@ -29,15 +47,15 @@
 <div id='info-page-flexbox'>
     <div id="left">
 
-        <h2>free parking</h2>
+        <h2 style='margin-top:0;'>free parking</h2>
 
-        Temple or Crown Street Garage<br>
+        <span style='color:white;letter-spacing:1px;font-family:futura medium;font-weight:900;'>Temple or Crown Street Garage</span><br>
         Park your car in Temple or Crown Street Garage, enjoy a meal (with a check 
         of $50 or more), and park for FREE until 3am. For more information, visit the 
         <a target='_blank' href='https://parknewhaven.com/deal/dine-downtown-park-free/'>Park New Haven website</a>. Ask your host about validation when arriving at 
         Olea. There is no validation for private events. <br><br>
 
-        exceptions: no validation for restaurant week or Yale commencement days
+        <b style='letter-spacing:1px;color:white;font-family:futura medium;font-weight:900;'>exceptions:</b> no validation for restaurant week or Yale commencement days
 
     </div>
 

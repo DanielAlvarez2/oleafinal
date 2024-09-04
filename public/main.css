@@ -7,6 +7,10 @@
     font-family: "futura light";
     src: url("./FuturaLight.otf") format("opentype");
 }
+@font-face{
+    font-family: "futura medium";
+    src: url("./FuturaMedium.otf") format("opentype");
+}
 body{
     background:#262626;
     color: #bfbfbf;

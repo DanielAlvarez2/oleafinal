@@ -24,9 +24,11 @@
             flex-direction:column;
             gap:75px;
         }
-        iframe{
-            max-width:30vw;
+        iframe,
+        #opentable{
+            max-width:300px;
         }
+        
         #overlay{
             filter:grayscale(100%)
         }
@@ -43,8 +45,8 @@
             #right{
                 text-align:center;
             }
-            iframe{
-                max-width:90vw;
+            #opentable{
+                margin:0 auto;
             }
         }
     </style>
@@ -113,9 +115,8 @@
         </div>
 
         <div id='overlay'>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.064691209416!2d-72.93300202188239!3d41.30745627131023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7d9b33052c3ff%3A0x8cca45d8f217c371!2s39%20High%20St%2C%20New%20Haven%2C%20CT%2006510!5e0!3m2!1sen!2sus!4v1725380378931!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2997.0645059818107!2d-72.93300202204601!3d41.30746030094653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e7d9b33052c3ff%3A0x8cca45d8f217c371!2s39%20High%20St%2C%20New%20Haven%2C%20CT%2006510!5e0!3m2!1sen!2sus!4v1725458530101!5m2!1sen!2sus" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        </div>
         </div>
-    </div>
 </div>
             <%- include('./partials/footer.ejs') %>
         </main>
