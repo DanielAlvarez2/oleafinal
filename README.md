@@ -121,3 +121,6 @@ a{width:100%;height:100%;}
 print menu without prices
 
 add modal with a loading spinner for any database actions
+
+print on menu: "scan QR code for digital menu/pics/allergies
+"

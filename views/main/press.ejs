@@ -11,6 +11,7 @@
     <style>
         #info-page-flexbox{
             display:flex;
+            gap:75px;
         }
         #left{
             max-width:53ch;
@@ -62,6 +63,17 @@
             text-align:center;
             position:absolute;
         }
+        @media(width<1000px){
+            #info-page-flexbox{
+                padding-left:5vw;
+                padding-right:5vw;
+            }
+        }
+        @media(width<700px){
+            #info-page-flexbox{
+                flex-direction:column;
+            }
+        }
     </style>
 </head>
 <body>
@@ -73,7 +85,7 @@
 <div id='info-page-flexbox'>
     <div id="left">
 
-    <h2>press</h2>
+    <h2 style='margin-top:0;'>press</h2>
 
     <a target='_blank' href='https://www.ctinsider.com/projects/2023/connecticut-magazine-most-romantic-restaurants/'>
     The 25 Most Romantic Restaurants in Connecticut 
