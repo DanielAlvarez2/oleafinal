@@ -11,6 +11,7 @@
     <style>
         #info-page-flexbox{
             display:flex;
+            gap:20px;
         }
         #left{
             max-width:53ch;
@@ -29,8 +30,34 @@
             font-weight:900;
         }
         img{
-            max-width:650px;
+            max-width:615px;
             margin-top:100px;
+        }
+        option{
+            color:black;
+        }
+        input{
+            height:40px;
+        }
+        @media(width<1000px){
+            #info-page-flexbox{
+                padding-right:5vw;
+                padding-left:5vw;
+            }
+        }
+        @media(width<850px){
+            #info-page-flexbox{
+                flex-direction:column;
+            }
+            #opentable{
+                width:300px;
+                margin:0 auto;
+            }
+        }
+        @media(width<700px){
+            img{
+                max-width:90vw;
+            }
         }
     </style>
 </head>
@@ -43,22 +70,23 @@
 <div id='info-page-flexbox'>
     <div id="left">
 
-        <h2>gift cards</h2>
+        <h2 style='margin-top:0;'>gift cards</h2>
 
-        Gift cards are available now! Please fill in the information and click the button below 
+        <span class='bold-text'>Gift cards are available now!</span> Please fill in the information and click the button below 
         to purchase one through PayPal (an account is not required). If you would like an amount 
         not listed below, or if you would prefer to order a gift card by phone, please give us a call 
         at 203.780.8925.<br><br>
 
+        <span class='bold-text'>
         Gift cards will be mailed via standard mail within 48 hours, except for 
         orders received on Sunday which will be processed on Tuesday.<br><br>
 
-        At this time, we do not offer printable or electronic gift cards. Please provide 
+        At this time, we do not offer printable or electronic gift cards.</span> Please provide 
         your telephone number so we have a way to contact you in case of any issues. Thank you!<br><br>
 
         <form>
             amount<br>
-            <select>
+            <select style='height:30px;font-size:20px;color:#bbb;'>
                 <option>$50</option>
                 <option>$75</option>
                 <option>$100</option>
