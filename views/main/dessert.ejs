@@ -11,9 +11,10 @@
     <style>
         #info-page-flexbox{
             display:flex;
+            gap:75px;
         }
         #left{
-            max-width:53ch;
+            max-width:43ch;
         }
         h2{
             margin: 70px 0 20px;
@@ -22,6 +23,26 @@
             display:flex;
             justify-content:space-between;
             margin-top:30px;
+        }
+        @media(width<1000px){
+            #info-page-flexbox{
+                padding-left:5vw;
+                padding-right:5vw;
+            }
+        }
+        @media(width<700px){
+            #info-page-flexbox{
+                flex-direction:column;
+            }
+            #opentable{
+                width:300px;
+                margin:0 auto;
+            }
+        }
+        @media(width<350px){
+            #opentable{
+                max-width:90vw;
+            }
         }
     </style>
 </head>
@@ -35,17 +56,32 @@
     <div id="left">
 
 
-        DESSERT MENU<br><br>
+        <span style='color:white;
+                     font-family:futura medium;
+                     font-weight:900;
+                     font-size:18px;
+                     letter-spacing:2px;'>
+        DESSERT MENU
+        </span>
+        <br><br>
 
         <% if(desserts.length > 0){ %>
             <ul>
                 <% for(let i=0;i<desserts.length;i++){ %>
-                    <span id='name-price'><li><%= desserts[i].name %></li>
-                    <li><%= desserts[i].price %></li></span>
-                    <li><%= desserts[i].description %></li>
+                    <span id='name-price'>
+                        <li class='bold-text'><%= desserts[i].name %></li>
+                        <li><%= desserts[i].price %></li>
+                    </span>
+                    <li style='width:calc(100% - 5ch)'><%= desserts[i].description %></li>
                 <%}%>
             </ul>
         <% } %>
+
+        <div style='margin-top:150px;'>
+        we do our best to keep this information accurate and up to date, 
+        but because we make frequent adjustments, based on season and 
+        availability, our menus are subject to change
+        </div>
 
 
 
