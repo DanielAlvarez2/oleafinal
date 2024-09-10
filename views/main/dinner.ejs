@@ -11,9 +11,10 @@
     <style>
         #info-page-flexbox{
             display:flex;
+            gap:75px;
         }
         #left{
-            max-width:53ch;
+            max-width:43ch;
         }
         h2{
             margin: 70px 0 20px;
@@ -40,7 +41,7 @@
         closed Sunday and Monday<br><br>
 
         takeout and curbside pickup<br>
-        Our dinner mennu below is available for takeout and curbside 
+        Our dinner menu below is available for takeout and curbside 
         pickup. Please preorder if possible by phone (203.780.8925). 
         During special days we can only take a limited number of taleout 
         orders due to volume.<br><br>
@@ -56,12 +57,18 @@
 
         <span style='color:white;
                      font-family:futura medium;
-                     font-weight:900;'>
+                     font-weight:900;
+                     font-size:18px;
+                     letter-spacing:2px;'>
         DINNER MENU
         </span>
         <br><br>
 
-        appetizers<br><br>
+        <div style='text-align:center;
+                    font-size:25px;'>
+        appetizers
+        </div>
+        <br><br>
         <ul>
             <% for(let i=0;i<charcuterie.length;i++){ %>
                 <span id='name-price'><li><%= charcuterie[i].name %></li>
