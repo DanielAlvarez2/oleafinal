@@ -24,6 +24,26 @@
             justify-content:space-between;
             margin-top:30px;
         }
+        @media(width<1000px){
+            #info-page-flexbox{
+                padding-left:5vw;
+                padding-right:5vw;
+            }
+        }
+        @media(width<700px){
+            #info-page-flexbox{
+                flex-direction:column;
+            }
+            #opentable{
+                width:300px;
+                margin:0 auto;
+            }
+        }
+        @media(width<350px){
+            #opentable{
+                max-width:90vw;
+            }
+        }
     </style>
 </head>
 <body>
@@ -35,20 +55,20 @@
 <div id='info-page-flexbox'>
     <div id="left">
 
-        dinner hours<br>
+        <span class='bold-text'>dinner hours</span><br>
         Tuesday - Saturday, 5 - 10pm<br>
         last reservation is at 8:30pm<br>
         closed Sunday and Monday<br><br>
 
-        takeout and curbside pickup<br>
+        <span class='bold-text'>takeout and curbside pickup</span><br>
         Our dinner menu below is available for takeout and curbside 
         pickup. Please preorder if possible by phone (203.780.8925). 
         During special days we can only take a limited number of taleout 
         orders due to volume.<br><br>
 
-        CHEF'S TASTING MENU $98 / person<br>
-        no substitutions or modifications<br>
-        A minimum of 24 hours notice is required<br>
+        <span class='bold-text'>CHEF'S TASTING MENU</span> $98 / person<br>
+        <span class='bold-text'>no substitutions or modifications<br>
+        A minimum of 24 hours notice is required</span><br>
         six courses / reservations and full table participation required<br>
         optional wine pairing available $52 / person<br>
         available Tuesday through Thursday<br>
@@ -68,41 +88,63 @@
                     font-size:25px;'>
         appetizers
         </div>
-        <br><br>
+        <br>
         <ul>
             <% for(let i=0;i<charcuterie.length;i++){ %>
-                <span id='name-price'><li><%= charcuterie[i].name %></li>
-                <li><%= charcuterie[i].price %></li></span>
-                <li><%= charcuterie[i].description %></li>
+                <span id='name-price'>
+                    <li class='bold-text'><%= charcuterie[i].name %></li>
+                    <li><%= charcuterie[i].price %></li>
+                </span>
+                <li style='width:calc(100% - 5ch)'><%= charcuterie[i].description %></li>
             <%}%>
 
             <% for(let i=0;i<appetizers.length;i++){ %>
-                <span id='name-price'><li><%= appetizers[i].name %></li>
-                <li><%= appetizers[i].price %></li></span>
-                <li><%= appetizers[i].description %></li>
+                <span id='name-price'>
+                    <li class='bold-text'><%= appetizers[i].name %></li>
+                    <li><%= appetizers[i].price %></li>
+                </span>
+                <li style='width:calc(100% - 5ch)'><%= appetizers[i].description %></li>
             <%}%>
 
         </ul>
 
-        <br><br>
-        entrées<br><br>
+        <div style='text-align:center;
+                    font-size:25px;
+                    margin-top:150px;'>
+        main courses
+        </div>
+        <br>
         <ul>
             <% for(let i=0;i<entrees.length;i++){ %>
-                <span id='name-price'><li><%= entrees[i].name %></li>
-                <li><%= entrees[i].price %></li></span>
-                <li><%= entrees[i].description %></li>
+                <span id='name-price'>
+                    <li class='bold-text'><%= entrees[i].name %></li>
+                    <li><%= entrees[i].price %></li>
+                </span>
+                <li style='width:calc(100% - 5ch)'><%= entrees[i].description %></li>
             <%}%>
         </ul>
 
-        <br><br>
-        sides<br><br>
+        <div style='text-align:center;
+                    font-size:25px;
+                    margin-top:150px;'>
+        sides
+        </div>
+        <br>
         <ul>
             <% for(let i=0;i<sides.length;i++){ %>
-                <span id='name-price'><li><%= sides[i].name %></li>
-                <li><%= sides[i].price %></li></span>
-                <li><%= sides[i].description %></li>
+                <span id='name-price'>
+                    <li class='bold-text'><%= sides[i].name %></li>
+                    <li><%= sides[i].price %></li>
+                </span>
+                <li style='width:calc(100% - 5ch)'><%= sides[i].description %></li>
             <%}%>
         </ul>
+
+        <div style='margin-top:150px;'>
+        we do our best to keep this information accurate and up to date, 
+        but because we make frequent adjustments, based on season and 
+        availability, our menus are subject to change
+        </div>
 
     </div>
 
