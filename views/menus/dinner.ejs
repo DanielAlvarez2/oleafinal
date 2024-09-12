@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name='description' 
+          content='Olea Restaurant, New Haven, Connecticut, 
+          Current Dinner Menu, Charcuterie, Appetizers, 
+          Entrées, Sides'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/style.css'>
+    <script src="https://kit.fontawesome.com/21ef82ed30.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div id="wrapper">
+<main>
+
+
+<nav id='nav-top' class='no-print'>
+    <a class='active-page'>dinner</a>
+    <a href='/menus/specials'>specials</a>
+    <a href='/menus/dessert'>dessert</a>
+    <a href='/menus/wine'>wine</a>
+    <a href='/menus/drinks'>drinks</a>
+</nav>
+
+<div id='dinner-menu' class='menu'>
+
+
+
+    <h1>olea</h1>
+    <hr>
+    <div id="top">
+        <div id='top-left'>
+            <ul>
+                <% for (let i=0;i<charcuterie.length;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(charcuterie[i]) %>)'>
+                        <span class='name'><%= charcuterie[i].name %></span><br>
+                        <span class='description'><%- charcuterie[i].description %></span>
+                        &nbsp; 
+                        <span class='price'><%= charcuterie[i].price %></span><br>
+                        <% if(charcuterie[i].allergies){ %>
+                            <span class='allergies no-print'><%- charcuterie[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+
+            <ul>
+                <% for (let i=0;i<appetizers.length;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(appetizers[i]) %>)'>
+                        <span class='name'><%= appetizers[i].name %></span><br>
+                        <span class='description'><%- appetizers[i].description %></span>
+                        &nbsp;
+                        <span class='price'><%= appetizers[i].price %></span><br>
+                        <% if(appetizers[i].allergies){ %>
+                            <span class='allergies no-print'><%- appetizers[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+        </div><!--#top-left-->
+
+        <div id='top-right'>
+            <ul>
+                <% for (let i=0;i<entrees.length;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(entrees[i]) %>)'>
+                        <span class='name'><%= entrees[i].name %></span><br>
+                        <span class='description'><%- entrees[i].description %></span>
+                        &nbsp;
+                        <span class='price'><%= entrees[i].price %></span><br>
+                        <% if(entrees[i].allergies){ %>
+                            <span class='allergies no-print'><%- entrees[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+                    <li>
+                        <span class='name'>chef's tasting menu</span> <span class='price'>98</span> / person<br>
+                        six courses<br>
+                        no modifications<br>
+                        full table participation<br>
+                        reservation required<br>
+                        tuesday through thursday<br>
+                        <span style='font-style:italic;'>optional wine pairing <span class='price'>52</span> / person</span>
+                    </li>
+            </ul>
+        
+        </div><!--#top-right-->
+    </div><!--#top-->
+
+    <h2>sides</h2>
+    <div id='bottom'>
+        <div id='bottom-left'>
+            <ul>
+                <% for (let i=0;i<2;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(sides[i]) %>)'>
+                        <span class='name'><%= sides[i].name %></span><br>
+                        <span class='description'><%= sides[i].description %></span>
+                        &nbsp;
+                        <span class='price'><%= sides[i].price %></span><br>
+                        <% if(sides[i].allergies){ %>
+                            <span class='allergies no-print'><%- sides[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+        </div><!--#bottom-left-->
+        
+        <div id='bottom-right'>
+            <ul>
+                <% for (let i=2;i<sides.length;i++){ %>
+                    <li class='menu-item'
+                        onclick='showModal(<%= JSON.stringify(sides[i]) %>)'>
+                        <span class='name'><%= sides[i].name %></span><br>
+                        <span class='description'><%= sides[i].description %></span>
+                        &nbsp;
+                        <span class='price'><%= sides[i].price %></span><br>
+                        <% if(sides[i].allergies){ %>
+                            <span class='allergies no-print'><%- sides[i].allergies %></span><br>
+                        <% } %>
+                    </li>
+                <%}%>
+            </ul>
+        
+        </div><!--#bottom-right-->
+    </div><!--#bottom-->
+
+    <div id='legal'>
+        <div id='legal-left'>manuel romero, chef</div>
+        <div id='legal-right'>
+            consumer advisory: consumption of undercooked meat, poultry, eggs, 
+            or seafood may increase the risk of food-borne illnesses<br>
+            please alert your server if you have special dietary requirements<br>
+            all menu items are subject to change according to seasonality
+            and availability
+        </div>
+    </div><!--#legal-->
+
+
+</div><!--#dinner-menu-->
+
+
+    <div id='modal'>
+        <i class='fa-solid fa-square-xmark x'
+           id='close-modal-button'
+           onclick='closeModal()'></i>
+        <div id='modal-item'>
+            <figure>
+                <img src='' id='modal-image'>
+                <figcaption>
+                    <div id='modal-text'>
+                        <span id='modal-name'></span><br>
+                        <span id='modal-description'></span>&nbsp;
+                        <span id='modal-price'></span><br>
+                        <span id='modal-allergies'></span>
+                    </div>
+                </figcaption>
+            </figure>
+        </div><!--#modal-item-->
+    </div><!--#modal-->
+</main>
+
+<script>
+    const modal = document.querySelector('#modal')
+    const modalImage = document.querySelector('#modal-image')
+    const modalName = document.querySelector('#modal-name')
+    const modalDescription = document.querySelector('#modal-description')
+    const modalPrice = document.querySelector('#modal-price')
+    const modalAllergies = document.querySelector('#modal-allergies')
+
+    function showModal(item){
+        if (!item.image) return
+        console.log(item)
+        modalImage.src= item.image
+        modalImage.alt = item.name
+        modalName.innerHTML = item.name
+        modalDescription.innerHTML = item.description
+        modalPrice.innerHTML = item.price
+        modalAllergies.innerHTML = item.allergies
+        modal.style.display = 'grid'
+    }
+    function closeModal(){
+        modal.style.display = 'none'
+    }
+</script>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

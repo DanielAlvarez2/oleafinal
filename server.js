@@ -20,6 +20,7 @@ const formatRoutes = require('./routes/format')
 const printRoutes = require('./routes/print')
 const authRoutes = require('./routes/auth')
 const dashboardRoutes = require('./routes/dashboard')
+const menusRoutes = require('./routes/menus')
 app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}))
@@ -43,6 +44,7 @@ app.use('/update', updateRoutes)
 app.use('/format', formatRoutes)
 app.use('/print', printRoutes)
 app.use('/dashboard', dashboardRoutes)
+app.use('/menus', menusRoutes)
 
 
 app.use(function(req,res){
