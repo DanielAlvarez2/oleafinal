@@ -127,3 +127,4 @@ print on menu: "scan QR code for digital menu/pics/allergies
 
 when people use google translate taking a pic of menu on their phone
 
+people show me pics on their phones of OLD menu items
