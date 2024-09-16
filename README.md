@@ -10,9 +10,6 @@ you need to refresh to see new pic???
 
 add a second input line for 2-line description of allergies
 
-no login "button"
-only use a route at /login
-
 page for bartenders of cocktail recipes
 
 develop using iPad for cross-browser compatibility
