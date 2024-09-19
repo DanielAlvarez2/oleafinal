@@ -227,7 +227,7 @@ footer{
         padding-left: 5vw;
     }
 }
-@media (width>=700px){
+@media (min-width:700px){
     .fa-bars,
     .fa-rectangle-xmark{
         display:none;
