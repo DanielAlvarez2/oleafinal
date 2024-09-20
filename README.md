@@ -2,6 +2,8 @@
 password input
 type=showPassword?'text':'password'
 
+remove "allergies:" from beers/wines etc...
+
 add up/down arrow keypress to adjust formatting
 
 check for glitch:
