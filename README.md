@@ -127,3 +127,12 @@ print on menu: "scan QR code for digital menu/pics/allergies
 when people use google translate taking a pic of menu on their phone
 
 people show me pics on their phones of OLD menu items
+
+"Do you have any reading glasses?"
+
+screen width in pixels of AppleWatch SamsungWatch? 390px?
+
+"no tables until 6:30, fold napkins"
+*napkin bin is full
+"why don't you ever study the menu?"
+*I was literally reading the wine list
