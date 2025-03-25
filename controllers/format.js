@@ -28,11 +28,13 @@ module.exports = {
                 {archived:false}
             ]
         }).sort({sequence:'asc'})
-        let {pagePadding,itemMargin,showLegalText} = await SpecialsFormat.findOne({index:1})
-        if(pagePadding == undefined) pagePadding = 0
-        if(itemMargin == undefined) itemMargin = 0
-        if(showLegalText == undefined) showLegalText = true
-
+        try{
+            let {pagePadding,itemMargin,showLegalText} = await SpecialsFormat.findOne({index:1})
+        }catch(err){
+            if(pagePadding == undefined) pagePadding = 0
+            if(itemMargin == undefined) itemMargin = 0
+            if(showLegalText == undefined) showLegalText = true
+        }
         console.log(showLegalText, itemMargin, pagePadding)
         showLegalText == 0 ? showLegalText = false : showLegalText = true 
         res.render('format/specials',{req:req,

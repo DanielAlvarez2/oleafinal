@@ -1,3 +1,5 @@
+/ = public website
+/dashboard = content editor
 
 password input
 type=showPassword?'text':'password'
